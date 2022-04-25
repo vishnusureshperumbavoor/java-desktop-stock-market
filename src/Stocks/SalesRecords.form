@@ -43,7 +43,7 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtpurchase" min="-2" pref="113" max="-2" attributes="0"/>
+                                      <Component id="txtsales" min="-2" pref="113" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="txtsearch1" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
                               </Group>
@@ -87,7 +87,7 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtstock" alignment="3" max="32767" attributes="0"/>
-                  <Component id="txtpurchase" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtsales" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -134,6 +134,7 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcustomerActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcustomerKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcustomerKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="txtsearch">
@@ -237,11 +238,12 @@
         <Property name="text" type="java.lang.String" value="Enter Customer ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtpurchase">
+    <Component class="javax.swing.JTextField" name="txtsales">
       <Events>
-        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtpurchaseMouseEntered"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpurchaseActionPerformed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtpurchaseKeyPressed"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtsalesMouseEntered"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtsalesActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtsalesKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtsalesKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="txtsearch1">
@@ -482,6 +484,7 @@
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtstockMouseEntered"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtstockActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtstockKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtstockKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="txtsearch2">

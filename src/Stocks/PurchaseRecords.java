@@ -122,6 +122,9 @@ public class PurchaseRecords extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcustomerKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcustomerKeyReleased(evt);
+            }
         });
 
         txtsearch.setText("Search");
@@ -736,6 +739,12 @@ public class PurchaseRecords extends javax.swing.JFrame {
         new createwallet().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void txtcustomerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcustomerKeyReleased
+        // TODO add your handling code here:
+        txtpurchase.setText(null);
+        txtstock.setText(null);
+    }//GEN-LAST:event_txtcustomerKeyReleased
 
     /**
      * @param args the command line arguments

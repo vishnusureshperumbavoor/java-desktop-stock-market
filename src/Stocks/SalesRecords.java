@@ -83,7 +83,7 @@ public class SalesRecords extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblpurchases = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        txtpurchase = new javax.swing.JTextField();
+        txtsales = new javax.swing.JTextField();
         txtsearch1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
@@ -118,6 +118,9 @@ public class SalesRecords extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcustomerKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcustomerKeyReleased(evt);
+            }
         });
 
         txtsearch.setText("Search");
@@ -144,19 +147,22 @@ public class SalesRecords extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Enter Customer ID");
 
-        txtpurchase.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtsales.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtpurchaseMouseEntered(evt);
+                txtsalesMouseEntered(evt);
             }
         });
-        txtpurchase.addActionListener(new java.awt.event.ActionListener() {
+        txtsales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpurchaseActionPerformed(evt);
+                txtsalesActionPerformed(evt);
             }
         });
-        txtpurchase.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtsales.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtpurchaseKeyPressed(evt);
+                txtsalesKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsalesKeyReleased(evt);
             }
         });
 
@@ -321,6 +327,9 @@ public class SalesRecords extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtstockKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtstockKeyReleased(evt);
+            }
         });
 
         txtsearch2.setText("Search");
@@ -352,7 +361,7 @@ public class SalesRecords extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtsales, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtsearch1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(188, 188, 188)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -384,7 +393,7 @@ public class SalesRecords extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(txtstock)
-                    .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtsales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtsearch)
@@ -459,14 +468,14 @@ public class SalesRecords extends javax.swing.JFrame {
         // TODO add your handling code here:
         fetch();
         txtname.setText(null);
-        txtpurchase.setText(null);
+        txtsales.setText(null);
     }//GEN-LAST:event_txtcustomerKeyPressed
 
-    private void txtpurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpurchaseActionPerformed
+    private void txtsalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsalesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpurchaseActionPerformed
+    }//GEN-LAST:event_txtsalesActionPerformed
 
-    private void txtpurchaseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpurchaseKeyPressed
+    private void txtsalesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsalesKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             fetch();
@@ -474,12 +483,12 @@ public class SalesRecords extends javax.swing.JFrame {
         txtname.setText(null);
         }
         
-    }//GEN-LAST:event_txtpurchaseKeyPressed
+    }//GEN-LAST:event_txtsalesKeyPressed
 
     private void txtsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearch1ActionPerformed
         // TODO add your handling code here:
         try {            
-            String id = txtpurchase.getText();
+            String id = txtsales.getText();
             pst = conn.prepareStatement("select customerid from sales where id = ?");
             pst.setString(1, id);
             rs = pst.executeQuery();
@@ -496,7 +505,7 @@ public class SalesRecords extends javax.swing.JFrame {
                     String name = rs.getString(1);
                     txtname.setText(name.trim());
                 }
-                txtpurchase.requestFocus();
+                txtsales.requestFocus();
             }
            
             
@@ -581,10 +590,10 @@ public class SalesRecords extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_jButton20ActionPerformed
 
-    private void txtpurchaseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpurchaseMouseEntered
+    private void txtsalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtsalesMouseEntered
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_txtpurchaseMouseEntered
+    }//GEN-LAST:event_txtsalesMouseEntered
 
     private void txtstockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtstockMouseEntered
         // TODO add your handling code here:
@@ -637,6 +646,24 @@ public class SalesRecords extends javax.swing.JFrame {
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtsearch2ActionPerformed
+
+    private void txtcustomerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcustomerKeyReleased
+        // TODO add your handling code here:
+        txtsales.setText(null);
+        txtstock.setText(null);
+    }//GEN-LAST:event_txtcustomerKeyReleased
+
+    private void txtsalesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsalesKeyReleased
+        // TODO add your handling code here:
+        txtcustomer.setText(null);
+        txtstock.setText(null);
+    }//GEN-LAST:event_txtsalesKeyReleased
+
+    private void txtstockKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockKeyReleased
+        // TODO add your handling code here:
+        txtsales.setText(null);
+        txtcustomer.setText(null);
+    }//GEN-LAST:event_txtstockKeyReleased
 
     /**
      * @param args the command line arguments
@@ -700,7 +727,7 @@ public class SalesRecords extends javax.swing.JFrame {
     private javax.swing.JTable tblpurchases;
     private javax.swing.JTextField txtcustomer;
     private javax.swing.JLabel txtname;
-    private javax.swing.JTextField txtpurchase;
+    private javax.swing.JTextField txtsales;
     private javax.swing.JButton txtsearch;
     private javax.swing.JButton txtsearch1;
     private javax.swing.JButton txtsearch2;
