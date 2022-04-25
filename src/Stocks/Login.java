@@ -13,6 +13,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         conn = database.connect();
+        nameval.setText(null);
+        passval.setText(null);
     }
     
     @SuppressWarnings("unchecked")
@@ -27,8 +29,8 @@ public class Login extends javax.swing.JFrame {
         txtusername = new javax.swing.JTextField();
         txtpassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        lblusername = new javax.swing.JLabel();
-        lblpassword = new javax.swing.JLabel();
+        nameval = new javax.swing.JLabel();
+        passval = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +73,9 @@ public class Login extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtusernameKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtusernameKeyReleased(evt);
+            }
         });
 
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +87,9 @@ public class Login extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtpasswordKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtpasswordKeyReleased(evt);
+            }
         });
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,11 +100,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        lblusername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblusername.setForeground(new java.awt.Color(255, 0, 0));
+        nameval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nameval.setForeground(new java.awt.Color(255, 0, 0));
+        nameval.setText("000");
 
-        lblpassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblpassword.setForeground(new java.awt.Color(255, 0, 0));
+        passval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        passval.setForeground(new java.awt.Color(255, 0, 0));
+        passval.setText("000");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,11 +124,10 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addGap(38, 38, 38)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtusername, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                                        .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                                        .addComponent(lblusername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(passval, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                    .addComponent(txtusername, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                    .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                    .addComponent(nameval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(339, 339, 339)
                         .addComponent(btnsubmit))
@@ -137,13 +146,13 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblusername, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nameval, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passval, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
@@ -221,10 +230,24 @@ public class Login extends javax.swing.JFrame {
 
     private void txtusernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        
+    }//GEN-LAST:event_txtusernameKeyPressed
+
+    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtpasswordKeyPressed
+
+    private void txtusernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyReleased
+        // TODO add your handling code here:
+        
             if(txtusername.getText().equals("")){
-                    lblusername.setText("username cannot be empty");
+                    nameval.setText("username cannot be empty");
                 } 
+            else{
+                nameval.setText(null);
+            }
+            if(evt.getKeyCode()==KeyEvent.VK_ENTER){
                String name = txtusername.getText();
                try {
                     
@@ -232,25 +255,30 @@ public class Login extends javax.swing.JFrame {
                    pst.setString(1,name);
                    rs = pst.executeQuery();
                    if(rs.next()==false){
-                       lblusername.setText("username doesnt exists");
+                       nameval.setText("username doesnt exists");
                    }else{
+                       nameval.setText(null);
+                       
                        txtpassword.requestFocus();
+                       
                    }
                } catch (SQLException ex) {
                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                }
-        }
-        else{
-            lblusername.setText(null);
-        }
-    }//GEN-LAST:event_txtusernameKeyPressed
+               }
+        
+    }//GEN-LAST:event_txtusernameKeyReleased
 
-    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+    private void txtpasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        
           if(txtpassword.getText().equals("")){
-               lblpassword.setText("password cannot be empty");
+               passval.setText("password cannot be empty");
         }
+          else{
+              passval.setText(null);
+          }
+          if(evt.getKeyCode()==KeyEvent.VK_ENTER){
                String username = txtusername.getText();
                try {
                    pst = conn.prepareStatement("select password from admin where username = ?");
@@ -258,22 +286,21 @@ public class Login extends javax.swing.JFrame {
                    rs = pst.executeQuery();
                    if(rs.next()==true){
                        if(!(txtpassword.getText().equals(rs.getString(1)))){
-                           lblpassword.setText("incorrect password");
+                           passval.setText("incorrect password");
                        }
                        else{
+                           passval.setText(null);
+                           
                        btnsubmit.requestFocus();
+                       
                    }
                    }
                } catch (SQLException ex) {
                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                }
-               
-           
-        }
-        else{
-            lblpassword.setText(null);
-        }
-    }//GEN-LAST:event_txtpasswordKeyPressed
+               }
+       
+    }//GEN-LAST:event_txtpasswordKeyReleased
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -308,8 +335,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblpassword;
-    private javax.swing.JLabel lblusername;
+    private javax.swing.JLabel nameval;
+    private javax.swing.JLabel passval;
     private javax.swing.JPasswordField txtpassword;
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables

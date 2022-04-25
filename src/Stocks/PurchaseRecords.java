@@ -100,7 +100,7 @@ public class PurchaseRecords extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtpurchase1 = new javax.swing.JTextField();
+        txtstock = new javax.swing.JTextField();
         txtsearch2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -370,19 +370,19 @@ public class PurchaseRecords extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Enter Purchase ID");
 
-        txtpurchase1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtstock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtpurchase1MouseEntered(evt);
+                txtstockMouseEntered(evt);
             }
         });
-        txtpurchase1.addActionListener(new java.awt.event.ActionListener() {
+        txtstock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpurchase1ActionPerformed(evt);
+                txtstockActionPerformed(evt);
             }
         });
-        txtpurchase1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtstock.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtpurchase1KeyPressed(evt);
+                txtstockKeyPressed(evt);
             }
         });
 
@@ -416,20 +416,20 @@ public class PurchaseRecords extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(layout.createSequentialGroup()
+                                                    .addGap(6, 6, 6)
                                                     .addComponent(jLabel3)
                                                     .addGap(12, 12, 12)
-                                                    .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(txtsearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(264, 264, 264)
+                                                    .addComponent(txtpurchase))
+                                                .addComponent(txtsearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(219, 219, 219)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jLabel2)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(txtpurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(txtsearch2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                    .addGap(93, 93, 93)))
+                                                    .addComponent(txtstock))
+                                                .addComponent(txtsearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(37, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -448,7 +448,7 @@ public class PurchaseRecords extends javax.swing.JFrame {
                     .addComponent(txtcustomer)
                     .addComponent(jLabel8)
                     .addComponent(jLabel3)
-                    .addComponent(txtpurchase1)
+                    .addComponent(txtstock)
                     .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -554,7 +554,7 @@ public class PurchaseRecords extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {            
             String id = txtpurchase.getText();
-            pst = conn.prepareStatement("select * from purchases where id = ?");
+            pst = conn.prepareStatement("select customerid from purchases where id = ?");
             pst.setString(1, id);
             rs = pst.executeQuery();
             
@@ -659,20 +659,57 @@ public class PurchaseRecords extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtpurchaseMouseEntered
 
-    private void txtpurchase1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpurchase1MouseEntered
+    private void txtstockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtstockMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpurchase1MouseEntered
+    }//GEN-LAST:event_txtstockMouseEntered
 
-    private void txtpurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpurchase1ActionPerformed
+    private void txtstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstockActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpurchase1ActionPerformed
+    }//GEN-LAST:event_txtstockActionPerformed
 
-    private void txtpurchase1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpurchase1KeyPressed
+    private void txtstockKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpurchase1KeyPressed
+    }//GEN-LAST:event_txtstockKeyPressed
 
     private void txtsearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearch2ActionPerformed
         // TODO add your handling code here:
+        try {            
+            String id = txtstock.getText();
+            pst = conn.prepareStatement("select name from stocks where stockid = ?");
+            pst.setString(1, id);
+            
+            rs = pst.executeQuery();
+            
+            if(rs.next() == false){
+                JOptionPane.showMessageDialog(this,"stockid not found");
+                fetch();
+            }else{
+                String name = rs.getString(1);
+                txtname.setText(name.trim());
+                txtstock.requestFocus();
+                
+            }
+            pst = conn.prepareStatement("select * from purchases where stockid = ?");
+            pst.setString(1,id);
+            dl2 = (DefaultTableModel)tblpurchases.getModel();
+            dl2.setRowCount(0);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                 Vector v = new Vector();
+                 v.add(rs.getString("id"));
+                 v.add(rs.getString("customerid"));
+                 v.add(rs.getString("stockname"));
+                 v.add(rs.getString("date"));
+                 v.add(rs.getString("time"));
+                 v.add(rs.getString("price"));
+                 v.add(rs.getString("quantity"));
+                 v.add(rs.getString("total"));
+                 dl2.addRow(v);
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_txtsearch2ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -763,9 +800,9 @@ public class PurchaseRecords extends javax.swing.JFrame {
     private javax.swing.JTextField txtcustomer;
     private javax.swing.JLabel txtname;
     private javax.swing.JTextField txtpurchase;
-    private javax.swing.JTextField txtpurchase1;
     private javax.swing.JButton txtsearch;
     private javax.swing.JButton txtsearch1;
     private javax.swing.JButton txtsearch2;
+    private javax.swing.JTextField txtstock;
     // End of variables declaration//GEN-END:variables
 }

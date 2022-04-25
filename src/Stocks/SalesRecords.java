@@ -96,7 +96,7 @@ public class SalesRecords extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtpurchase1 = new javax.swing.JTextField();
+        txtstock = new javax.swing.JTextField();
         txtsearch2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -307,19 +307,19 @@ public class SalesRecords extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Enter Stocks ID");
 
-        txtpurchase1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtstock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtpurchase1MouseEntered(evt);
+                txtstockMouseEntered(evt);
             }
         });
-        txtpurchase1.addActionListener(new java.awt.event.ActionListener() {
+        txtstock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpurchase1ActionPerformed(evt);
+                txtstockActionPerformed(evt);
             }
         });
-        txtpurchase1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtstock.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtpurchase1KeyPressed(evt);
+                txtstockKeyPressed(evt);
             }
         });
 
@@ -343,24 +343,24 @@ public class SalesRecords extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(255, 255, 255)
-                                        .addComponent(txtsearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(262, 262, 262)
+                                        .addComponent(txtcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(221, 221, 221)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(237, 237, 237)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtsearch1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(188, 188, 188)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtpurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtsearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtstock))
+                                    .addComponent(txtsearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(257, 257, 257)
                                 .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -383,7 +383,7 @@ public class SalesRecords extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(txtpurchase1)
+                    .addComponent(txtstock)
                     .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -408,9 +408,7 @@ public class SalesRecords extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {            
             String id = txtcustomer.getText();
-            pst = conn.prepareStatement("select name from customers where customerid = ?");
-            pst.setString(1, id);
-            
+            pst = conn.prepareStatement("select name from customers where customerid = '"+id+"'");
             rs = pst.executeQuery();
             
             if(rs.next() == false){
@@ -420,7 +418,6 @@ public class SalesRecords extends javax.swing.JFrame {
                 String name = rs.getString(1);
                 txtname.setText(name.trim());
                 txtcustomer.requestFocus();
-                
             }
             
             
@@ -589,20 +586,56 @@ public class SalesRecords extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtpurchaseMouseEntered
 
-    private void txtpurchase1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpurchase1MouseEntered
+    private void txtstockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtstockMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpurchase1MouseEntered
+    }//GEN-LAST:event_txtstockMouseEntered
 
-    private void txtpurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpurchase1ActionPerformed
+    private void txtstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstockActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpurchase1ActionPerformed
+    }//GEN-LAST:event_txtstockActionPerformed
 
-    private void txtpurchase1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpurchase1KeyPressed
+    private void txtstockKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpurchase1KeyPressed
+    }//GEN-LAST:event_txtstockKeyPressed
 
     private void txtsearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearch2ActionPerformed
         // TODO add your handling code here:
+        try {            
+            String id = txtstock.getText();
+            pst = conn.prepareStatement("select name from stocks where stockid = ?");
+            pst.setString(1, id);
+            
+            rs = pst.executeQuery();
+            
+            if(rs.next() == false){
+                JOptionPane.showMessageDialog(this,"stockid not found");
+                fetch();
+            }else{
+                String name = rs.getString(1);
+                txtname.setText(name.trim());
+                txtstock.requestFocus();
+                
+            }
+            pst = conn.prepareStatement("select * from sales where stockid = ?");
+            pst.setString(1,id);
+            dl2 = (DefaultTableModel)tblpurchases.getModel();
+            dl2.setRowCount(0);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                 Vector v = new Vector();
+                 v.add(rs.getString("id"));
+                 v.add(rs.getString("customerid"));
+                 v.add(rs.getString("stockname"));
+                 v.add(rs.getString("date"));
+                 v.add(rs.getString("time"));
+                 v.add(rs.getString("price"));
+                 v.add(rs.getString("quantity"));
+                 v.add(rs.getString("total"));
+                 dl2.addRow(v);
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtsearch2ActionPerformed
 
     /**
@@ -668,9 +701,9 @@ public class SalesRecords extends javax.swing.JFrame {
     private javax.swing.JTextField txtcustomer;
     private javax.swing.JLabel txtname;
     private javax.swing.JTextField txtpurchase;
-    private javax.swing.JTextField txtpurchase1;
     private javax.swing.JButton txtsearch;
     private javax.swing.JButton txtsearch1;
     private javax.swing.JButton txtsearch2;
+    private javax.swing.JTextField txtstock;
     // End of variables declaration//GEN-END:variables
 }
