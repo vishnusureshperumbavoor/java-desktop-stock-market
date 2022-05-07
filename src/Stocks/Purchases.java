@@ -48,7 +48,26 @@ public class Purchases extends javax.swing.JFrame {
         conn = database.connect();
         Customers();
         clear();
+        stockidval.setText(null);
         
+    }
+    String cusid = null;
+    Purchases(String cusid) {
+        initComponents();
+        conn = database.connect();
+        Customers();
+        clear();
+        stockidval.setText(null);
+        try {
+            pst = conn.prepareStatement("select username from customers where customerid = '"+cusid+"'");
+            rs = pst.executeQuery();
+            if(rs.next()){
+                cbbuyer.setSelectedItem(rs.getString(1));
+            }
+             // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 //    public void invoice(){
@@ -78,7 +97,7 @@ public class Purchases extends javax.swing.JFrame {
             rs = pst.executeQuery();
             cbbuyer.removeAllItems();
             while(rs.next()){
-                cbbuyer.addItem(rs.getString("username"));
+                cbbuyer.addItem(rs.getString(1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,6 +115,7 @@ public class Purchases extends javax.swing.JFrame {
         btnpurchaseinvoice.setEnabled(false);
         btnporder.setEnabled(false);
         txtholdings.setText(null);
+        cbbuyer.setSelectedIndex(-1);
     }
     
        /**
@@ -134,12 +154,9 @@ public class Purchases extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         txtprice = new javax.swing.JLabel();
@@ -151,6 +168,7 @@ public class Purchases extends javax.swing.JFrame {
         txtholdings = new javax.swing.JLabel();
         btnpurchaseinvoice = new javax.swing.JButton();
         btnporder = new javax.swing.JButton();
+        stockidval = new javax.swing.JLabel();
 
         jButton17.setBackground(new java.awt.Color(0, 0, 0));
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -399,16 +417,6 @@ public class Purchases extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setBackground(new java.awt.Color(0, 0, 0));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Sectors");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
         jButton21.setBackground(new java.awt.Color(0, 0, 0));
         jButton21.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
@@ -416,16 +424,6 @@ public class Purchases extends javax.swing.JFrame {
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton21ActionPerformed(evt);
-            }
-        });
-
-        jButton14.setBackground(new java.awt.Color(0, 0, 0));
-        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(255, 255, 255));
-        jButton14.setText("Create Wallet");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
             }
         });
 
@@ -446,16 +444,6 @@ public class Purchases extends javax.swing.JFrame {
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
-            }
-        });
-
-        jButton12.setBackground(new java.awt.Color(0, 0, 0));
-        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("Balance");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
             }
         });
 
@@ -494,9 +482,7 @@ public class Purchases extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -504,8 +490,7 @@ public class Purchases extends javax.swing.JFrame {
                             .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -523,14 +508,8 @@ public class Purchases extends javax.swing.JFrame {
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -541,7 +520,7 @@ public class Purchases extends javax.swing.JFrame {
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         txtprice.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -591,6 +570,10 @@ public class Purchases extends javax.swing.JFrame {
             }
         });
 
+        stockidval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        stockidval.setForeground(new java.awt.Color(255, 0, 0));
+        stockidval.setText("jLabel6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -638,7 +621,9 @@ public class Purchases extends javax.swing.JFrame {
                                                 .addGap(87, 87, 87)
                                                 .addComponent(jLabel2)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(txtstockid, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtstockid, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(stockidval, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(14, 14, 14)
                                                 .addComponent(jLabel11)
@@ -653,7 +638,7 @@ public class Purchases extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(263, 263, 263)
                                         .addComponent(jLabel1)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -684,7 +669,9 @@ public class Purchases extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(stockidval)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(txtname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3)
@@ -696,7 +683,7 @@ public class Purchases extends javax.swing.JFrame {
                     .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(txtpurchases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -710,7 +697,7 @@ public class Purchases extends javax.swing.JFrame {
                         .addComponent(btnpurchaseinvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(222, 222, 222))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -792,16 +779,16 @@ public class Purchases extends javax.swing.JFrame {
         pst = conn.prepareStatement("select quantity from pool where cusid = (select customerid from customers where username = '"+username+"') and stockid = '"+id+"'");
         rs = pst.executeQuery();
         if(rs.next()){
-        String balance = rs.getString(1);
-               txtholdings.setText(String.valueOf(balance));
+            String balance = rs.getString(1);
+            txtholdings.setText(String.valueOf(balance));
         }
-                else{
-                    txtholdings.setText("0");
-                }
-        pst = conn.prepareStatement("update wallet set balance = balance - '"+total+"' where cusid = '"+cusid+"'");
+        else{
+            txtholdings.setText("0");
+        }
+        pst = conn.prepareStatement("update customers set balance = balance - '"+total+"' where customerid = '"+cusid+"'");
         pst.executeUpdate();
         
-        pst = conn.prepareStatement("select balance from wallet where cusid = (select customerid from customers where username = '"+username+"')");
+        pst = conn.prepareStatement("select balance from customers where username = '"+username+"'");
             rs = pst.executeQuery();
             if(rs.next()){
                 String wallet = rs.getString(1);
@@ -822,7 +809,7 @@ public class Purchases extends javax.swing.JFrame {
             try {
             // TODO add your handling code here:
             String uname = cbbuyer.getSelectedItem().toString();
-            pst = conn.prepareStatement("select balance from wallet where cusid = (select customerid from customers where username = '"+uname+"')");
+            pst = conn.prepareStatement("select balance from customers where username = '"+uname+"'");
             rs = pst.executeQuery();
             if(rs.next()){
                 String wallet = rs.getString(1);
@@ -833,7 +820,7 @@ public class Purchases extends javax.swing.JFrame {
             pst = conn.prepareStatement("select * from stocks where stockid = '"+id+"'");
             rs = pst.executeQuery();
             if(rs.next() == false){
-                JOptionPane.showMessageDialog(this,"stockid not found");
+                stockidval.setText("Stockid not found");
             }else{
                 String name = rs.getString("name");
                 String price = rs.getString("price");
@@ -854,13 +841,13 @@ public class Purchases extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
         }
-            }else{
-                JOptionPane.showMessageDialog(this,"customer doesnt have wallet. create wallet");
             } 
             } catch (SQLException ex) {
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
         }
             
+        }else{
+            stockidval.setText(null);
         }
     }//GEN-LAST:event_txtstockidKeyPressed
 
@@ -989,6 +976,7 @@ public class Purchases extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        
         new Sales().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -998,12 +986,6 @@ public class Purchases extends javax.swing.JFrame {
         new SalesRecords().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        new Sectors().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void btnpurchaseinvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpurchaseinvoiceActionPerformed
         try {
@@ -1068,12 +1050,6 @@ public class Purchases extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtstockidKeyReleased
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-        new createwallet().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton14ActionPerformed
-
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         new walletdeposit().setVisible(true);
@@ -1096,13 +1072,6 @@ public class Purchases extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_cbbuyerItemStateChanged
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        new walletbalance().setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
@@ -1164,9 +1133,6 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JButton btnpurchases;
     private javax.swing.JComboBox<String> cbbuyer;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1193,6 +1159,7 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel stockidval;
     private javax.swing.JTable tblpurchases;
     private javax.swing.JLabel txtholdings;
     private javax.swing.JLabel txtname;

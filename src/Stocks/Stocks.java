@@ -44,6 +44,7 @@ public class Stocks extends javax.swing.JFrame {
     private void clear(){
         txtname.setText(null);
         txtprice.setText(null);
+        txtnse.setText(null);
         cbsector.setSelectedIndex(-1);
     }
     
@@ -57,6 +58,7 @@ public class Stocks extends javax.swing.JFrame {
                  Vector v = new Vector();
                  v.add(rs.getString("stockid"));
                  v.add(rs.getString("name"));
+                 v.add(rs.getString("NSE"));
                  v.add(rs.getString("price"));
                  v.add(rs.getString("category"));
                  dtm.addRow(v);
@@ -97,6 +99,8 @@ public class Stocks extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtnse = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +115,7 @@ public class Stocks extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Stock Name");
+        jLabel3.setText("NSE");
 
         btnadd.setBackground(new java.awt.Color(255, 0, 0));
         btnadd.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
@@ -145,15 +149,15 @@ public class Stocks extends javax.swing.JFrame {
 
         tblstocks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "stockid", "name", "price", "Sector"
+                "stockid", "name", "NSE", "price", "Sector"
             }
         ));
         tblstocks.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -342,6 +346,11 @@ public class Stocks extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Stock Name");
+
         javax.swing.GroupLayout txtidLayout = new javax.swing.GroupLayout(txtid);
         txtid.setLayout(txtidLayout);
         txtidLayout.setHorizontalGroup(
@@ -361,16 +370,17 @@ public class Stocks extends javax.swing.JFrame {
                                 .addGap(61, 61, 61)
                                 .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel5)))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)))
                             .addGroup(txtidLayout.createSequentialGroup()
                                 .addGap(120, 120, 120)
                                 .addComponent(jLabel7)))
                         .addGap(20, 20, 20)
-                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbsector, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtname)
-                                .addComponent(txtprice, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))))
+                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbsector, 0, 236, Short.MAX_VALUE)
+                            .addComponent(txtname)
+                            .addComponent(txtprice, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(txtnse)))
                     .addGroup(txtidLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(btnadd)
@@ -392,9 +402,13 @@ public class Stocks extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(12, 12, 12)
+                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
+                            .addComponent(txtnse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -463,18 +477,13 @@ public class Stocks extends javax.swing.JFrame {
         int id = Integer.parseInt(dl.getValueAt(index,0).toString());
             
         String name = txtname.getText();
+        String nse = txtnse.getText();
         String price = txtprice.getText();
         String category = cbsector.getSelectedItem().toString();
         
         try{
-               pst = conn.prepareStatement("update stocks set name=?,price=?,category=? where stockid=?");
-               pst.setString(1, name);
-               pst.setString(2, price);
-               pst.setString(3, category);
-               pst.setInt(4, id);
-               
-               int rs = pst.executeUpdate();
-               
+               pst = conn.prepareStatement("update stocks set name='"+name+"',NSE='"+nse+"',price='"+price+"',category='"+category+"' where stockid='"+id+"' ");
+               int rs = pst.executeUpdate();               
                if(rs==1){
                    JOptionPane.showMessageDialog(null, "stocks updated successfull");
                    fetch();
@@ -492,15 +501,11 @@ public class Stocks extends javax.swing.JFrame {
         // TODO add your handling code here:
            String name = txtname.getText();
            String price = txtprice.getText();
+           String nse = txtnse.getText();
            String category = cbsector.getSelectedItem().toString();
            try{
-               pst = conn.prepareStatement("insert into stocks (name,price,category) values (?,?,?)");
-               pst.setString(1, name);
-               pst.setString(2, price);
-               pst.setString(3, category);
-               
+               pst = conn.prepareStatement("insert into stocks values ("+null+",'"+name+"','"+nse+"','"+price+"','"+category+"')");
                int rs = pst.executeUpdate();
-               
                if(rs==1){
                    fetch();
                    clear();
@@ -517,8 +522,9 @@ public class Stocks extends javax.swing.JFrame {
         DefaultTableModel dl=(DefaultTableModel)tblstocks.getModel();
         int index=tblstocks.getSelectedRow();
         txtname.setText(dl.getValueAt(index,1).toString());
-        txtprice.setText(dl.getValueAt(index,2).toString());
-        cbsector.setSelectedItem(dl.getValueAt(index,3).toString());
+        txtnse.setText(dl.getValueAt(index,2).toString());
+        txtprice.setText(dl.getValueAt(index,3).toString());
+        cbsector.setSelectedItem(dl.getValueAt(index,4).toString());
         btnadd.setEnabled(false);
     }//GEN-LAST:event_tblstocksMouseClicked
 
@@ -680,6 +686,7 @@ public class Stocks extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -688,6 +695,7 @@ public class Stocks extends javax.swing.JFrame {
     private javax.swing.JTable tblstocks;
     private javax.swing.JPanel txtid;
     private javax.swing.JTextField txtname;
+    private javax.swing.JTextField txtnse;
     private javax.swing.JTextField txtprice;
     // End of variables declaration//GEN-END:variables
 }

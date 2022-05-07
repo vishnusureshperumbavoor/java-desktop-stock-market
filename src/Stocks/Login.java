@@ -194,9 +194,9 @@ public class Login extends javax.swing.JFrame {
                String sql = "select * from admin where username='"+username+"' && password='"+password+"'";
                ResultSet rs = stmt.executeQuery(sql);
                if(rs.next()){
-                   JOptionPane.showMessageDialog(null, "login successfull");
+                   String name = txtusername.getText();
                    this.dispose();
-                   new Dashboard().setVisible(true);
+                   new Dashboard(name).setVisible(true);
                }
                else{
                    JOptionPane.showMessageDialog(null,"login error");
@@ -213,11 +213,13 @@ public class Login extends javax.swing.JFrame {
     private void btnsubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsubmitMouseClicked
         // TODO add your handling code here:
         new Dashboard().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnsubmitMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         new Registration().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed

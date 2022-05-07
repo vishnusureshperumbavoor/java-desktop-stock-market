@@ -27,6 +27,7 @@ public class walletdeposit extends javax.swing.JFrame {
         initComponents();
         conn  = database.connect();
         clear();
+        cusidval.setText(null);
     }
 String cusid;
 String cusname;
@@ -68,6 +69,9 @@ String cusname;
         txtbalance = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        cusidval = new javax.swing.JLabel();
+        jButton15 = new javax.swing.JButton();
+        txtcustomers = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,6 +124,8 @@ String cusname;
             }
         });
 
+        jToggleButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jToggleButton2.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jToggleButton2.setText("DEPOSIT INR");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +161,28 @@ String cusname;
             }
         });
 
+        cusidval.setText("jLabel6");
+
+        jButton15.setBackground(new java.awt.Color(0, 0, 0));
+        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(255, 255, 255));
+        jButton15.setText("Withdrawal");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        txtcustomers.setBackground(new java.awt.Color(0, 0, 0));
+        txtcustomers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtcustomers.setForeground(new java.awt.Color(255, 255, 255));
+        txtcustomers.setText("Custormers");
+        txtcustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcustomersActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,30 +203,39 @@ String cusname;
                             .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtbalance, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtdeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jToggleButton2))
+                            .addComponent(txtdeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cusidval, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
-                        .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jToggleButton2)
+                .addGap(132, 132, 132))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(txtcustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addComponent(jToggleButton2)
-                .addGap(30, 30, 30)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtcusid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(cusidval)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -216,10 +253,14 @@ String cusname;
                     .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
@@ -232,10 +273,9 @@ String cusname;
             // TODO add your handling code here:
             String cusid = txtcusid.getText();
             String deposit = txtdeposit.getText();
-            pst = conn.prepareStatement("update wallet set balance = balance + '"+deposit+"' where cusid = '"+cusid+"'");
+            pst = conn.prepareStatement("update customers set balance = balance + '"+deposit+"' where customerid = '"+cusid+"'");
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Amount added successfully");
-            pst = conn.prepareStatement("select balance from wallet where cusid = '"+cusid+"'");
+            pst = conn.prepareStatement("select balance from customers where customerid = '"+cusid+"'");
                     rs = pst.executeQuery();
                     if(rs.next()){
                         String balance = rs.getString(1);
@@ -243,7 +283,7 @@ String cusname;
                         btndeposit.setEnabled(false);
                     }
         } catch (SQLException ex) {
-            Logger.getLogger(createwallet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(walletdeposit.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btndepositActionPerformed
 
@@ -265,34 +305,32 @@ String cusname;
 
     private void txtcusidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcusidKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-        try {
-            // TODO add your handling code here:
-            String cusid = txtcusid.getText();
-            pst = conn.prepareStatement("select name from customers where customerid = '"+cusid+"'");
-            rs = pst.executeQuery();
-            if(rs.next()==false){
-                JOptionPane.showMessageDialog(this,"customer doesnt exist");
-            }else{
-                pst = conn.prepareStatement("select * from wallet where cusid = '"+cusid+"'");
+        
+            try {
+                // TODO add your handling code here:
+                String cusid = txtcusid.getText();
+                pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
                 rs = pst.executeQuery();
                 if(rs.next()==false){
-                JOptionPane.showMessageDialog(this,"customer doesnt have an account");
+                    cusidval.setText("customer doesnt exist");
+                }else{
+                        pst = conn.prepareStatement("select name,balance from customers where customerid = '"+cusid+"'");
+                        rs = pst.executeQuery();
+                        if(rs.next()){
+                            String name = rs.getString(1);
+                            String balance = rs.getString(2);
+                            txtname.setText(name.trim());
+                            txtbalance.setText(balance.trim());
+                            btndeposit.setEnabled(true);
+                        }
                 }
-                else{
-                    pst = conn.prepareStatement("select c.name,w.balance from customers c,wallet w where c.customerid = '"+cusid+"' and w.cusid = '"+cusid+"'");
-                    rs = pst.executeQuery();
-                    if(rs.next()){
-                        String name = rs.getString(1);
-                        String balance = rs.getString(2);
-                        txtname.setText(name.trim());
-                        txtbalance.setText(balance.trim());
-                        btndeposit.setEnabled(true);
-                    }
-                }
+            } catch (SQLException ex) {
+                Logger.getLogger(walletdeposit.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(createwallet.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
+        else{
+            cusidval.setText(null);
         }
         
         
@@ -312,7 +350,8 @@ String cusname;
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        new Purchases().setVisible(true);
+        String cusid = txtcusid.getText();
+        new Purchases(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -322,6 +361,18 @@ String cusname;
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        new walletwithdrawal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void txtcustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcustomersActionPerformed
+        // TODO add your handling code here:
+        new Customers().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_txtcustomersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,6 +411,8 @@ String cusname;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btndeposit;
+    private javax.swing.JLabel cusidval;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -370,6 +423,7 @@ String cusname;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel txtbalance;
     private javax.swing.JTextField txtcusid;
+    private javax.swing.JButton txtcustomers;
     private javax.swing.JTextField txtdeposit;
     private javax.swing.JLabel txtname;
     private javax.swing.JComboBox<String> txtpayment;
