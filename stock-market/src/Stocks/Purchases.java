@@ -1064,8 +1064,7 @@ public class Purchases extends javax.swing.JFrame {
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
-        new createwallet().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void cbbuyerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbuyerItemStateChanged

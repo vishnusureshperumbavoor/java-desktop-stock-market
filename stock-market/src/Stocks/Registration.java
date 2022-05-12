@@ -520,41 +520,24 @@ String PATTERN="^[0-9]{0,10}$";
 
     private void txtpasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyReleased
 //         TODO add your handling code here:
-String PATTERN="^[a-zA-Z0-9.,@]{0,6}$";
+String PATTERN="^[a-zA-Z0-9.,@]{6,20}$";
         Pattern patt=Pattern.compile(PATTERN);
         Matcher match=patt.matcher(txtpassword.getText());
-        
+ 
             if(!match.matches()){
-            passval.setText("password should not exceed 6 characters");
+            passval.setText("password should contain more than 6 characters");
         }
-        
-            else if(txtpassword.getText().equals("")){
-               passval.setText("password cannot be empty");
-           } 
-           
            else{
-               String name = txtpassword.getText();
-               try {
-                   pst = conn.prepareStatement("select * from admin where password = ?");
-                   pst.setString(1,name);
-                   rs = pst.executeQuery();
-                   if(rs.next()==true){
-                       passval.setText("password already exists");
-                   }else{
-                       passval.setText(null);
-                       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+                passval.setText(null);
+                   if(evt.getKeyCode()==KeyEvent.VK_ENTER){
                            txtcpassword.setEnabled(true);
                             txtcpassword.requestFocus();
                         }
-                   }
-               } catch (SQLException ex) {
-                   Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               
            }
         
                 
     }//GEN-LAST:event_txtpasswordKeyReleased
+
 
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
