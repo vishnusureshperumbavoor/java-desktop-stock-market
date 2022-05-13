@@ -54,6 +54,10 @@ public class Purchases extends javax.swing.JFrame {
         txtamtnow.setText(null);
         
     }
+
+    Purchases(String cusid) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public void Customers(){
         try {
@@ -772,7 +776,7 @@ public class Purchases extends javax.swing.JFrame {
             txtname.getText(),
             txtprice.getText(),
             txtshares.getText(),
-            String.valueOf(total)+"₹"
+            String.valueOf(total)
         });
         
         pst = conn.prepareStatement("update pool set amount = amount + '"+total+"', shares = shares + '"+shares+"' where cusid = '"+cusid+"' and stockid = '"+stockid+"'");
@@ -961,7 +965,7 @@ public class Purchases extends javax.swing.JFrame {
                 cusname = rs.getString(1);
             }
             try {
-                new SalesBill(cusname,tblsales.getModel()).setVisible(true);
+                new PurchaseBill(cusname,tblsales.getModel()).setVisible(true);
             } catch (PrinterException ex) {
                 Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
             }

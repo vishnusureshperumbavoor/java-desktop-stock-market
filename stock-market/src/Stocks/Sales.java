@@ -704,7 +704,6 @@ public class Sales extends javax.swing.JFrame {
             }
             int shares = Integer.parseInt(txtshares.getText());
             int total = price * shares;
-            String ttotal = String.valueOf(total);
             String sname = txtname.getText();
             
             String username = cbseller.getSelectedItem().toString();            
@@ -748,7 +747,7 @@ public class Sales extends javax.swing.JFrame {
             txtname.getText(),
             txtprice.getText(),
             txtshares.getText(),
-            ttotal
+            String.valueOf(total)
         });
         
         pst = conn.prepareStatement("select amount/shares from pool where cusid = (select customerid from customers where username = '"+username+"') and stockid = '"+stockid+"'");

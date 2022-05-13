@@ -21,7 +21,7 @@ public class Deposit extends javax.swing.JFrame {
     
 
     /**
-     * Creates new form walletdeposit
+     * Creates new form Deposit
      */
     public Deposit() {
         initComponents();

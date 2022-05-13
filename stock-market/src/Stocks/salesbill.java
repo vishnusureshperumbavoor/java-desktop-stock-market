@@ -49,7 +49,7 @@ public SalesBill(){
         }
         txtinvoice.setText(txtinvoice.getText() + "\n");
         txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
-        txtinvoice.setText(txtinvoice.getText() + "         TOTAL AMOUNT : " + sum + "\n");
+        txtinvoice.setText(txtinvoice.getText() + "         TOTAL AMOUNT : ₹" + sum + "\n");
         txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
 //        txtinvoice.print();
     }

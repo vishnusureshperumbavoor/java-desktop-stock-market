@@ -222,7 +222,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Stocks");
+        jButton5.setText("STOCKS");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -232,7 +232,7 @@ public class Dashboard extends javax.swing.JFrame {
         txtcustomers.setBackground(new java.awt.Color(0, 0, 0));
         txtcustomers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtcustomers.setForeground(new java.awt.Color(255, 255, 255));
-        txtcustomers.setText("Custormers");
+        txtcustomers.setText("CUSTOMERS");
         txtcustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcustomersActionPerformed(evt);
@@ -242,7 +242,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(0, 0, 0));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Purchases");
+        jButton9.setText("PURCHASES");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -252,7 +252,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(0, 0, 0));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Sales");
+        jButton7.setText("SALES");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -262,7 +262,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Admin");
+        jButton6.setText("ADMIN");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -272,7 +272,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton17.setBackground(new java.awt.Color(0, 0, 0));
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton17.setForeground(new java.awt.Color(255, 255, 255));
-        jButton17.setText("Sectors");
+        jButton17.setText("SECTORS");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17ActionPerformed(evt);
@@ -282,7 +282,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(0, 0, 0));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Balance");
+        jButton10.setText("BALANCE");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -290,9 +290,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jButton11.setBackground(new java.awt.Color(0, 0, 0));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Search Customers");
+        jButton11.setText("SEARCH CUSTOMERS");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -302,7 +302,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton16.setBackground(new java.awt.Color(0, 0, 0));
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton16.setForeground(new java.awt.Color(255, 255, 255));
-        jButton16.setText("Wallet");
+        jButton16.setText("WALLET");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -312,7 +312,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton14.setBackground(new java.awt.Color(0, 0, 0));
         jButton14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton14.setForeground(new java.awt.Color(255, 255, 255));
-        jButton14.setText("Deposit");
+        jButton14.setText("DEPOSIT");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -322,7 +322,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton15.setBackground(new java.awt.Color(0, 0, 0));
         jButton15.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setText("Withdrawal");
+        jButton15.setText("WITHDRAWAL");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
@@ -330,9 +330,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jButton13.setBackground(new java.awt.Color(0, 0, 0));
-        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("Stock Holdings");
+        jButton13.setText("STOCK HOLDINGS");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -352,7 +352,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton19.setBackground(new java.awt.Color(0, 0, 0));
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton19.setForeground(new java.awt.Color(255, 255, 255));
-        jButton19.setText("Sales Records");
+        jButton19.setText("TOTAL SALES");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
@@ -362,7 +362,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton20.setBackground(new java.awt.Color(0, 0, 0));
         jButton20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton20.setForeground(new java.awt.Color(255, 255, 255));
-        jButton20.setText("Admin");
+        jButton20.setText("ADMIN");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton20ActionPerformed(evt);
@@ -372,7 +372,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton21.setBackground(new java.awt.Color(0, 0, 0));
         jButton21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
-        jButton21.setText("Signout");
+        jButton21.setText("SIGNOUT");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton21ActionPerformed(evt);

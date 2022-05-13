@@ -28,28 +28,29 @@ public PurchaseBill(){
         LocalDateTime now = LocalDateTime.now();
         String date = dtf.format(now);
         String time = dtf2.format(now);
+        
         txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
-            txtinvoice.setText(txtinvoice.getText() + "      Purchase Invoice " + "\n");
-            txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
-            txtinvoice.setText(txtinvoice.getText() + "\n");
-            txtinvoice.setText(txtinvoice.getText() + "Customer : " + cusname + "\n");
-            txtinvoice.setText(txtinvoice.getText() + "Date : " + date + "\t" + time + "\n");
-            txtinvoice.setText(txtinvoice.getText() + "\n");
-            txtinvoice.setText(txtinvoice.getText() + "Stockname " + "\t" + "Price" + "\t" + "Qty" + "\t" + "Total" + "\n");
-            for(int i=0;i<model.getRowCount();i++){
-                String name = (String)model.getValueAt(i,3);
-                String price = (String)model.getValueAt(i,4);
-                String qty = (String)model.getValueAt(i,5);
-                String amt = (String)model.getValueAt(i,6);
-                txtinvoice.setText(txtinvoice.getText() + name + "\t" + price + "\t" + qty + "\t" + amt + "\n");
-            }
-                    int sum=0;
+        txtinvoice.setText(txtinvoice.getText() + "      Purchase Invoice " + "\n");
+        txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
+        txtinvoice.setText(txtinvoice.getText() + "\n");
+        txtinvoice.setText(txtinvoice.getText() + "Customer : " + cusname + "\n");
+        txtinvoice.setText(txtinvoice.getText() + "Date : " + date + "\t" + time + "\n");
+        txtinvoice.setText(txtinvoice.getText() + "\n");
+        txtinvoice.setText(txtinvoice.getText() + "Stockname " + "\t" + "Price" + "\t" + "Qty" + "\t" + "Total" + "\n");
+        for(int i=0;i<model.getRowCount();i++){
+            String name = (String)model.getValueAt(i,3);
+            String price = (String)model.getValueAt(i,4);
+            String qty = (String)model.getValueAt(i,5);
+            String amt = (String)model.getValueAt(i,6);
+            txtinvoice.setText(txtinvoice.getText() + name + "\t" + price + "\t" + qty + "\t" + amt + "\n");
+        }
+        int sum=0;
         for(int i=0;i<model.getRowCount();i++){
             sum += Integer.parseInt(model.getValueAt(i,6).toString());
         }
         txtinvoice.setText(txtinvoice.getText() + "\n");
         txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
-        txtinvoice.setText(txtinvoice.getText() + "         TOTAL AMOUNT : " + sum + "\n");
+        txtinvoice.setText(txtinvoice.getText() + "         TOTAL AMOUNT : ₹" + sum + "\n");
         txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
 //        txtinvoice.print();
     }
