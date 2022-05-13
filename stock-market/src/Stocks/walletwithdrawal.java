@@ -98,6 +98,9 @@ public class walletwithdrawal extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcusidKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcusidKeyReleased(evt);
+            }
         });
 
         jLabel4.setText("Withdrawal Amount");
@@ -303,7 +306,6 @@ public class walletwithdrawal extends javax.swing.JFrame {
 
     private void txtcusidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtcusidMouseClicked
         // TODO add your handling code here:
-        clear();
     }//GEN-LAST:event_txtcusidMouseClicked
 
     private void txtwithdrawKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtwithdrawKeyPressed
@@ -337,6 +339,11 @@ public class walletwithdrawal extends javax.swing.JFrame {
         new walletdeposit().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void txtcusidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcusidKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtcusidKeyReleased
 
     /**
      * @param args the command line arguments

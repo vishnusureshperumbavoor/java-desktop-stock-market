@@ -503,9 +503,6 @@ String PATTERN="^[0-9]{0,10}$";
                }
                
            }
-
-
-
     }//GEN-LAST:event_txtcontactKeyReleased
 
     private void txtcontactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontactActionPerformed

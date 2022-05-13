@@ -1,5 +1,6 @@
 package Stocks;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -23,44 +24,32 @@ public class Stocks extends javax.swing.JFrame {
         initComponents();
         conn = database.connect();
         fetch();
-        Sectors();
+        txtmarketcap.setText(null);
     }
     
     
-    public void Sectors(){
-        try {
-            pst = conn.prepareStatement("select sector from sectors");
-            rs = pst.executeQuery();
-            cbsector.removeAllItems();
-            while(rs.next()){
-                cbsector.addItem(rs.getString("sector"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Stocks.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
+    
   
     private void clear(){
         txtname.setText(null);
+        txtshares.setText(null);
         txtprice.setText(null);
-        txtnse.setText(null);
-        cbsector.setSelectedIndex(-1);
+        txtmarketcap.setText(null);
     }
     
     private void fetch(){
         try{
              stmt = conn.createStatement();
-             rs = stmt.executeQuery("select * from stocks");
+             rs = stmt.executeQuery("select *,price*shares as marketCap from stocks");
              dtm = (DefaultTableModel)tblstocks.getModel();
              dtm.setRowCount(0);
              while(rs.next()){
                  Vector v = new Vector();
                  v.add(rs.getString("stockid"));
                  v.add(rs.getString("name"));
-                 v.add(rs.getString("NSE"));
                  v.add(rs.getString("price"));
-                 v.add(rs.getString("category"));
+                 v.add(rs.getString("shares"));
+                 v.add(rs.getString("marketCap"));
                  dtm.addRow(v);
              }                
         }
@@ -84,11 +73,9 @@ public class Stocks extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblstocks = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         btndelete2 = new javax.swing.JButton();
-        cbsector = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        txtprice = new javax.swing.JTextField();
+        txtshares = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -100,7 +87,9 @@ public class Stocks extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txtnse = new javax.swing.JTextField();
+        txtprice = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtmarketcap = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,7 +104,7 @@ public class Stocks extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("NSE");
+        jLabel3.setText("Stock Price");
 
         btnadd.setBackground(new java.awt.Color(255, 0, 0));
         btnadd.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
@@ -157,7 +146,7 @@ public class Stocks extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "stockid", "name", "NSE", "price", "Sector"
+                "stockid", "name", "Price", "Shares", "Market Cap"
             }
         ));
         tblstocks.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,10 +166,6 @@ public class Stocks extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Sector");
-
         btndelete2.setBackground(new java.awt.Color(255, 0, 0));
         btndelete2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         btndelete2.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,22 +176,18 @@ public class Stocks extends javax.swing.JFrame {
             }
         });
 
-        cbsector.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cbsector.setForeground(new java.awt.Color(0, 0, 0));
-        cbsector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "elon", "jeff", "mark" }));
-        cbsector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbsectorActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Current Price");
+        jLabel5.setText("Market Cap");
 
-        txtprice.addActionListener(new java.awt.event.ActionListener() {
+        txtshares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpriceActionPerformed(evt);
+                txtsharesActionPerformed(evt);
+            }
+        });
+        txtshares.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsharesKeyReleased(evt);
             }
         });
 
@@ -226,7 +207,7 @@ public class Stocks extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(0, 0, 0));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 8)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Purchase Records");
+        jButton7.setText("TOTAL PURCHASES");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -351,6 +332,14 @@ public class Stocks extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Stock Name");
 
+        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("No of Shares");
+
+        txtmarketcap.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtmarketcap.setForeground(new java.awt.Color(255, 255, 255));
+        txtmarketcap.setText("jLabel2");
+
         javax.swing.GroupLayout txtidLayout = new javax.swing.GroupLayout(txtid);
         txtid.setLayout(txtidLayout);
         txtidLayout.setHorizontalGroup(
@@ -365,23 +354,6 @@ public class Stocks extends javax.swing.JFrame {
                         .addGap(136, 136, 136)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(txtidLayout.createSequentialGroup()
-                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(txtidLayout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)))
-                            .addGroup(txtidLayout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel7)))
-                        .addGap(20, 20, 20)
-                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbsector, 0, 236, Short.MAX_VALUE)
-                            .addComponent(txtname)
-                            .addComponent(txtprice, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                            .addComponent(txtnse)))
-                    .addGroup(txtidLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(btnadd)
                         .addGap(26, 26, 26)
@@ -389,7 +361,24 @@ public class Stocks extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(btndelete)
                         .addGap(28, 28, 28)
-                        .addComponent(btndelete2)))
+                        .addComponent(btndelete2))
+                    .addGroup(txtidLayout.createSequentialGroup()
+                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(txtidLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)))
+                            .addGroup(txtidLayout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel5)))
+                        .addGap(34, 34, 34)
+                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtname)
+                            .addComponent(txtshares, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(txtprice)
+                            .addComponent(txtmarketcap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         txtidLayout.setVerticalGroup(
@@ -407,16 +396,18 @@ public class Stocks extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtnse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
                             .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(cbsector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                            .addComponent(txtshares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addGroup(txtidLayout.createSequentialGroup()
+                                .addComponent(txtmarketcap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)))
+                        .addGap(31, 31, 31)
                         .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnadd)
                             .addComponent(btnupdate)
@@ -477,15 +468,13 @@ public class Stocks extends javax.swing.JFrame {
         int id = Integer.parseInt(dl.getValueAt(index,0).toString());
             
         String name = txtname.getText();
-        String nse = txtnse.getText();
         String price = txtprice.getText();
-        String category = cbsector.getSelectedItem().toString();
+        String shares = txtshares.getText();
         
         try{
-               pst = conn.prepareStatement("update stocks set name='"+name+"',NSE='"+nse+"',price='"+price+"',category='"+category+"' where stockid='"+id+"' ");
+               pst = conn.prepareStatement("update stocks set name='"+name+"',price='"+price+"',shares='"+shares+"' where stockid='"+id+"' ");
                int rs = pst.executeUpdate();               
                if(rs==1){
-                   JOptionPane.showMessageDialog(null, "stocks updated successfull");
                    fetch();
                    clear();
                    txtname.requestFocus();
@@ -500,11 +489,10 @@ public class Stocks extends javax.swing.JFrame {
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
         // TODO add your handling code here:
            String name = txtname.getText();
-           String price = txtprice.getText();
-           String nse = txtnse.getText();
-           String category = cbsector.getSelectedItem().toString();
+        String price = txtprice.getText();
+        String shares = txtshares.getText();
            try{
-               pst = conn.prepareStatement("insert into stocks values ("+null+",'"+name+"','"+nse+"','"+price+"','"+category+"')");
+               pst = conn.prepareStatement("insert into stocks values ("+null+",'"+name+"','"+price+"','"+shares+"')");
                int rs = pst.executeUpdate();
                if(rs==1){
                    fetch();
@@ -522,9 +510,9 @@ public class Stocks extends javax.swing.JFrame {
         DefaultTableModel dl=(DefaultTableModel)tblstocks.getModel();
         int index=tblstocks.getSelectedRow();
         txtname.setText(dl.getValueAt(index,1).toString());
-        txtnse.setText(dl.getValueAt(index,2).toString());
-        txtprice.setText(dl.getValueAt(index,3).toString());
-        cbsector.setSelectedItem(dl.getValueAt(index,4).toString());
+        txtprice.setText(dl.getValueAt(index,2).toString());
+        txtshares.setText(dl.getValueAt(index,3).toString());
+        txtmarketcap.setText(dl.getValueAt(index,4).toString());
         btnadd.setEnabled(false);
     }//GEN-LAST:event_tblstocksMouseClicked
 
@@ -568,15 +556,13 @@ public class Stocks extends javax.swing.JFrame {
         clear();
         btnadd.setEnabled(true);
         txtname.requestFocus();
+        txtprice.requestFocus();
+        txtshares.requestFocus();
     }//GEN-LAST:event_btndelete2ActionPerformed
 
-    private void cbsectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbsectorActionPerformed
+    private void txtsharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsharesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbsectorActionPerformed
-
-    private void txtpriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpriceActionPerformed
+    }//GEN-LAST:event_txtsharesActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -586,7 +572,7 @@ public class Stocks extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        new PurchaseRecords().setVisible(true);
+        new TotalPurchases().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -616,14 +602,13 @@ public class Stocks extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        new SalesRecords().setVisible(true);
+        new TotalSales().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        new Sectors().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -631,6 +616,21 @@ public class Stocks extends javax.swing.JFrame {
         new StockHoldings().setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void txtsharesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsharesKeyReleased
+        // TODO add your handling code here:
+        String price = txtprice.getText();
+        String shares = txtshares.getText();
+        if("".equals(price) ||"".equals(shares)){
+            txtmarketcap.setText(null);  
+        }
+        else{
+            int price2 = Integer.parseInt(txtprice.getText());
+            int shares2 = Integer.parseInt(txtshares.getText());
+            int total = price2 * shares2;
+            txtmarketcap.setText(String.valueOf(total));    
+        }   
+    }//GEN-LAST:event_txtsharesKeyReleased
 
     /**
      * @param args the command line arguments
@@ -673,7 +673,6 @@ public class Stocks extends javax.swing.JFrame {
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btndelete2;
     private javax.swing.JButton btnupdate;
-    private javax.swing.JComboBox cbsector;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -688,14 +687,15 @@ public class Stocks extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblstocks;
     private javax.swing.JPanel txtid;
+    private javax.swing.JLabel txtmarketcap;
     private javax.swing.JTextField txtname;
-    private javax.swing.JTextField txtnse;
     private javax.swing.JTextField txtprice;
+    private javax.swing.JTextField txtshares;
     // End of variables declaration//GEN-END:variables
 }

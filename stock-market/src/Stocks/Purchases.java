@@ -49,7 +49,8 @@ public class Purchases extends javax.swing.JFrame {
         Customers();
         clear();
         stockidval.setText(null);
-        
+        txtpprice.setText(null);
+        txtppriceval.setText(null);
     }
     String cusid = null;
     Purchases(String cusid) {
@@ -108,14 +109,14 @@ public class Purchases extends javax.swing.JFrame {
         txtstockid.setText(null);
         txtname.setText(null);
         txtprice.setText(null);
-        txtquantity.setText(null);
-        txtpurchases.setText(null);
+        txtshares.setText(null);
+        txtpprice.setText(null);
         txtholdings.setText(null);
         btnpurchases.setEnabled(false);
         btnpurchaseinvoice.setEnabled(false);
         btnporder.setEnabled(false);
         txtholdings.setText(null);
-        cbbuyer.setSelectedIndex(-1);
+//        cbbuyer.setSelectedIndex(-1);
     }
     
        /**
@@ -133,8 +134,6 @@ public class Purchases extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtstockid = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtquantity = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblpurchases = new javax.swing.JTable();
         btnpurchases = new javax.swing.JButton();
@@ -161,14 +160,17 @@ public class Purchases extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         txtprice = new javax.swing.JLabel();
         txtname = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         txtpurchase = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtpurchases = new javax.swing.JLabel();
         txtholdings = new javax.swing.JLabel();
         btnpurchaseinvoice = new javax.swing.JButton();
         btnporder = new javax.swing.JButton();
         stockidval = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtshares = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtpprice = new javax.swing.JLabel();
+        txtppriceval = new javax.swing.JLabel();
 
         jButton17.setBackground(new java.awt.Color(0, 0, 0));
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -217,27 +219,12 @@ public class Purchases extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Stock Price : ");
 
-        txtquantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtquantityActionPerformed(evt);
-            }
-        });
-        txtquantity.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtquantityKeyPressed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Quantity : ");
-
         tblpurchases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Stock ID", "Date", "Time", "Stock Name", "Stock Price", "Quantity", "Total"
+                "Stock ID", "Date", "Time", "Stock Name", "Stock Price", "Shares", "Total"
             }
         ));
         jScrollPane1.setViewportView(tblpurchases);
@@ -360,7 +347,7 @@ public class Purchases extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 8)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Purchase Records");
+        jButton5.setText("TOTAL PURCHASES");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -520,10 +507,10 @@ public class Purchases extends javax.swing.JFrame {
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(465, Short.MAX_VALUE))
         );
 
-        txtprice.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        txtprice.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtprice.setForeground(new java.awt.Color(255, 0, 0));
         txtprice.setText("0");
 
@@ -532,21 +519,13 @@ public class Purchases extends javax.swing.JFrame {
         txtname.setForeground(new java.awt.Color(255, 51, 51));
         txtname.setText("0");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Purchasing Price : ");
-
         txtpurchase.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Holding :");
 
-        txtpurchases.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        txtpurchases.setForeground(new java.awt.Color(255, 0, 0));
-        txtpurchases.setText("0");
-
-        txtholdings.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        txtholdings.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtholdings.setForeground(new java.awt.Color(255, 0, 0));
         txtholdings.setText("0");
 
@@ -574,35 +553,39 @@ public class Purchases extends javax.swing.JFrame {
         stockidval.setForeground(new java.awt.Color(255, 0, 0));
         stockidval.setText("jLabel6");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Shares : ");
+
+        txtshares.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsharesKeyReleased(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Purchase Price : ");
+
+        txtpprice.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtpprice.setForeground(new java.awt.Color(0, 153, 0));
+        txtpprice.setText("jLabel12");
+
+        txtppriceval.setForeground(new java.awt.Color(204, 0, 0));
+        txtppriceval.setText("jLabel12");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(891, Short.MAX_VALUE)
-                        .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnporder)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnpurchaseinvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -622,8 +605,10 @@ public class Purchases extends javax.swing.JFrame {
                                                 .addComponent(jLabel2)
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtstockid, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(stockidval, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(stockidval, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(txtstockid, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(74, 74, 74))))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(14, 14, 14)
                                                 .addComponent(jLabel11)
@@ -633,24 +618,50 @@ public class Purchases extends javax.swing.JFrame {
                                                 .addComponent(jLabel4)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(jLabel7))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(263, 263, 263)
                                         .addComponent(jLabel1)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
-                                .addGap(104, 104, 104)))))
-                .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtshares, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtpprice, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(38, 38, 38)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnporder)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(btnpurchaseinvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 15, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(92, 92, 92)
+                                                .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(104, 104, 104)
+                                                .addComponent(jLabel9)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtppriceval, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(215, 215, 215))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -659,7 +670,7 @@ public class Purchases extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbbuyer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
@@ -680,24 +691,28 @@ public class Purchases extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtprice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7)
-                    .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtshares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(txtpurchases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
+                    .addComponent(txtpprice, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(txtppriceval)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addGap(16, 16, 16)
                         .addComponent(btnporder, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
                         .addComponent(btnpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
                         .addComponent(btnpurchaseinvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(222, 222, 222))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(130, Short.MAX_VALUE))
+                        .addContainerGap(545, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -716,14 +731,13 @@ public class Purchases extends javax.swing.JFrame {
         String date = dtf.format(now);
         String time = dtf2.format(now);
         
-        int price = Integer.parseInt(txtprice.getText());
-        int quantity = Integer.parseInt(txtquantity.getText());
-        int total = price * quantity;
-        String stotal = String.valueOf(total);
+        int current = Integer.parseInt(txtprice.getText());
+        int shares = Integer.parseInt(txtshares.getText());
+        int total = Integer.parseInt(txtpprice.getText());
         String sname = txtname.getText();
         try {
             
-            String id = txtstockid.getText();
+            String stockid = txtstockid.getText();
             String username = cbbuyer.getSelectedItem().toString();            
             pst = conn.prepareStatement("select customerid from customers where username = '"+username+"'");
             rs = pst.executeQuery();
@@ -731,7 +745,7 @@ public class Purchases extends javax.swing.JFrame {
             if(rs.next()){
                 cusid = rs.getString(1);
             }            
-            String sql = "insert into purchases values ("+null+",'"+cusid+"','"+id+"','"+sname+"','"+date+"','"+time+"','"+price+"','"+quantity+"','"+stotal+"')";
+            String sql = "insert into purchases values ("+null+",'"+cusid+"','"+stockid+"','"+sname+"','"+date+"','"+time+"','"+current+"','"+shares+"')";
             pst = conn.prepareStatement(sql);
             pst.executeUpdate();
                 
@@ -764,8 +778,8 @@ public class Purchases extends javax.swing.JFrame {
             time,
             txtname.getText(),
             txtprice.getText(),
-            txtquantity.getText(),
-            stotal
+            txtshares.getText(),
+            total
         });
 //        int sum=0;
 //        for(int i=0;i<tblpurchases.getRowCount();i++){
@@ -773,10 +787,10 @@ public class Purchases extends javax.swing.JFrame {
 //        }
 //        txttotal.setText(String.valueOf(sum));
         
-        pst = conn.prepareStatement("update pool set quantity = quantity + '"+quantity+"' where cusid = '"+cusid+"' and stockid = '"+id+"'");
+        pst = conn.prepareStatement("update pool set amount = amount + '"+total+"', shares = shares + '"+shares+"' where cusid = '"+cusid+"' and stockid = '"+stockid+"'");
         pst.executeUpdate();
         
-        pst = conn.prepareStatement("select quantity from pool where cusid = (select customerid from customers where username = '"+username+"') and stockid = '"+id+"'");
+        pst = conn.prepareStatement("select shares from pool where cusid = (select customerid from customers where username = '"+username+"') and stockid = '"+stockid+"'");
         rs = pst.executeQuery();
         if(rs.next()){
             String balance = rs.getString(1);
@@ -789,84 +803,49 @@ public class Purchases extends javax.swing.JFrame {
         pst.executeUpdate();
         
         pst = conn.prepareStatement("select balance from customers where username = '"+username+"'");
-            rs = pst.executeQuery();
-            if(rs.next()){
-                String wallet = rs.getString(1);
-                txtwallet.setText(wallet.trim());
-            }
-                JOptionPane.showMessageDialog(this,"Purchase completed");
+        rs = pst.executeQuery();
+        if(rs.next()){
+            String wallet = rs.getString(1);
+            txtwallet.setText(wallet.trim());
+        }
+        
+        
+        double increase = total * 0.001;
+        System.out.println(increase);
+        pst = conn.prepareStatement("update stocks set price = price + '"+increase+"' where stockid = '"+stockid+"'");
+        pst.executeUpdate();
+        
+        pst = conn.prepareStatement("select price from stocks where stockid = '"+stockid+"'");
+        rs = pst.executeQuery();
+        if(rs.next()){
+            String newstock = rs.getString(1);
+            txtprice.setText(newstock.trim());
+        }
+        
+        
+        JOptionPane.showMessageDialog(this,"Purchase completed");
         } catch (SQLException ex) {
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
         }
         btnpurchases.setEnabled(false);
+        btnporder.setEnabled(true);
         btnpurchaseinvoice.setEnabled(true);
         
     }//GEN-LAST:event_btnpurchasesActionPerformed
 
     private void txtstockidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockidKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            try {
-            // TODO add your handling code here:
-            String uname = cbbuyer.getSelectedItem().toString();
-            pst = conn.prepareStatement("select balance from customers where username = '"+uname+"'");
-            rs = pst.executeQuery();
-            if(rs.next()){
-                String wallet = rs.getString(1);
-                txtwallet.setText(wallet.trim());
-                try {
-            String id = txtstockid.getText();
-            String username = cbbuyer.getSelectedItem().toString();
-            pst = conn.prepareStatement("select * from stocks where stockid = '"+id+"'");
-            rs = pst.executeQuery();
-            if(rs.next() == false){
-                stockidval.setText("Stockid not found");
-            }else{
-                String name = rs.getString("name");
-                String price = rs.getString("price");
-                txtname.setText(name.trim());
-                txtprice.setText(price.trim());
-                txtquantity.requestFocus();
-                
-                pst = conn.prepareStatement("select quantity from pool where cusid = (select customerid from customers where username = '"+username+"') and stockid = '"+id+"'");
-                rs = pst.executeQuery();
-                if(rs.next()){
-                    String balance = rs.getString(1);
-                    txtholdings.setText(String.valueOf(balance));
-                }
-                else{
-                    txtholdings.setText("0");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            } 
-            } catch (SQLException ex) {
-            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-        }else{
-            stockidval.setText(null);
-        }
+        
     }//GEN-LAST:event_txtstockidKeyPressed
 
     private void txtstockidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtstockidMouseClicked
         // TODO add your handling code here:
-        txtname.setText(null);
-        txtprice.setText(null);
-        txtquantity.setText(null);
-        txtpurchases.setText(null);
-        txtholdings.setText(null);
+        
     }//GEN-LAST:event_txtstockidMouseClicked
 
     private void txtstockidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstockidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtstockidActionPerformed
-
-    private void txtquantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtquantityActionPerformed
 
     private void cbbuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbuyerActionPerformed
         
@@ -924,26 +903,6 @@ public class Purchases extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpaymentActionPerformed
 
-    private void txtquantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtquantityKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            int price = Integer.parseInt(txtprice.getText());
-            int quantity = Integer.parseInt(txtquantity.getText());
-            int total = price * quantity;
-            txtpurchases.setText(String.valueOf(total));
-            
-            int wallet= Integer.parseInt(txtwallet.getText());
-            if(total>wallet){
-                JOptionPane.showMessageDialog(null,"amount is greater than your wallet balance");
-                btnporder.setEnabled(false);
-            }else{
-              btnporder.setEnabled(true);  
-            }
-        }else{
-            txtpurchases.setText(null);
-        }
-    }//GEN-LAST:event_txtquantityKeyPressed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         new Dashboard().setVisible(true);
@@ -952,7 +911,7 @@ public class Purchases extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new PurchaseRecords().setVisible(true);
+        new TotalPurchases().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -983,7 +942,7 @@ public class Purchases extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        new SalesRecords().setVisible(true);
+        new TotalSales().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -1026,7 +985,6 @@ public class Purchases extends javax.swing.JFrame {
             // TODO add your handling code here:
             String stockid = txtstockid.getText();
             String username = cbbuyer.getSelectedItem().toString();   
-            String stockname = txtname.getText();
             pst = conn.prepareStatement("select customerid from customers where username = '"+username+"'");
             rs = pst.executeQuery();
             String cusid = null;
@@ -1036,7 +994,7 @@ public class Purchases extends javax.swing.JFrame {
             pst = conn.prepareStatement("select * from pool where cusid = '"+cusid+"' and stockid = '"+stockid+"'");
             rs = pst.executeQuery();
             if(rs.next()==false){
-                pst = conn.prepareStatement("insert into pool values ("+null+",'"+cusid+"','"+stockid+"','"+stockname+"',"+0+")");
+                pst = conn.prepareStatement("insert into pool values ("+null+",'"+cusid+"','"+stockid+"',"+0+","+0+")");
                 pst.executeUpdate();
             }
             btnporder.setEnabled(false);
@@ -1048,6 +1006,70 @@ public class Purchases extends javax.swing.JFrame {
 
     private void txtstockidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockidKeyReleased
         // TODO add your handling code here:
+        String id = txtstockid.getText();
+            if("".equals(id)){
+            stockidval.setText(null);  
+            txtname.setText(null);
+            txtprice.setText(null);
+            txtshares.setText(null);
+            txtpprice.setText(null);
+            txtholdings.setText(null);
+            txtppriceval.setText(null);
+        }else{
+               try {
+            // TODO add your handling code here:
+            String uname = cbbuyer.getSelectedItem().toString();
+            pst = conn.prepareStatement("select balance from customers where username = '"+uname+"'");
+            rs = pst.executeQuery();
+            if(rs.next()){
+                String wallet = rs.getString(1);
+                txtwallet.setText(wallet.trim());
+            }
+                try {
+            
+            String username = cbbuyer.getSelectedItem().toString();
+            pst = conn.prepareStatement("select * from stocks where stockid = '"+id+"'");
+            rs = pst.executeQuery();
+            if(rs.next() == false){
+                stockidval.setText("Stockid not found");
+                txtname.setText(null);
+            txtprice.setText(null);
+            txtshares.setText(null);
+            txtpprice.setText(null);
+            txtholdings.setText(null);
+            }else{
+                stockidval.setText(null);
+                String name = rs.getString("name");
+                String price = rs.getString("price");
+                txtname.setText(name.trim());
+                txtprice.setText(price.trim());
+                
+                pst = conn.prepareStatement("select shares from pool where cusid = (select customerid from customers where username = '"+username+"') and stockid = '"+id+"'");
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    String balance = rs.getString(1);
+                    txtholdings.setText(String.valueOf(balance));
+                }
+                else{
+                    txtholdings.setText("0");
+                }
+            }
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                txtshares.requestFocus();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+            } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+            }
+            
+            
+//        }else{
+//            stockidval.setText(null);
+//        }
     }//GEN-LAST:event_txtstockidKeyReleased
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -1080,15 +1102,40 @@ public class Purchases extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        new PurchaseRecords().setVisible(true);
+        new TotalPurchases().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
-        new SalesRecords().setVisible(true);
+        new TotalSales().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void txtsharesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsharesKeyReleased
+        // TODO add your handling code here:
+        String price = txtprice.getText();
+        String shares = txtshares.getText();
+        if("".equals(price) ||"".equals(shares)){
+            txtpprice.setText(null);
+        }
+        else{
+            int price2 = Integer.parseInt(txtprice.getText());
+            int shares2 = Integer.parseInt(txtshares.getText());
+            int total = price2 * shares2;
+            txtpprice.setText(String.valueOf(total));
+            int balance = Integer.parseInt(txtwallet.getText());
+            int pprice = Integer.parseInt(txtpprice.getText());
+            if(balance<pprice){
+                txtppriceval.setText("not enough balance in the account");
+                btnporder.setEnabled(false);
+            }else{
+                txtppriceval.setText(null);
+                btnporder.setEnabled(true);
+            }
+        }
+
+    }//GEN-LAST:event_txtsharesKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1163,10 +1210,11 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JLabel txtholdings;
     private javax.swing.JLabel txtname;
     private javax.swing.JComboBox<String> txtpayment;
+    private javax.swing.JLabel txtpprice;
+    private javax.swing.JLabel txtppriceval;
     private javax.swing.JLabel txtprice;
     private javax.swing.JLabel txtpurchase;
-    private javax.swing.JLabel txtpurchases;
-    private javax.swing.JTextField txtquantity;
+    private javax.swing.JTextField txtshares;
     private javax.swing.JTextField txtstockid;
     private javax.swing.JLabel txtwallet;
     // End of variables declaration//GEN-END:variables

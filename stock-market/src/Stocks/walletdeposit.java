@@ -113,6 +113,9 @@ String cusname;
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcusidKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcusidKeyReleased(evt);
+            }
         });
 
         jLabel4.setText("Deposit Amount");
@@ -304,41 +307,14 @@ String cusname;
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void txtcusidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcusidKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
         
-            try {
-                // TODO add your handling code here:
-                String cusid = txtcusid.getText();
-                pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
-                rs = pst.executeQuery();
-                if(rs.next()==false){
-                    cusidval.setText("customer doesnt exist");
-                }else{
-                        pst = conn.prepareStatement("select name,balance from customers where customerid = '"+cusid+"'");
-                        rs = pst.executeQuery();
-                        if(rs.next()){
-                            String name = rs.getString(1);
-                            String balance = rs.getString(2);
-                            txtname.setText(name.trim());
-                            txtbalance.setText(balance.trim());
-                            btndeposit.setEnabled(true);
-                        }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(walletdeposit.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        }
-        else{
-            cusidval.setText(null);
-        }
         
         
     }//GEN-LAST:event_txtcusidKeyPressed
 
     private void txtcusidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtcusidMouseClicked
         // TODO add your handling code here:
-        clear();
+        
     }//GEN-LAST:event_txtcusidMouseClicked
 
     private void txtdepositKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdepositKeyPressed
@@ -373,6 +349,42 @@ String cusname;
         new Customers().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_txtcustomersActionPerformed
+
+    private void txtcusidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcusidKeyReleased
+        // TODO add your handling code here:
+        String cusid = txtcusid.getText();
+        if("".equals(cusid)){
+            cusidval.setText(null);
+            clear();
+        }else{
+            try {
+                // TODO add your handling code here:
+                
+                pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
+                rs = pst.executeQuery();
+                if(rs.next()==false){
+                    cusidval.setText("customer doesnt exist");
+                    clear();
+                }else{
+                    cusidval.setText(null);
+                        pst = conn.prepareStatement("select name,balance from customers where customerid = '"+cusid+"'");
+                        rs = pst.executeQuery();
+                        if(rs.next()){
+                            String name = rs.getString(1);
+                            String balance = rs.getString(2);
+                            txtname.setText(name.trim());
+                            txtbalance.setText(balance.trim());
+                            btndeposit.setEnabled(true);
+                        }
+                        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                            txtdeposit.requestFocus();
+                        }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(walletdeposit.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_txtcusidKeyReleased
 
     /**
      * @param args the command line arguments

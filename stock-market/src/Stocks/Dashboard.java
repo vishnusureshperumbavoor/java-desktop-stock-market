@@ -342,7 +342,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton18.setBackground(new java.awt.Color(0, 0, 0));
         jButton18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton18.setForeground(new java.awt.Color(255, 255, 255));
-        jButton18.setText("Purchase Records");
+        jButton18.setText("TOTAL PURCHASES");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
@@ -598,8 +598,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
-        new Sectors().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -637,13 +636,13 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        new PurchaseRecords().setVisible(true);
+        new TotalPurchases().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
-        new SalesRecords().setVisible(true);
+        new TotalSales().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton19ActionPerformed
 
