@@ -26,7 +26,7 @@ public class Profitnloss extends javax.swing.JFrame {
      */
     public Profitnloss() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         customers();
         
     }

@@ -45,7 +45,7 @@ public class Sales extends javax.swing.JFrame {
      */
     public Sales() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         Customers();
         clear();
         salesidval.setText(null);
@@ -779,8 +779,8 @@ public class Sales extends javax.swing.JFrame {
         pst = conn.prepareStatement("select price from stocks where stockid = '"+stockid+"'");
         rs = pst.executeQuery();
         if(rs.next()){
-            String newstock = rs.getString(1);
-            txtprice.setText(newstock.trim());
+            price = rs.getInt(1);
+            txtprice.setText(price+"₹");
         }
         
         
@@ -806,11 +806,11 @@ public class Sales extends javax.swing.JFrame {
         int amtnow = price * shares2 ;
         txtamtnow.setText(String.valueOf(amtnow)+"₹");
                 
-        int profit = amtnow * 100 / amount;
+        float profit = amtnow * 100 / amount;
         profit = profit - 100; 
         txtreturn.setText(String.valueOf(profit)+"%");
         
-        JOptionPane.showMessageDialog(this,"sales completed");
+//        JOptionPane.showMessageDialog(this,"sales completed");
         } catch (SQLException ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -940,7 +940,7 @@ public class Sales extends javax.swing.JFrame {
                 cusname = rs.getString(1);
             }
             try {
-                new salesbill(cusname,tblsales.getModel()).setVisible(true);
+                new SalesBill(cusname,tblsales.getModel()).setVisible(true);
             } catch (PrinterException ex) {
                 Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1049,7 +1049,7 @@ public class Sales extends javax.swing.JFrame {
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
-        new walletwithdrawal().setVisible(true);
+        new Withdrawal().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton21ActionPerformed
 
@@ -1091,7 +1091,7 @@ public class Sales extends javax.swing.JFrame {
                 int available = Integer.parseInt(txtholdings.getText());
                 int selling = Integer.parseInt(txtshares.getText());
                 if(selling>available){
-                    quantityval.setText("more than available quantity");
+                    quantityval.setText("more than available shares");
                     int quantity = Integer.parseInt(txtshares.getText());
                     int total = price2 * quantity;
                     txtsales.setText(String.valueOf(total)+"₹");

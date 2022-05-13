@@ -16,12 +16,12 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.JTextArea;
 
-public class salesbill extends javax.swing.JFrame {
+public class SalesBill extends javax.swing.JFrame {
 
-public salesbill(){
+public SalesBill(){
     initComponents();
 }
-    public salesbill(String cusname,TableModel model) throws PrinterException {
+    public SalesBill(String cusname,TableModel model) throws PrinterException {
         initComponents();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss a");
@@ -101,14 +101,18 @@ public salesbill(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(salesbill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(salesbill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(salesbill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(salesbill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -117,7 +121,7 @@ public salesbill(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new salesbill().setVisible(true);
+                new SalesBill().setVisible(true);
             }
         });
     }

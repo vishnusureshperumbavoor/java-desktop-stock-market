@@ -27,7 +27,7 @@ public class SalesRecords extends javax.swing.JFrame {
      */
     public SalesRecords() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         customers();
         txtpurchases.setText(null);
         txtstatus.setText(null);
@@ -579,25 +579,20 @@ public class SalesRecords extends javax.swing.JFrame {
                  dtm.addRow(v);
              } 
              
-             int totalpurchases=0,totalstatus=0,totalprofit=0;
+             int totalpurchases=0,totalstatus=0;
         for(int i=0;i<tblhodl.getRowCount();i++){
             totalpurchases += Integer.parseInt(tblhodl.getValueAt(i,5).toString());
             totalstatus += Integer.parseInt(tblhodl.getValueAt(i,7).toString());
-            totalprofit += Integer.parseInt(tblhodl.getValueAt(i,8).toString());
         }
         txtpurchases.setText(String.valueOf(totalpurchases)+"₹");
         txtstatus.setText(String.valueOf(totalstatus)+"₹");
-        txtprofit.setText(String.valueOf(totalprofit)+"₹");
+        int pnl = totalstatus - totalpurchases;
+        txtprofit.setText(String.valueOf(pnl)+"₹");
         
-        float temp=(float) 0.0;
-        temp = totalpurchases*100/totalstatus;
+        float temp = totalpurchases*100/totalstatus;
+        temp = temp - 100;
         txtpercentage.setText(String.valueOf(temp)+"%");
-        
-        System.out.println(temp);
-        
-        
-        
-        } catch (SQLException ex) {
+                } catch (SQLException ex) {
             Logger.getLogger(SalesRecords.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton20ActionPerformed

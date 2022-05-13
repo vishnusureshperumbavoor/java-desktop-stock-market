@@ -8,7 +8,7 @@ import java.lang.System.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-public class database {
+public class Database {
     public static Connection connect(){
        
         Connection conn = null;
@@ -18,10 +18,10 @@ public class database {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stock","root","");
         } 
         catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         return conn;
     }

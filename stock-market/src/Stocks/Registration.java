@@ -20,7 +20,7 @@ public class Registration extends javax.swing.JFrame {
     Statement stmt;
     public Registration() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         txtpassword.setEnabled(false);
         txtcpassword.setEnabled(false);  
         cancel();

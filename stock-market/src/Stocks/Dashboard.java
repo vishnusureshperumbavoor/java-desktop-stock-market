@@ -37,7 +37,7 @@ public class Dashboard extends javax.swing.JFrame {
     Dashboard(String username) {
         try {
             initComponents();
-            conn = database.connect();
+            conn = Database.connect();
             showDate();
             System.out.println(username);
             pst = conn.prepareStatement("select name from admin where username = '"+username+"'");
@@ -572,13 +572,13 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        new walletwithdrawal().setVisible(true);
+        new Withdrawal().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        new walletdeposit().setVisible(true);
+        new Deposit().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton14ActionPerformed
 

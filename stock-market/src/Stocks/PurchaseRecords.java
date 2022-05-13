@@ -27,7 +27,7 @@ public class PurchaseRecords extends javax.swing.JFrame {
      */
     public PurchaseRecords() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         customers();
         txtpurchases.setText(null);
         txtstatus.setText(null);
@@ -299,7 +299,7 @@ public class PurchaseRecords extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("TOTAL SALES");
+        jLabel4.setText("TOTAL PURCHASES");
 
         txtpurchases.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtpurchases.setForeground(new java.awt.Color(0, 0, 0));
@@ -560,8 +560,7 @@ public class PurchaseRecords extends javax.swing.JFrame {
             if(rs.next()){
                 customerid = rs.getString(1);
             }
-            pst = conn.prepareStatement("select p.stockname,p.date,p.time,p.stockprice,p.shares,p.stockprice*p.shares,s.price,s.price*p.shares,(p.stockprice*p.shares)-(s.price*p.shares) from sales p inner join stocks s on p.stockid = s.stockid where p.customerid = '"+customerid+"'");
-            System.out.println("select p.stockname,p.date,p.time,p.stockprice,p.shares,p.stockprice*p.shares,s.price,s.price*p.shares,(s.price*p.shares)-(p.stockprice*p.shares) from sales p inner join stocks s on p.stockid = s.stockid where p.customerid = '"+customerid+"'");
+            pst = conn.prepareStatement("select p.stockname,p.date,p.time,p.stockprice,p.shares,p.stockprice*p.shares,s.price,s.price*p.shares,(s.price*p.shares)-(p.stockprice*p.shares) from purchases p inner join stocks s on p.stockid = s.stockid where p.customerid = '"+customerid+"'");
             rs = pst.executeQuery();
             DefaultTableModel dtm = (DefaultTableModel)tblhodl.getModel();
              dtm.setRowCount(0);
@@ -579,18 +578,19 @@ public class PurchaseRecords extends javax.swing.JFrame {
                  dtm.addRow(v);
              } 
              
-             int totalpurchases=0,totalstatus=0,totalprofit=0;
+             int totalpurchases=0,totalstatus=0;
         for(int i=0;i<tblhodl.getRowCount();i++){
             totalpurchases += Integer.parseInt(tblhodl.getValueAt(i,5).toString());
             totalstatus += Integer.parseInt(tblhodl.getValueAt(i,7).toString());
-            totalprofit += Integer.parseInt(tblhodl.getValueAt(i,8).toString());
         }
         txtpurchases.setText(String.valueOf(totalpurchases)+"₹");
         txtstatus.setText(String.valueOf(totalstatus)+"₹");
-        txtprofit.setText(String.valueOf(totalprofit)+"₹");
+        int pnl = totalpurchases - totalstatus;
+        txtprofit.setText(String.valueOf(pnl)+"₹");
         
-        float temp=(float) 0.0;
-        temp = totalpurchases*100/totalstatus;
+        float temp= 0;
+        temp = totalstatus*100/totalpurchases;
+        temp = temp - 100;
         txtpercentage.setText(String.valueOf(temp)+"%");
         
         System.out.println(temp);

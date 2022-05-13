@@ -12,7 +12,7 @@ public class Login extends javax.swing.JFrame {
     ResultSet rs;
     public Login() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         nameval.setText(null);
         passval.setText(null);
     }

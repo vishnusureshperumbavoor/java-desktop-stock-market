@@ -32,7 +32,7 @@ public class Customers extends javax.swing.JFrame {
     Statement stmt;
     public Customers() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         fetch();
     }
     
@@ -615,13 +615,13 @@ public class Customers extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        new walletdeposit().setVisible(true);
+        new Deposit().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        new walletwithdrawal().setVisible(true);
+        new Withdrawal().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
 

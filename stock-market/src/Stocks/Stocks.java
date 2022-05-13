@@ -22,7 +22,7 @@ public class Stocks extends javax.swing.JFrame {
     Statement stmt;
     public Stocks() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         fetch();
         txtmarketcap.setText(null);
     }

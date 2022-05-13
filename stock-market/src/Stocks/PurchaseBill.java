@@ -16,12 +16,12 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.JTextArea;
 
-public class invoice extends javax.swing.JFrame {
+public class PurchaseBill extends javax.swing.JFrame {
 
-public invoice(){
+public PurchaseBill(){
     initComponents();
 }
-    public invoice(String cusname,TableModel model) throws PrinterException {
+    public PurchaseBill(String cusname,TableModel model) throws PrinterException {
         initComponents();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss a");
@@ -101,21 +101,23 @@ public invoice(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PurchaseBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PurchaseBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PurchaseBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PurchaseBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new invoice().setVisible(true);
+                new PurchaseBill().setVisible(true);
             }
         });
     }

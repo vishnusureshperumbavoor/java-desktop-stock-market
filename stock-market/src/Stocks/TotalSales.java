@@ -33,7 +33,7 @@ public class TotalSales extends javax.swing.JFrame {
      */
     public TotalSales() {
         initComponents();
-        conn = database.connect();
+        conn = Database.connect();
         fetch();
         txtname.setText(null);
     }
