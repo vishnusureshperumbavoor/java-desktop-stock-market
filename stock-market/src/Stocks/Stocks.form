@@ -241,6 +241,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtname">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnameKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btndelete">
               <Properties>
@@ -596,6 +599,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtprice">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtpriceKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>

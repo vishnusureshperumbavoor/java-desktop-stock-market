@@ -270,9 +270,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jButton17.setBackground(new java.awt.Color(0, 0, 0));
-        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton17.setForeground(new java.awt.Color(255, 255, 255));
-        jButton17.setText("SECTORS");
+        jButton17.setText("TOTAL PURCHASES");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17ActionPerformed(evt);
@@ -282,7 +282,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(0, 0, 0));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("BALANCE");
+        jButton10.setText("TOTAL SALES");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -292,7 +292,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(0, 0, 0));
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("SEARCH CUSTOMERS");
+        jButton11.setText("HOLDINGS");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -588,16 +588,23 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        new StockHoldings().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        new TotalSales().setVisible(true);
+        this.dispose();
         
         
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
+        new TotalPurchases().setVisible(true);
+        this.dispose();
+        
         
     }//GEN-LAST:event_jButton17ActionPerformed
 

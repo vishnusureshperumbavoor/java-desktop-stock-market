@@ -56,7 +56,26 @@ public class Purchases extends javax.swing.JFrame {
     }
 
     Purchases(String cusid) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            initComponents();
+            conn = Database.connect();
+            Customers();
+            clear();
+            salesidval.setText(null);
+            quantityval.setText(null);
+            txtreturn.setText(null);
+            txtamtnow.setText(null);
+            pst = conn.prepareStatement("select username from customers where customerid = '"+cusid+"'");
+            rs = pst.executeQuery();
+            String uname = null;
+            while(rs.next()){
+                uname = rs.getString(1);
+            }
+            cbseller.addItem(rs.getString(uname));
+        } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     public void Customers(){
@@ -949,7 +968,7 @@ public class Purchases extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        new TotalSales().setVisible(true);
+        new Deposit().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 

@@ -4,6 +4,7 @@
  */
 package Stocks;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -48,7 +49,7 @@ public class Customers extends javax.swing.JFrame {
                  v.add(rs.getString("name"));
                  v.add(rs.getString("username"));
                  v.add(rs.getString("phoneno"));
-                 v.add(rs.getString("country"));
+                 v.add(rs.getString("email"));
                  v.add(rs.getString("balance"));
                  dtm.addRow(v);
              }                
@@ -133,7 +134,7 @@ public class Customers extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "CustomerID", "name", "Username", "Contact", "Country", "Balance"
+                "CustomerID", "name", "Username", "Contact", "Email", "Balance"
             }
         ));
         tblcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,7 +168,19 @@ public class Customers extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("country");
+        jLabel6.setText("Email");
+
+        txtusername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtusernameKeyReleased(evt);
+            }
+        });
+
+        txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnameKeyReleased(evt);
+            }
+        });
 
         txtcountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,6 +191,11 @@ public class Customers extends javax.swing.JFrame {
         txtcontact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcontactActionPerformed(evt);
+            }
+        });
+        txtcontact.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcontactKeyReleased(evt);
             }
         });
 
@@ -624,6 +642,27 @@ public class Customers extends javax.swing.JFrame {
         new Withdrawal().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtusername.requestFocus();
+        }
+    }//GEN-LAST:event_txtnameKeyReleased
+
+    private void txtusernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtcontact.requestFocus();
+        }
+    }//GEN-LAST:event_txtusernameKeyReleased
+
+    private void txtcontactKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontactKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtcountry.requestFocus();
+        }
+    }//GEN-LAST:event_txtcontactKeyReleased
 
     /**
      * @param args the command line arguments

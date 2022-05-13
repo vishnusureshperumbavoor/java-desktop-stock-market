@@ -126,6 +126,12 @@ public class Stocks extends javax.swing.JFrame {
             }
         });
 
+        txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnameKeyReleased(evt);
+            }
+        });
+
         btndelete.setBackground(new java.awt.Color(255, 0, 0));
         btndelete.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         btndelete.setForeground(new java.awt.Color(255, 255, 255));
@@ -331,6 +337,12 @@ public class Stocks extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Stock Name");
+
+        txtprice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtpriceKeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -631,6 +643,20 @@ public class Stocks extends javax.swing.JFrame {
             txtmarketcap.setText(String.valueOf(total));    
         }   
     }//GEN-LAST:event_txtsharesKeyReleased
+
+    private void txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtprice.requestFocus();
+        }
+    }//GEN-LAST:event_txtnameKeyReleased
+
+    private void txtpriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpriceKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtshares.requestFocus();
+        }
+    }//GEN-LAST:event_txtpriceKeyReleased
 
     /**
      * @param args the command line arguments

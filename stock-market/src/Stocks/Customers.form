@@ -191,7 +191,7 @@
                 <Column editable="true" title="name" type="java.lang.Object"/>
                 <Column editable="true" title="Username" type="java.lang.Object"/>
                 <Column editable="true" title="Contact" type="java.lang.Object"/>
-                <Column editable="true" title="Country" type="java.lang.Object"/>
+                <Column editable="true" title="Email" type="java.lang.Object"/>
                 <Column editable="true" title="Balance" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -297,12 +297,18 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="country"/>
+        <Property name="text" type="java.lang.String" value="Email"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtusername">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtusernameKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtname">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnameKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtcountry">
       <Events>
@@ -312,6 +318,7 @@
     <Component class="javax.swing.JTextField" name="txtcontact">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcontactActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcontactKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
