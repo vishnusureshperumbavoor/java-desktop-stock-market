@@ -290,10 +290,8 @@
                           <Component id="jLabel23" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="txtpholdings" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="txtpamt" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                              <Component id="txtpavg" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabel25" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtpavg" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jLabel25" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -301,7 +299,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                               <Component id="btnsales" min="-2" pref="59" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnsbills" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -930,7 +928,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Average Buy Price :"/>
+        <Property name="text" type="java.lang.String" value="Average Price :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtavg">
@@ -1216,7 +1214,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Average Buy Price : "/>
+        <Property name="text" type="java.lang.String" value="Average Price : "/>
       </Properties>
     </Component>
   </SubComponents>

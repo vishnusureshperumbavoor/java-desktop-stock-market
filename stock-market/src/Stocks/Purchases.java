@@ -158,7 +158,7 @@ public class Purchases extends javax.swing.JFrame {
                 String uname = rs.getString(1);
                 String demat = rs.getString(2);
                 txtcname.setText(uname.trim());
-                txtdemat.setText(demat+"₹");
+                txtdemat.setText(demat);
                 
             }
 //            cbseller.addItem(rs.getString(uname));
@@ -572,7 +572,7 @@ public class Purchases extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Average Buy Price :");
+        jLabel12.setText("Average Price :");
 
         txtavg.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtavg.setForeground(new java.awt.Color(255, 0, 0));
@@ -695,7 +695,7 @@ public class Purchases extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Average Buy Price : ");
+        jLabel25.setText("Average Price : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -998,8 +998,9 @@ public class Purchases extends javax.swing.JFrame {
         pst = conn.prepareStatement("update customers set demat = demat - '"+total+"' where customerid = '"+cusid+"'");
         pst.executeUpdate();
         
-        int decrease = (int) (total * 0.001);
-        pst = conn.prepareStatement("update stocks set price = price + '"+decrease+"',supply = supply - '"+shares+"' where stockid = '"+stockid+"'");
+        int percentage = shares*100/supply;
+        int fluc = price*percentage/100;
+        pst = conn.prepareStatement("update stocks set price = price + '"+fluc+"',supply = supply - '"+shares+"' where stockid = '"+stockid+"'");
         pst.executeUpdate();
         
         pst = conn.prepareStatement("select demat from customers where customerid = '"+cusid+"'");
@@ -1175,7 +1176,7 @@ public class Purchases extends javax.swing.JFrame {
                     int amtnow = price * shares ;
                 txtamtnow.setText(String.valueOf(amtnow)+"₹");
                 
-                double profit = amtnow * 100 / amount;
+                int profit = amtnow * 100 / amount;
                 profit = profit - 100; 
                 txtreturn.setText(String.valueOf(profit)+"%");
                 

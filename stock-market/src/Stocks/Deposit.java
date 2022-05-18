@@ -82,7 +82,7 @@ String cusname;
             }
         });
 
-        jLabel1.setText("Enter Customer ID");
+        jLabel1.setText("Enter Customer ID : ");
 
         txtdeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,11 +93,14 @@ String cusname;
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtdepositKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtdepositKeyReleased(evt);
+            }
         });
 
         jLabel2.setText("Payment Method");
 
-        jLabel3.setText("Wallet Balance");
+        jLabel3.setText("Demat Account Balance : ");
 
         txtcusid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,7 +121,7 @@ String cusname;
             }
         });
 
-        jLabel4.setText("Deposit Amount");
+        jLabel4.setText("Deposit Amount : ");
 
         txtpayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NetBanking", "Bitcoin", "Ethereum", "Dogecoin" }));
         txtpayment.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +142,7 @@ String cusname;
         txtname.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtname.setText("jLabel5");
 
-        jLabel5.setText("Customer Name");
+        jLabel5.setText("Customer Name : ");
 
         txtbalance.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtbalance.setText("jLabel5");
@@ -211,7 +214,7 @@ String cusname;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -278,12 +281,11 @@ String cusname;
             String deposit = txtdeposit.getText();
             pst = conn.prepareStatement("update customers set demat = demat + '"+deposit+"' where customerid = '"+cusid+"'");
             pst.executeUpdate();
-            pst = conn.prepareStatement("select balance from customers where customerid = '"+cusid+"'");
+            pst = conn.prepareStatement("select demat from customers where customerid = '"+cusid+"'");
                     rs = pst.executeQuery();
                     if(rs.next()){
                         String balance = rs.getString(1);
                         txtbalance.setText(balance.trim());
-                        btndeposit.setEnabled(false);
                     }
         } catch (SQLException ex) {
             Logger.getLogger(Deposit.class.getName()).log(Level.SEVERE, null, ex);
@@ -319,9 +321,7 @@ String cusname;
 
     private void txtdepositKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdepositKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            btndeposit.setEnabled(true);
-        }
+        
     }//GEN-LAST:event_txtdepositKeyPressed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -360,22 +360,18 @@ String cusname;
             try {
                 // TODO add your handling code here:
                 
-                pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
+                pst = conn.prepareStatement("select name,demat from customers where customerid = '"+cusid+"'");
                 rs = pst.executeQuery();
                 if(rs.next()==false){
                     cusidval.setText("customer doesnt exist");
                     clear();
                 }else{
                     cusidval.setText(null);
-                        pst = conn.prepareStatement("select name,balance from customers where customerid = '"+cusid+"'");
-                        rs = pst.executeQuery();
-                        if(rs.next()){
                             String name = rs.getString(1);
                             String balance = rs.getString(2);
                             txtname.setText(name.trim());
                             txtbalance.setText(balance.trim());
-                            btndeposit.setEnabled(true);
-                        }
+                            
                         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                             txtdeposit.requestFocus();
                         }
@@ -385,6 +381,16 @@ String cusname;
             }
         }
     }//GEN-LAST:event_txtcusidKeyReleased
+
+    private void txtdepositKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdepositKeyReleased
+        // TODO add your handling code here:
+        if("".equals(txtdeposit.getText())){
+                btndeposit.setEnabled(false);
+            }else{
+            btndeposit.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_txtdepositKeyReleased
 
     /**
      * @param args the command line arguments

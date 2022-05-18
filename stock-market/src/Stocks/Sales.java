@@ -131,17 +131,23 @@ public class Sales extends javax.swing.JFrame {
         int price = Integer.parseInt(txtprice.getText());
         int supply = Integer.parseInt(txtsupply.getText());
         int quantity = Integer.parseInt(txtshares.getText());
+        int avg = Integer.parseInt(txtavg.getText());
         int total = price * quantity;
         int dbalance = balance + total;
         int psupply = supply + shares;
         int pholdings = holdings - shares;
-        int pinvest = invest - total;
+        int temp = shares * avg;
+        int pinvest = invest - temp;
                     txtsellprice.setText(String.valueOf(total));
                     txtbalance.setText(String.valueOf(dbalance)+"₹");
                     txtpsupply.setText(String.valueOf(psupply));
                     txtpholdings.setText(String.valueOf(pholdings));
                     txtpamt.setText(String.valueOf(pinvest));
-                    txtpavg.setText(String.valueOf(Integer.parseInt(txtpamt.getText()) / Integer.parseInt(txtpholdings.getText())));
+                    if(Integer.parseInt(txtpamt.getText())==0){
+                        txtpavg.setText(null);
+                    }else{
+                        txtpavg.setText(String.valueOf(Integer.parseInt(txtpamt.getText()) / Integer.parseInt(txtpholdings.getText())));
+                    }   
     }
       /**
      * This method is called from within the constructor to initialize the form.
@@ -543,7 +549,7 @@ public class Sales extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Average Buy Price :");
+        jLabel12.setText("Average Price :");
 
         txtavg.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtavg.setForeground(new java.awt.Color(255, 0, 0));
@@ -656,7 +662,7 @@ public class Sales extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Average Buy Price : ");
+        jLabel25.setText("Average Price : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -881,16 +887,15 @@ public class Sales extends javax.swing.JFrame {
                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtpholdings, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtpamt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtpavg, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtpavg, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(64, 64, 64)
                                 .addComponent(btnsales, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnsbills, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -977,8 +982,9 @@ public class Sales extends javax.swing.JFrame {
             txtdemat.setText(balance+"");
         }
             
-        double decrease = total * 0.001;
-        pst = conn.prepareStatement("update stocks set price = price - '"+decrease+"' where stockid = '"+stockid+"'");
+        int percentage = shares*100/supply;
+        int fluc = price*percentage/100;
+        pst = conn.prepareStatement("update stocks set price = price - '"+fluc+"' where stockid = '"+stockid+"'");
         pst.executeUpdate();
         
         pst = conn.prepareStatement("select price,supply from stocks where stockid = '"+stockid+"'");
@@ -1006,11 +1012,14 @@ public class Sales extends javax.swing.JFrame {
 
         int amtnow = price * holdings ;
         txtamtnow.setText(String.valueOf(amtnow)+"₹");
-                
-        float profit = amtnow * 100 / invest;
-        profit = profit - 100; 
-        txtreturn.setText(String.valueOf(profit)+"%");
-        
+         
+        if(amtnow==0){
+            txtreturn.setText(null);
+        }else{
+            float profit = amtnow * 100 / invest;
+            profit = profit - 100; 
+            txtreturn.setText(String.valueOf(profit)+"%");
+        }
         txtshares.setText(null);
         btnsbills.setEnabled(true);
         salesClear();
@@ -1107,6 +1116,7 @@ public class Sales extends javax.swing.JFrame {
         // TODO add your handling code here:
             // TODO add your handling code here:
             String id = txtstockid.getText();
+            
             if("".equals(id)){
                 stockClear();
             }else{
@@ -1142,10 +1152,17 @@ public class Sales extends javax.swing.JFrame {
                     txtavg.setText(String.valueOf(avg));
                     int amtnow = price * shares ;
                 txtamtnow.setText(String.valueOf(amtnow)+"₹");
+                int invest = Integer.parseInt(txtinvest.getText());
                 
-                int profit = amtnow * 100 / amount;
-                profit = profit - 100; 
-                txtreturn.setText(String.valueOf(profit)+"%");
+                
+                if(amtnow==0){
+            txtreturn.setText(null);
+        }else{
+            float profit = amtnow * 100 / invest;
+            profit = profit - 100; 
+            txtreturn.setText(String.valueOf(profit)+"%");
+        }
+                
                     if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                     txtshares.requestFocus();
                 }

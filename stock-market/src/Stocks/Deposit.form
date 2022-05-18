@@ -49,7 +49,7 @@
                       <Component id="btndeposit" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -131,13 +131,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter Customer ID"/>
+        <Property name="text" type="java.lang.String" value="Enter Customer ID : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtdeposit">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtdepositActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtdepositKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtdepositKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -147,7 +148,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Wallet Balance"/>
+        <Property name="text" type="java.lang.String" value="Demat Account Balance : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtcusid">
@@ -160,7 +161,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Deposit Amount"/>
+        <Property name="text" type="java.lang.String" value="Deposit Amount : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="txtpayment">
@@ -205,7 +206,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Customer Name"/>
+        <Property name="text" type="java.lang.String" value="Customer Name : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtbalance">

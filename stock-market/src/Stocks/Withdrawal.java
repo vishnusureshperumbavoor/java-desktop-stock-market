@@ -31,8 +31,11 @@ public class Withdrawal extends javax.swing.JFrame {
     }
     public void clear(){
         txtname.setText(null);
+        cusidval.setText(null);
         txtbalance.setText(null);
-        btndeposit.setEnabled(false);
+        txtwithdraw.setText(null);
+        btnwithdrawal.setEnabled(false);
+        txtwithval.setText(null);
     }
 
     /**
@@ -44,7 +47,7 @@ public class Withdrawal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btndeposit = new javax.swing.JToggleButton();
+        btnwithdrawal = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         txtwithdraw = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -59,17 +62,19 @@ public class Withdrawal extends javax.swing.JFrame {
         cusidval = new javax.swing.JLabel();
         txtcustomers = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
+        txtwithval = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btndeposit.setText("Withdraw");
-        btndeposit.addActionListener(new java.awt.event.ActionListener() {
+        btnwithdrawal.setText("Withdraw");
+        btnwithdrawal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndepositActionPerformed(evt);
+                btnwithdrawalActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Enter Customer ID");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Enter Customer ID : ");
 
         txtwithdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,9 +85,13 @@ public class Withdrawal extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtwithdrawKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtwithdrawKeyReleased(evt);
+            }
         });
 
-        jLabel3.setText("Wallet Balance");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Demat Account Balance : ");
 
         txtcusid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -103,7 +112,8 @@ public class Withdrawal extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Withdrawal Amount");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Withdrawal Amount :");
 
         jToggleButton2.setBackground(new java.awt.Color(255, 0, 0));
         jToggleButton2.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
@@ -117,7 +127,8 @@ public class Withdrawal extends javax.swing.JFrame {
         txtname.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtname.setText("jLabel5");
 
-        jLabel5.setText("Customer Name");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Customer Name : ");
 
         txtbalance.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtbalance.setText("jLabel5");
@@ -142,6 +153,8 @@ public class Withdrawal extends javax.swing.JFrame {
             }
         });
 
+        cusidval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cusidval.setForeground(new java.awt.Color(255, 0, 0));
         cusidval.setText("jLabel2");
 
         txtcustomers.setBackground(new java.awt.Color(0, 0, 0));
@@ -164,15 +177,16 @@ public class Withdrawal extends javax.swing.JFrame {
             }
         });
 
+        txtwithval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtwithval.setForeground(new java.awt.Color(255, 0, 0));
+        txtwithval.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -190,15 +204,21 @@ public class Withdrawal extends javax.swing.JFrame {
                             .addComponent(txtcusid, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtname, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                             .addComponent(txtbalance, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(cusidval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtwithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cusidval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                                .addComponent(txtwithdraw, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnwithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtwithval, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,8 +243,10 @@ public class Withdrawal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(txtwithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(txtwithval)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnwithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,25 +262,24 @@ public class Withdrawal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
+    private void btnwithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwithdrawalActionPerformed
         try {
             // TODO add your handling code here:
             String cusid = txtcusid.getText();
             String withdraw = txtwithdraw.getText();
             pst = conn.prepareStatement("update customers set demat = demat - '"+withdraw+"' where customerid = '"+cusid+"'");
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Amount withdrawn successfully");
-            pst = conn.prepareStatement("select balance from customers where customerid = '"+cusid+"'");
+//            JOptionPane.showMessageDialog(this,"Amount withdrawn successfully");
+            pst = conn.prepareStatement("select demat from customers where customerid = '"+cusid+"'");
                     rs = pst.executeQuery();
                     if(rs.next()){
                         String balance = rs.getString(1);
                         txtbalance.setText(balance.trim());
-                        btndeposit.setEnabled(false);
                     }
         } catch (SQLException ex) {
             Logger.getLogger(Withdrawal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btndepositActionPerformed
+    }//GEN-LAST:event_btnwithdrawalActionPerformed
 
     private void txtwithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtwithdrawActionPerformed
         // TODO add your handling code here:
@@ -273,33 +294,7 @@ public class Withdrawal extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void txtcusidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcusidKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-        try {
-            // TODO add your handling code here:
-            String cusid = txtcusid.getText();
-            pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
-            rs = pst.executeQuery();
-            if(rs.next()==false){
-                cusidval.setText("customer doesnt exist");
-            }
-            else{
-                    pst = conn.prepareStatement("select name,balance from customers where customerid = '"+cusid+"'");
-                    rs = pst.executeQuery();
-                    if(rs.next()){
-                        String name = rs.getString(1);
-                        String balance = rs.getString(2);
-                        txtname.setText(name.trim());
-                        txtbalance.setText(balance.trim());
-                        btndeposit.setEnabled(true);
-                    }
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Withdrawal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }else{
-            cusidval.setText(null);
-        }
+        
         
         
     }//GEN-LAST:event_txtcusidKeyPressed
@@ -310,9 +305,7 @@ public class Withdrawal extends javax.swing.JFrame {
 
     private void txtwithdrawKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtwithdrawKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            btndeposit.setEnabled(true);
-        }
+        
     }//GEN-LAST:event_txtwithdrawKeyPressed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -342,8 +335,54 @@ public class Withdrawal extends javax.swing.JFrame {
 
     private void txtcusidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcusidKeyReleased
         // TODO add your handling code here:
+        if("".equals(txtcusid.getText())){
+                clear();
+            }
+        else{
+        
+        try {
+            // TODO add your handling code here:
+            
+            String cusid = txtcusid.getText();
+            pst = conn.prepareStatement("select name,demat from customers where customerid = '"+cusid+"'");
+            rs = pst.executeQuery();
+            if(rs.next()==false){
+                cusidval.setText("customer doesnt exist");
+            }
+            else{
+                cusidval.setText(null);
+                        String name = rs.getString(1);
+                        String balance = rs.getString(2);
+                        txtname.setText(name.trim());
+                        txtbalance.setText(balance.trim());
+                        
+                        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                            txtwithdraw.requestFocus();
+                        }
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Withdrawal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
         
     }//GEN-LAST:event_txtcusidKeyReleased
+
+    private void txtwithdrawKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtwithdrawKeyReleased
+        // TODO add your handling code here:
+        if("".equals(txtwithdraw.getText())){
+                btnwithdrawal.setEnabled(false);
+        }else{
+            int balance = Integer.parseInt(txtbalance.getText());
+            int withdraw = Integer.parseInt(txtwithdraw.getText());
+            if(withdraw>balance){
+            txtwithval.setText("amount is greater than your balance");
+            }else{
+                txtwithval.setText(null);
+                btnwithdrawal.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_txtwithdrawKeyReleased
 
     /**
      * @param args the command line arguments
@@ -384,7 +423,7 @@ public class Withdrawal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btndeposit;
+    private javax.swing.JToggleButton btnwithdrawal;
     private javax.swing.JLabel cusidval;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton7;
@@ -399,5 +438,6 @@ public class Withdrawal extends javax.swing.JFrame {
     private javax.swing.JButton txtcustomers;
     private javax.swing.JLabel txtname;
     private javax.swing.JTextField txtwithdraw;
+    private javax.swing.JLabel txtwithval;
     // End of variables declaration//GEN-END:variables
 }
