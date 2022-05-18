@@ -129,7 +129,7 @@ String cusname;
 
         jToggleButton2.setBackground(new java.awt.Color(255, 0, 0));
         jToggleButton2.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jToggleButton2.setText("DEPOSIT INR");
+        jToggleButton2.setText("BANK TO DEMAT");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
@@ -213,10 +213,6 @@ String cusname;
                         .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jToggleButton2)
-                .addGap(132, 132, 132))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
@@ -226,13 +222,17 @@ String cusname;
                     .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(23, 23, 23)
                 .addComponent(jToggleButton2)
-                .addGap(33, 33, 33)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtcusid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -276,7 +276,7 @@ String cusname;
             // TODO add your handling code here:
             String cusid = txtcusid.getText();
             String deposit = txtdeposit.getText();
-            pst = conn.prepareStatement("update customers set balance = balance + '"+deposit+"' where customerid = '"+cusid+"'");
+            pst = conn.prepareStatement("update customers set demat = demat + '"+deposit+"' where customerid = '"+cusid+"'");
             pst.executeUpdate();
             pst = conn.prepareStatement("select balance from customers where customerid = '"+cusid+"'");
                     rs = pst.executeQuery();

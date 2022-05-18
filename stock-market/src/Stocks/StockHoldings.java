@@ -28,13 +28,16 @@ public class StockHoldings extends javax.swing.JFrame {
         initComponents();
         conn = Database.connect();
         customers();
+        clear();
         txtpurchases.setText(null);
         txtstatus.setText(null);
         txtprofit.setText(null);
         txtpercentage.setText(null);
         
     }
-    
+    public void clear(){
+        cbcustomers.setSelectedIndex(-1);
+    }
     
         public void customers(){
         try {

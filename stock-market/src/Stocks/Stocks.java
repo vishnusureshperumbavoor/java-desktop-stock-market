@@ -49,6 +49,7 @@ public class Stocks extends javax.swing.JFrame {
                  v.add(rs.getString("name"));
                  v.add(rs.getString("price"));
                  v.add(rs.getString("shares"));
+                 v.add(rs.getString("supply"));
                  v.add(rs.getString("marketCap"));
                  dtm.addRow(v);
              }                
@@ -144,15 +145,15 @@ public class Stocks extends javax.swing.JFrame {
 
         tblstocks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "stockid", "name", "Price", "Shares", "Market Cap"
+                "stockid", "name", "Price", "Total Shares", "Current Supply", "Market Cap"
             }
         ));
         tblstocks.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -346,7 +347,7 @@ public class Stocks extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("No of Shares");
+        jLabel6.setText("Alloted Shares");
 
         txtmarketcap.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtmarketcap.setForeground(new java.awt.Color(255, 255, 255));
@@ -504,7 +505,7 @@ public class Stocks extends javax.swing.JFrame {
         String price = txtprice.getText();
         String shares = txtshares.getText();
            try{
-               pst = conn.prepareStatement("insert into stocks values ("+null+",'"+name+"','"+price+"','"+shares+"')");
+               pst = conn.prepareStatement("insert into stocks values ("+null+",'"+name+"','"+price+"','"+shares+"','"+shares+"')");
                int rs = pst.executeUpdate();
                if(rs==1){
                    fetch();
@@ -524,7 +525,7 @@ public class Stocks extends javax.swing.JFrame {
         txtname.setText(dl.getValueAt(index,1).toString());
         txtprice.setText(dl.getValueAt(index,2).toString());
         txtshares.setText(dl.getValueAt(index,3).toString());
-        txtmarketcap.setText(dl.getValueAt(index,4).toString());
+        txtmarketcap.setText(dl.getValueAt(index,5).toString());
         btnadd.setEnabled(false);
     }//GEN-LAST:event_tblstocksMouseClicked
 

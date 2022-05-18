@@ -50,7 +50,7 @@ public class Customers extends javax.swing.JFrame {
                  v.add(rs.getString("username"));
                  v.add(rs.getString("phoneno"));
                  v.add(rs.getString("email"));
-                 v.add(rs.getString("balance"));
+                 v.add(rs.getString("demat"));
                  dtm.addRow(v);
              }                
         }
@@ -134,7 +134,7 @@ public class Customers extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "CustomerID", "name", "Username", "Contact", "Email", "Balance"
+                "CustomerID", "name", "Username", "Contact", "Email", "Demat"
             }
         ));
         tblcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
