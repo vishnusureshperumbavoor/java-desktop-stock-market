@@ -39,9 +39,7 @@ public class Dashboard extends javax.swing.JFrame {
             initComponents();
             conn = Database.connect();
             showDate();
-            System.out.println(username);
             pst = conn.prepareStatement("select name from admin where username = '"+username+"'");
-            System.out.println("select name from admin where username = '"+username+"'");
             rs = pst.executeQuery();
             String name = null;
             if(rs.next()){
@@ -57,7 +55,7 @@ public class Dashboard extends javax.swing.JFrame {
 // get date and time set 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss a");
         Date date = new Date();
-        txtdate2.setText("Logined at "+dateFormat.format(date)); //2016/11/16 12:08:43
+        txtdate2.setText(dateFormat.format(date)); //2016/11/16 12:08:43
     }
 
     /**
@@ -302,7 +300,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton16.setBackground(new java.awt.Color(0, 0, 0));
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton16.setForeground(new java.awt.Color(255, 255, 255));
-        jButton16.setText("WALLET");
+        jButton16.setText("SECTORS");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -584,6 +582,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
+        new Sectors().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed

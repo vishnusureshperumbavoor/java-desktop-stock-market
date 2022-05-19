@@ -75,13 +75,15 @@ String cusname;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btndeposit.setText("Deposit");
+        btndeposit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btndeposit.setText("DEPOSIT");
         btndeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndepositActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Enter Customer ID : ");
 
         txtdeposit.addActionListener(new java.awt.event.ActionListener() {
@@ -98,8 +100,10 @@ String cusname;
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Payment Method");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Demat Account Balance : ");
 
         txtcusid.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,6 +125,7 @@ String cusname;
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Deposit Amount : ");
 
         txtpayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NetBanking", "Bitcoin", "Ethereum", "Dogecoin" }));
@@ -142,6 +147,7 @@ String cusname;
         txtname.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtname.setText("jLabel5");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Customer Name : ");
 
         txtbalance.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
