@@ -29,6 +29,25 @@ public class Withdrawal extends javax.swing.JFrame {
         clear();
         cusidval.setText(null);
     }
+
+    Withdrawal(String cusid) {
+        try {
+            initComponents();
+            conn  = Database.connect();
+            clear();
+            cusidval.setText(null);
+            txtcusid.setText(cusid);
+            pst = conn.prepareStatement("select demat from customers where customerid = '"+cusid+"'");
+            rs = pst.executeQuery();
+            if(rs.next()){
+                String balance = rs.getString(1);
+                txtbalance.setText(balance.trim());
+            }
+            // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        } catch (SQLException ex) {
+            Logger.getLogger(Withdrawal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void clear(){
         txtname.setText(null);
         cusidval.setText(null);
@@ -310,13 +329,15 @@ public class Withdrawal extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        new Purchases().setVisible(true);
+        String cusid = txtcusid.getText();
+        new Purchases(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Sales p=new Sales();
+        String cusid = txtcusid.getText();
+        Sales p=new Sales(cusid);
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed

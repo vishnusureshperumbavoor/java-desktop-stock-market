@@ -25,8 +25,7 @@ public class TotalSales extends javax.swing.JFrame {
     PreparedStatement pst;
     ResultSet rs;
     Connection conn;
-    DefaultTableModel dl;
-    DefaultTableModel dl2;
+    DefaultTableModel dtm;
     Statement stmt;    
     /**
      * Creates new form CustomerDetails
@@ -34,30 +33,65 @@ public class TotalSales extends javax.swing.JFrame {
     public TotalSales() {
         initComponents();
         conn = Database.connect();
+        clear();
         fetch();
-        txtname.setText(null);
+        txtcustomerval.setText(null);
+        txtstockval.setText(null);
+        txtpurchaseval.setText(null);
     }
     public void clear(){
+        dtm = (DefaultTableModel)tblpurchases.getModel();
+        dtm.setRowCount(0);
         txtcustomer.setText(null);
+        txtpurchase.setText(null);
+        txtstock.setText(null);
+        txtname.setText(null);
+    }
+    public void customerClear(){
+        txtpurchaseval.setText(null);
+        txtpurchase.setText(null);
+        txtstock.setText(null);
+        txtstockval.setText(null);
+    }
+    public void purchaseClear(){
+        txtcustomerval.setText(null);
+        txtcustomer.setText(null);
+        txtstock.setText(null);
+        txtstockval.setText(null);
+    }
+    public void stockClear(){
+        txtpurchaseval.setText(null);
+        txtpurchase.setText(null);
+        txtcustomer.setText(null);
+        txtcustomerval.setText(null);
+    }
+    public void allClear(){
+        txtpurchaseval.setText(null);
+        txtpurchase.setText(null);
+        txtcustomer.setText(null);
+        txtcustomerval.setText(null);
+        txtstock.setText(null);
+        txtstockval.setText(null);
+        txtname.setText(null);
     }
     
     public void fetch(){
         try{
              stmt = conn.createStatement();
-             rs = stmt.executeQuery("select * from sales");
-             dl2 = (DefaultTableModel)tblpurchases.getModel();
-             dl2.setRowCount(0);
+             rs = stmt.executeQuery("select *,stockprice * shares as total from sales");
+             dtm = (DefaultTableModel)tblpurchases.getModel();
+             dtm.setRowCount(0);
              while(rs.next()){
                  Vector v = new Vector();
-                 v.add(rs.getString("id"));
+                 v.add(rs.getString("salesid"));
                  v.add(rs.getString("customerid"));
                  v.add(rs.getString("stockname"));
                  v.add(rs.getString("date"));
                  v.add(rs.getString("time"));
-                 v.add(rs.getString("price"));
-                 v.add(rs.getString("quantity"));
+                 v.add(rs.getString("stockprice"));
+                 v.add(rs.getString("shares"));
                  v.add(rs.getString("total"));
-                 dl2.addRow(v);
+                 dtm.addRow(v);
              }
         }
         catch(Exception e){
@@ -77,14 +111,12 @@ public class TotalSales extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtcustomer = new javax.swing.JTextField();
-        txtsearch = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtname = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblpurchases = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        txtsales = new javax.swing.JTextField();
-        txtsearch1 = new javax.swing.JButton();
+        txtpurchase = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -94,19 +126,24 @@ public class TotalSales extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtstock = new javax.swing.JTextField();
-        txtsearch2 = new javax.swing.JButton();
+        txtcustomerval = new javax.swing.JLabel();
+        txtpurchaseval = new javax.swing.JLabel();
+        txtstockval = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("TOTAL SALES");
+        jLabel1.setText("SALES RECORDS");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Enter Sales ID");
+        jLabel2.setText("Enter Stock ID");
 
         txtcustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,13 +159,6 @@ public class TotalSales extends javax.swing.JFrame {
             }
         });
 
-        txtsearch.setText("Search");
-        txtsearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsearchActionPerformed(evt);
-            }
-        });
-
         txtname.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         txtname.setText("0");
 
@@ -137,7 +167,7 @@ public class TotalSales extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Sales ID", "Customer Id", "Stock Name", "Date", "Time", "Price", "Quantity", "Amount"
+                "Purchase ID", "Customer Id", "Stock Name", "Date", "Time", "Price", "Quantity", "Amount"
             }
         ));
         jScrollPane1.setViewportView(tblpurchases);
@@ -146,29 +176,22 @@ public class TotalSales extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Enter Customer ID");
 
-        txtsales.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtpurchase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtsalesMouseEntered(evt);
+                txtpurchaseMouseEntered(evt);
             }
         });
-        txtsales.addActionListener(new java.awt.event.ActionListener() {
+        txtpurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsalesActionPerformed(evt);
+                txtpurchaseActionPerformed(evt);
             }
         });
-        txtsales.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtpurchase.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtsalesKeyPressed(evt);
+                txtpurchaseKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtsalesKeyReleased(evt);
-            }
-        });
-
-        txtsearch1.setText("Search");
-        txtsearch1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsearch1ActionPerformed(evt);
+                txtpurchaseKeyReleased(evt);
             }
         });
 
@@ -238,7 +261,7 @@ public class TotalSales extends javax.swing.JFrame {
         jButton12.setBackground(new java.awt.Color(0, 0, 0));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("TOTAL SALES");
+        jButton12.setText("RESERVED");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -255,23 +278,50 @@ public class TotalSales extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setBackground(new java.awt.Color(0, 0, 0));
+        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(255, 255, 255));
+        jButton15.setText("Deposit");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setBackground(new java.awt.Color(0, 0, 0));
+        jButton16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton16.setForeground(new java.awt.Color(255, 255, 255));
+        jButton16.setText("Withdraw");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,12 +342,16 @@ public class TotalSales extends javax.swing.JFrame {
                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Enter Stocks ID");
+        jLabel3.setText("Enter Sales ID");
 
         txtstock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -318,10 +372,24 @@ public class TotalSales extends javax.swing.JFrame {
             }
         });
 
-        txtsearch2.setText("Search");
-        txtsearch2.addActionListener(new java.awt.event.ActionListener() {
+        txtcustomerval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtcustomerval.setForeground(new java.awt.Color(255, 0, 0));
+        txtcustomerval.setText("jLabel4");
+
+        txtpurchaseval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtpurchaseval.setForeground(new java.awt.Color(255, 0, 0));
+        txtpurchaseval.setText("jLabel4");
+
+        txtstockval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtstockval.setForeground(new java.awt.Color(255, 0, 0));
+        txtstockval.setText("jLabel4");
+
+        jToggleButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jToggleButton1.setText("SHOW ALL SALES");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsearch2ActionPerformed(evt);
+                jToggleButton1ActionPerformed(evt);
             }
         });
 
@@ -335,115 +403,78 @@ public class TotalSales extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(221, 221, 221)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtsales, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtsearch1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(188, 188, 188)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtstock))
-                                    .addComponent(txtsearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(257, 257, 257)
-                                .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(33, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(191, 191, 191)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtpurchaseval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel3)
+                                                    .addGap(12, 12, 12)
+                                                    .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(204, 204, 204)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel2)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(txtstock, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(txtstockval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1157, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtcustomerval, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(398, 398, 398)
+                        .addGap(430, 430, 430)
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
                     .addComponent(txtcustomer)
                     .addComponent(jLabel8)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2)
                     .addComponent(txtstock)
-                    .addComponent(txtsales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsearch)
-                    .addComponent(txtsearch2)
-                    .addComponent(txtsearch1))
-                .addGap(18, 18, 18)
-                .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtcustomerval)
+                            .addComponent(txtpurchaseval)
+                            .addComponent(txtstockval))
+                        .addGap(25, 25, 25)
+                        .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
-        // TODO add your handling code here:
-        try {            
-            String id = txtcustomer.getText();
-            pst = conn.prepareStatement("select name from customers where customerid = '"+id+"'");
-            rs = pst.executeQuery();
-            
-            if(rs.next() == false){
-                JOptionPane.showMessageDialog(this,"customerid not found");
-                fetch();
-            }else{
-                String name = rs.getString(1);
-                txtname.setText(name.trim());
-                txtcustomer.requestFocus();
-            }
-            
-            
-            
-            pst = conn.prepareStatement("select * from sales where customerid = ?");
-            pst.setString(1,id);
-            dl2 = (DefaultTableModel)tblpurchases.getModel();
-            dl2.setRowCount(0);
-            rs = pst.executeQuery();
-            while(rs.next()){
-                 Vector v = new Vector();
-                 v.add(rs.getString("salesid"));
-                 v.add(rs.getString("customerid"));
-                 v.add(rs.getString("stockname"));
-                 v.add(rs.getString("date"));
-                 v.add(rs.getString("time"));
-                 v.add(rs.getString("price"));
-                 v.add(rs.getString("quantity"));
-                 v.add(rs.getString("total"));
-                 dl2.addRow(v);
-             }
-            
-            
-            
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_txtsearchActionPerformed
 
     private void txtcustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcustomerActionPerformed
         // TODO add your handling code here:
@@ -452,75 +483,17 @@ public class TotalSales extends javax.swing.JFrame {
 
     private void txtcustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcustomerKeyPressed
         // TODO add your handling code here:
-        fetch();
-        txtname.setText(null);
-        txtsales.setText(null);
+        customerClear();
     }//GEN-LAST:event_txtcustomerKeyPressed
 
-    private void txtsalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsalesActionPerformed
+    private void txtpurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpurchaseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtsalesActionPerformed
+    }//GEN-LAST:event_txtpurchaseActionPerformed
 
-    private void txtsalesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsalesKeyPressed
+    private void txtpurchaseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpurchaseKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            fetch();
-        txtcustomer.setText(null);
-        txtname.setText(null);
-        }
-        
-    }//GEN-LAST:event_txtsalesKeyPressed
-
-    private void txtsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearch1ActionPerformed
-        // TODO add your handling code here:
-        try {            
-            String id = txtsales.getText();
-            pst = conn.prepareStatement("select customerid from sales where id = ?");
-            pst.setString(1, id);
-            rs = pst.executeQuery();
-            
-            if(rs.next() == false){
-                JOptionPane.showMessageDialog(this,"sales id not found");
-                clear();
-            }else{
-                String customerid = rs.getString(1);
-                pst = conn.prepareStatement("select name from customers where customerid = ?");
-                pst.setString(1,customerid);
-                rs = pst.executeQuery();
-                if(rs.next()){
-                    String name = rs.getString(1);
-                    txtname.setText(name.trim());
-                }
-                txtsales.requestFocus();
-            }
-           
-            
-            pst = conn.prepareStatement("select * from sales where salesid = ?");
-            pst.setString(1,id);
-            dl2 = (DefaultTableModel)tblpurchases.getModel();
-            dl2.setRowCount(0);
-            rs = pst.executeQuery();
-            while(rs.next()){
-                 Vector v = new Vector();
-                 v.add(rs.getString("salesid"));
-                 v.add(rs.getString("customerid"));
-                 v.add(rs.getString("stockname"));
-                 v.add(rs.getString("date"));
-                 v.add(rs.getString("time"));
-                 v.add(rs.getString("price"));
-                 v.add(rs.getString("quantity"));
-                 v.add(rs.getString("total"));
-                 dl2.addRow(v);
-             }
-            
-            
-            
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_txtsearch1ActionPerformed
+        purchaseClear();        
+    }//GEN-LAST:event_txtpurchaseKeyPressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -566,14 +539,14 @@ public class TotalSales extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
-        new StockHoldings().setVisible(true);
+        new Holdings().setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton20ActionPerformed
 
-    private void txtsalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtsalesMouseEntered
+    private void txtpurchaseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpurchaseMouseEntered
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_txtsalesMouseEntered
+    }//GEN-LAST:event_txtpurchaseMouseEntered
 
     private void txtstockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtstockMouseEntered
         // TODO add your handling code here:
@@ -585,30 +558,48 @@ public class TotalSales extends javax.swing.JFrame {
 
     private void txtstockKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockKeyPressed
         // TODO add your handling code here:
+        
+        stockClear();
     }//GEN-LAST:event_txtstockKeyPressed
 
-    private void txtsearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearch2ActionPerformed
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        try {            
-            String id = txtstock.getText();
-            pst = conn.prepareStatement("select name from stocks where stockid = ?");
+        new Deposit().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        new Withdrawal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void txtcustomerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcustomerKeyReleased
+        // TODO add your handling code here:
+        
+        try {
+            if("".equals(txtcustomer.getText())){
+                txtcustomerval.setText(null);
+                clear();
+            }
+            else{
+            String id = txtcustomer.getText();
+            pst = conn.prepareStatement("select name from customers where customerid = ?");
             pst.setString(1, id);
-            
             rs = pst.executeQuery();
-            
             if(rs.next() == false){
-                JOptionPane.showMessageDialog(this,"stockid not found");
-                fetch();
+                txtcustomerval.setText("customerid not found");
+                txtname.setText(null);
+                dtm = (DefaultTableModel)tblpurchases.getModel();
+        dtm.setRowCount(0);
             }else{
+                txtcustomerval.setText(null);
                 String name = rs.getString(1);
                 txtname.setText(name.trim());
-                txtstock.requestFocus();
-                
-            }
-            pst = conn.prepareStatement("select * from sales where stockid = ?");
+                pst = conn.prepareStatement("select *,stockprice * shares as total from sales where customerid = ?");
             pst.setString(1,id);
-            dl2 = (DefaultTableModel)tblpurchases.getModel();
-            dl2.setRowCount(0);
+            dtm = (DefaultTableModel)tblpurchases.getModel();
+            dtm.setRowCount(0);
             rs = pst.executeQuery();
             while(rs.next()){
                  Vector v = new Vector();
@@ -617,33 +608,126 @@ public class TotalSales extends javax.swing.JFrame {
                  v.add(rs.getString("stockname"));
                  v.add(rs.getString("date"));
                  v.add(rs.getString("time"));
-                 v.add(rs.getString("price"));
-                 v.add(rs.getString("quantity"));
-                 v.add(rs.getString("total"));
-                 dl2.addRow(v);
+                 v.add(rs.getString("stockprice"));
+                 v.add(rs.getString("shares"));
+               v.add(rs.getString("total"));
+                 dtm.addRow(v);
              }
+            }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_txtsearch2ActionPerformed
-
-    private void txtcustomerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcustomerKeyReleased
-        // TODO add your handling code here:
-        txtsales.setText(null);
-        txtstock.setText(null);
+        
     }//GEN-LAST:event_txtcustomerKeyReleased
 
-    private void txtsalesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsalesKeyReleased
+    private void txtpurchaseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpurchaseKeyReleased
         // TODO add your handling code here:
-        txtcustomer.setText(null);
-        txtstock.setText(null);
-    }//GEN-LAST:event_txtsalesKeyReleased
+        
+        try {
+            if("".equals(txtpurchase.getText())){
+                txtpurchaseval.setText(null);
+                clear();
+            }
+            else{
+            String id = txtpurchase.getText();
+            pst = conn.prepareStatement("select customerid from sales where salesid = ?");
+            pst.setString(1, id);
+            rs = pst.executeQuery();
+            
+            if(rs.next() == false){
+                txtpurchaseval.setText("salesid not found");
+                txtname.setText(null);
+                dtm = (DefaultTableModel)tblpurchases.getModel();
+        dtm.setRowCount(0);
+            }else{
+                txtpurchaseval.setText(null);
+                String customerid = rs.getString(1);
+                pst = conn.prepareStatement("select name from customers where customerid = ?");
+                pst.setString(1,customerid);
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    String name = rs.getString(1);
+                    txtname.setText(name.trim());
+                    pst = conn.prepareStatement("select *,stockprice * shares as total from sales where salesid = ?");
+            pst.setString(1,id);
+            dtm = (DefaultTableModel)tblpurchases.getModel();
+            dtm.setRowCount(0);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                 Vector v = new Vector();
+                 v.add(rs.getString("salesid"));
+                 v.add(rs.getString("customerid"));
+                 v.add(rs.getString("stockname"));
+                 v.add(rs.getString("date"));
+                 v.add(rs.getString("time"));
+                 v.add(rs.getString("stockprice"));
+                 v.add(rs.getString("shares"));
+                 v.add(rs.getString("total"));
+                 dtm.addRow(v);
+             }
+                }
+            }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtpurchaseKeyReleased
 
     private void txtstockKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockKeyReleased
         // TODO add your handling code here:
-        txtsales.setText(null);
-        txtcustomer.setText(null);
+        try {  
+            if("".equals(txtstock.getText())){
+                txtstockval.setText(null);
+                clear();
+            }else{
+            String id = txtstock.getText();
+            pst = conn.prepareStatement("select name from stocks where stockid = ?");
+            pst.setString(1, id);
+            
+            rs = pst.executeQuery();
+            
+            if(rs.next() == false){
+                txtstockval.setText("stockid not found");
+                txtname.setText(null);
+                dtm = (DefaultTableModel)tblpurchases.getModel();
+        dtm.setRowCount(0);
+            }else{
+                txtstockval.setText(null);
+                String name = rs.getString(1);
+                txtname.setText(name.trim());
+                txtstock.requestFocus();
+                pst = conn.prepareStatement("select *,stockprice * shares as total from sales where stockid = ?");
+            pst.setString(1,id);
+            dtm = (DefaultTableModel)tblpurchases.getModel();
+            dtm.setRowCount(0);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                 Vector v = new Vector();
+                 v.add(rs.getString("salesid"));
+                 v.add(rs.getString("customerid"));
+                 v.add(rs.getString("stockname"));
+                 v.add(rs.getString("date"));
+                 v.add(rs.getString("time"));
+                 v.add(rs.getString("stockprice"));
+                 v.add(rs.getString("shares"));
+                 v.add(rs.getString("total"));
+                 dtm.addRow(v);
+             }
+                
+            }
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtstockKeyReleased
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        fetch();
+        allClear();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -699,6 +783,8 @@ public class TotalSales extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -711,13 +797,14 @@ public class TotalSales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable tblpurchases;
     private javax.swing.JTextField txtcustomer;
+    private javax.swing.JLabel txtcustomerval;
     private javax.swing.JLabel txtname;
-    private javax.swing.JTextField txtsales;
-    private javax.swing.JButton txtsearch;
-    private javax.swing.JButton txtsearch1;
-    private javax.swing.JButton txtsearch2;
+    private javax.swing.JTextField txtpurchase;
+    private javax.swing.JLabel txtpurchaseval;
     private javax.swing.JTextField txtstock;
+    private javax.swing.JLabel txtstockval;
     // End of variables declaration//GEN-END:variables
 }

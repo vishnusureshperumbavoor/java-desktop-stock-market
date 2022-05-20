@@ -40,6 +40,27 @@ String cusname;
         txtname.setText(cusname);
         txtbalance.setText("0");
     }
+
+    Deposit(String cusid) {
+        try {
+            initComponents();
+            conn  = Database.connect();
+            clear();
+            cusidval.setText(null);
+            txtcusid.setText(cusid);
+            pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
+            rs = pst.executeQuery();
+            if(rs.next()){
+                String name = rs.getString("name");
+                String balance = rs.getString("demat");
+                txtname.setText(name.trim());
+                txtbalance.setText(balance.trim());
+            }
+             // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        } catch (SQLException ex) {
+            Logger.getLogger(Deposit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void clear(){
         txtname.setText(null);
         txtbalance.setText(null);
@@ -339,7 +360,8 @@ String cusname;
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Sales p=new Sales();
+        String cusid = txtcusid.getText();
+        Sales p=new Sales(cusid);
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed

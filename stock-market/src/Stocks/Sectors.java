@@ -71,6 +71,7 @@ public class Sectors extends javax.swing.JFrame {
         btndelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblsector = new javax.swing.JTable();
+        btndelete1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,6 +179,16 @@ public class Sectors extends javax.swing.JFrame {
             tblsector.getColumnModel().getColumn(0).setPreferredWidth(4);
         }
 
+        btndelete1.setBackground(new java.awt.Color(255, 51, 51));
+        btndelete1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btndelete1.setForeground(new java.awt.Color(255, 255, 255));
+        btndelete1.setText("STOCKS");
+        btndelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndelete1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,16 +203,19 @@ public class Sectors extends javax.swing.JFrame {
                         .addComponent(txtsector, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(btnadd)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtcatclear)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtcathome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnadd)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnupdate)))
                         .addGap(18, 18, 18)
-                        .addComponent(btnupdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(btndelete))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(txtcatclear)
-                        .addGap(46, 46, 46)
-                        .addComponent(txtcathome)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btndelete)
+                            .addComponent(btndelete1))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
@@ -225,7 +239,8 @@ public class Sectors extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtcatclear)
-                            .addComponent(txtcathome)))
+                            .addComponent(txtcathome)
+                            .addComponent(btndelete1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -335,6 +350,13 @@ public class Sectors extends javax.swing.JFrame {
         txtsector.setText(dl.getValueAt(index,1).toString());
     }//GEN-LAST:event_tblsectorMouseClicked
 
+    private void btndelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelete1ActionPerformed
+        // TODO add your handling code here:
+        Stocks p=new Stocks();
+        p.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btndelete1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -376,6 +398,7 @@ public class Sectors extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btndelete;
+    private javax.swing.JButton btndelete1;
     private javax.swing.JButton btnupdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

@@ -564,7 +564,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        new StockHoldings().setVisible(true);
+        new Holdings().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -588,7 +588,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        new StockHoldings().setVisible(true);
+        new Holdings().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
