@@ -49,7 +49,7 @@ public class Customers extends javax.swing.JFrame {
                  v.add(rs.getString("name"));
                  v.add(rs.getString("username"));
                  v.add(rs.getString("phoneno"));
-                 v.add(rs.getString("email"));
+                 v.add(rs.getString("bank"));
                  v.add(rs.getString("demat"));
                  dtm.addRow(v);
              }                
@@ -62,7 +62,7 @@ public class Customers extends javax.swing.JFrame {
         txtname.setText(null);
         txtusername.setText(null);
         txtcontact.setText(null);
-        txtcountry.setText(null);
+        txtbank.setText(null);
     }
 
     /**
@@ -85,7 +85,7 @@ public class Customers extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtusername = new javax.swing.JTextField();
         txtname = new javax.swing.JTextField();
-        txtcountry = new javax.swing.JTextField();
+        txtbank = new javax.swing.JTextField();
         txtcontact = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         txtadd = new javax.swing.JButton();
@@ -133,7 +133,7 @@ public class Customers extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "CustomerID", "name", "Username", "Contact", "Email", "Demat"
+                "CustomerID", "name", "Username", "Contact", "Bank Account No", "Demat"
             }
         ));
         tblcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,7 +167,7 @@ public class Customers extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Email");
+        jLabel6.setText("Bank Accout No ");
 
         txtusername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -181,9 +181,9 @@ public class Customers extends javax.swing.JFrame {
             }
         });
 
-        txtcountry.addActionListener(new java.awt.event.ActionListener() {
+        txtbank.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcountryActionPerformed(evt);
+                txtbankActionPerformed(evt);
             }
         });
 
@@ -395,10 +395,6 @@ public class Customers extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtcountry, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtcontact, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -408,7 +404,12 @@ public class Customers extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addComponent(txtupdate)
                         .addGap(63, 63, 63)
-                        .addComponent(txtdelete)))
+                        .addComponent(txtdelete))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtbank, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -443,7 +444,7 @@ public class Customers extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtcountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtbank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(104, 104, 104)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtadd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -473,9 +474,9 @@ public class Customers extends javax.swing.JFrame {
         String name = txtname.getText();
         String username = txtusername.getText();
         String contact = txtcontact.getText();
-        String country = txtcountry.getText();        
+        String country = txtbank.getText();        
         try{
-               pre = conn.prepareStatement("update customers set name=?,username=?,phoneno=?,country=? where customerid=?");
+               pre = conn.prepareStatement("update customers set name=?,username=?,phoneno=?,bank=? where customerid=?");
                pre.setString(1, name);
                pre.setString(2, username);
                pre.setString(3, contact);
@@ -510,7 +511,7 @@ public class Customers extends javax.swing.JFrame {
         String name = txtname.getText();
         String username = txtusername.getText();
         String contact = txtcontact.getText();
-        String country = txtcountry.getText();
+        String country = txtbank.getText();
            try{
                pre = conn.prepareStatement("insert into customers values ("+null+",'"+name+"','"+username+"','"+contact+"','"+country+"','"+0+"')");
                
@@ -554,9 +555,9 @@ public class Customers extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtdeleteActionPerformed
 
-    private void txtcountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcountryActionPerformed
+    private void txtbankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbankActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcountryActionPerformed
+    }//GEN-LAST:event_txtbankActionPerformed
 
     private void tblcustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblcustomersMouseClicked
         // TODO add your handling code here:
@@ -565,7 +566,7 @@ public class Customers extends javax.swing.JFrame {
         txtname.setText(dl.getValueAt(index,1).toString());
         txtusername.setText(dl.getValueAt(index,2).toString());
         txtcontact.setText(dl.getValueAt(index,3).toString());
-        txtcountry.setText(dl.getValueAt(index,4).toString());
+        txtbank.setText(dl.getValueAt(index,4).toString());
         txtadd.setEnabled(false);
     }//GEN-LAST:event_tblcustomersMouseClicked
 
@@ -619,7 +620,7 @@ public class Customers extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        new Withdrawal().setVisible(true);
+        new Withdraw().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -640,7 +641,7 @@ public class Customers extends javax.swing.JFrame {
     private void txtcontactKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontactKeyReleased
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            txtcountry.requestFocus();
+            txtbank.requestFocus();
         }
     }//GEN-LAST:event_txtcontactKeyReleased
 
@@ -701,8 +702,8 @@ public class Customers extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblcustomers;
     private javax.swing.JButton txtadd;
+    private javax.swing.JTextField txtbank;
     private javax.swing.JTextField txtcontact;
-    private javax.swing.JTextField txtcountry;
     private javax.swing.JButton txtdelete;
     private javax.swing.JTextField txtname;
     private javax.swing.JButton txtupdate;

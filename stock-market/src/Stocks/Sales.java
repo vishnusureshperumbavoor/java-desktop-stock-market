@@ -1217,7 +1217,7 @@ public class Sales extends javax.swing.JFrame {
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
         String cusid = txtcid.getText();
-        new Withdrawal(cusid).setVisible(true);
+        new Withdraw(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton21ActionPerformed
 

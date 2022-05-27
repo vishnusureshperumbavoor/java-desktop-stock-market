@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 20, 2022 at 11:07 AM
+-- Generation Time: May 27, 2022 at 10:06 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -36,14 +36,15 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `username` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   PRIMARY KEY (`adminid`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`adminid`, `name`, `email`, `contact`, `username`, `password`) VALUES
-(4, 'vishnu suresh', 'vishnusureshperumbavoor@gmail.com', '8714267479', 'vsp', '1234');
+(4, 'vishnu suresh', 'vishnusureshperumbavoor@gmail.com', '8714267479', 'vsp', '123456'),
+(10, 'Fazeen Abu', 'fazeenabu@gmail.com', '8714267474', 'fabu', '123456');
 
 -- --------------------------------------------------------
 
@@ -57,21 +58,22 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `name` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `phoneno` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `bank` varchar(20) NOT NULL,
   `demat` varchar(11) NOT NULL,
   PRIMARY KEY (`customerid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`customerid`, `name`, `username`, `phoneno`, `email`, `demat`) VALUES
-(1, 'elon musk', 'musk', 871425674, 'america', '389892290'),
-(2, 'jeff bezos', 'jeff', 73737, 'america', '521300'),
-(3, 'athin soman', 'som', 9494, 'india', '999322182'),
-(4, 'Nehala Hameed', 'nehu', 873563, 'nehu@gmail.com', '680428'),
-(5, 'Emina Eldhose', 'emina', 87363, 'emi@gamial.com', '8993600');
+INSERT INTO `customers` (`customerid`, `name`, `username`, `phoneno`, `bank`, `demat`) VALUES
+(1, 'elon musk', 'musk', 871425674, '776579010056789', '389770090'),
+(2, 'jeff bezos', 'jeff', 73737, '8856434234567', '521300'),
+(3, 'athin soman', 'som', 9494, '87544367865', '999322182'),
+(4, 'Nehala Hameed', 'nehu', 873563, '8745356786', '680428'),
+(5, 'Emina Eldhose', 'emina', 87363, '7854356789', '8993600'),
+(6, 'fazeen abu', 'fazeenabu', 74748, '8965432456', '98248');
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `pool` (
   `amount` int(11) NOT NULL,
   `shares` int(11) NOT NULL,
   PRIMARY KEY (`poolid`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pool`
@@ -98,13 +100,14 @@ INSERT INTO `pool` (`poolid`, `cusid`, `stockid`, `amount`, `shares`) VALUES
 (2, 1, 2, -14280, 0),
 (3, 4, 2, 152448, 144),
 (4, 4, 3, 168660, 12),
-(5, 1, 4, 23513180, 160),
+(5, 1, 4, 23635380, 260),
 (6, 1, 5, 1053270, 638),
 (7, 5, 4, -5100, 0),
 (8, 5, 5, 405600, 200),
 (9, 5, 6, 1615900, 1000),
 (10, 1, 6, 9441600, 5000),
-(11, 2, 6, 184200, 100);
+(11, 2, 6, 184200, 100),
+(12, 6, 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -149,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `purchases` (
   `stockprice` int(11) NOT NULL,
   `shares` int(11) NOT NULL,
   PRIMARY KEY (`purchaseid`)
-) ENGINE=MyISAM AUTO_INCREMENT=118 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `purchases`
@@ -272,7 +275,9 @@ INSERT INTO `purchases` (`purchaseid`, `customerid`, `stockid`, `stockname`, `da
 (114, 2, 6, 'Amazon', '2022/05/20', '16:30:41 pm', 1842, 100),
 (115, 1, 6, 'Amazon', '2022/05/20', '16:32:39 pm', 1860, 200),
 (116, 1, 6, 'Amazon', '2022/05/20', '16:32:48 pm', 1879, 400),
-(117, 1, 6, 'Amazon', '2022/05/20', '16:32:53 pm', 1898, 4000);
+(117, 1, 6, 'Amazon', '2022/05/20', '16:32:53 pm', 1898, 4000),
+(118, 6, 4, 'Google', '2022/05/27', '11:39:07 am', 1220, 2),
+(119, 1, 4, 'Google', '2022/05/27', '11:40:07 am', 1222, 100);
 
 -- --------------------------------------------------------
 
@@ -291,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `sales` (
   `stockprice` int(11) NOT NULL,
   `shares` int(11) NOT NULL,
   PRIMARY KEY (`salesid`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sales`
@@ -345,7 +350,8 @@ INSERT INTO `sales` (`salesid`, `customerid`, `stockid`, `stockname`, `date`, `t
 (45, 5, 4, 'Google', '2022/05/20', '15:22:00 pm', 1232, 10),
 (46, 5, 5, 'Netflix', '2022/05/20', '15:22:50 pm', 2373, 100),
 (47, 5, 6, 'Amazon', '2022/05/20', '15:30:57 pm', 1320, 100),
-(48, 5, 6, 'Amazon', '2022/05/20', '16:27:07 pm', 3611, 500);
+(48, 5, 6, 'Amazon', '2022/05/20', '16:27:07 pm', 3611, 500),
+(49, 6, 4, 'Google', '2022/05/27', '11:40:58 am', 1344, 2);
 
 -- --------------------------------------------------------
 
@@ -393,10 +399,10 @@ CREATE TABLE IF NOT EXISTS `stocks` (
 --
 
 INSERT INTO `stocks` (`stockid`, `name`, `sector`, `price`, `shares`, `supply`) VALUES
-(2, 'Reliance', 'Refinery', 923, 50, -30),
-(3, 'Tesla   ', 'Robotics', 6499, 60, -30),
+(2, 'Reliance', 'Refinery', 923, 50, 1000),
+(3, 'Tesla   ', 'Robotics', 6499, 60, 2000),
 (5, 'Netflix', 'Streaming', 2563, 20000, 18542),
-(4, 'Google', 'Software', 1220, 1000, 820),
+(4, 'Google', 'Software', 1341, 1000, 716),
 (6, 'Amazon', 'Entertainment', 1917, 200000, 192700);
 COMMIT;
 

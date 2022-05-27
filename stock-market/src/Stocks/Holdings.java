@@ -651,7 +651,7 @@ public class Holdings extends javax.swing.JFrame {
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         // TODO add your handling code here:
         String cusid = txtcid.getText();
-        new Withdrawal(cusid).setVisible(true);
+        new Withdraw(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton24ActionPerformed
 

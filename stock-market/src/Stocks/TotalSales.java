@@ -570,7 +570,7 @@ public class TotalSales extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        new Withdrawal().setVisible(true);
+        new Withdraw().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
 
