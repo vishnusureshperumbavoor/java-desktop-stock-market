@@ -1242,7 +1242,7 @@ public class Purchases extends javax.swing.JFrame {
             int shares = Integer.parseInt(mordershares.getText());
             int total = Integer.parseInt(mordertotal.getText());
             int holdings = Integer.parseInt(txtholdings.getText());
-            int invest = 0;
+            int invest = Integer.parseInt(txtinvest.getText());
             int avg = Integer.parseInt(txtavg.getText());
             String sname = txtname.getText();
             String stockid = txtstockid.getText();

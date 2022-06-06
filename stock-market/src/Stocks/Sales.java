@@ -995,7 +995,7 @@ public class Sales extends javax.swing.JFrame {
             int shares = Integer.parseInt(mordershares.getText());
             int total = Integer.parseInt(mordertotal.getText());
             int holdings = Integer.parseInt(txtholdings.getText());
-            float invest = Integer.parseInt(txtinvest.getText());
+            int invest = Integer.parseInt(txtinvest.getText());
             int avg = Integer.parseInt(txtavg.getText());
             String sname = txtname.getText();
             int ret = shares * avg;
@@ -1270,11 +1270,11 @@ public class Sales extends javax.swing.JFrame {
             else{
                 txtcval.setText(null);
                 String cusid = txtcid.getText();
-                pst = conn.prepareStatement("select name,demat from customers where customerid = '"+cusid+"'");
+                pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                  String name = rs.getString(1);
-                  String demat = rs.getString(2);
+                  String name = rs.getString("name");
+                  String demat = rs.getString("demat");
                     txtcname.setText(name.trim());
                     txtdemat.setText(demat);
                     if(evt.getKeyCode() == KeyEvent.VK_ENTER){
