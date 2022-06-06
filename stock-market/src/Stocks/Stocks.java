@@ -92,7 +92,6 @@ public class Stocks extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtprice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cbsector = new javax.swing.JComboBox<>();
 
@@ -326,10 +325,6 @@ public class Stocks extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Sectors");
 
-        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Sector");
-
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Alloted Shares");
@@ -369,11 +364,6 @@ public class Stocks extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(btndelete2)))
                 .addContainerGap(79, Short.MAX_VALUE))
-            .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(txtidLayout.createSequentialGroup()
-                    .addGap(642, 642, 642)
-                    .addComponent(jLabel7)
-                    .addContainerGap(643, Short.MAX_VALUE)))
         );
         txtidLayout.setVerticalGroup(
             txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,11 +399,6 @@ public class Stocks extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(txtidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(txtidLayout.createSequentialGroup()
-                    .addGap(292, 292, 292)
-                    .addComponent(jLabel7)
-                    .addContainerGap(293, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -679,7 +664,6 @@ public class Stocks extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

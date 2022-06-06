@@ -68,6 +68,7 @@ String cusname;
     public void clear(){
         txtname.setText(null);
         txtbalance.setText(null);
+        txtbank.setText(null);
         btndeposit.setEnabled(false);
     }
 
@@ -285,7 +286,7 @@ String cusname;
                     .addComponent(jLabel6)
                     .addComponent(txtbank, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtbalance, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)

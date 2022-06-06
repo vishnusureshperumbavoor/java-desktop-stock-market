@@ -835,7 +835,7 @@ public class Sales extends javax.swing.JFrame {
                                                         .addComponent(jLabel10)
                                                         .addGap(18, 18, 18)
                                                         .addComponent(mordertotal, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(216, 216, 216)
+                                                .addGap(214, 214, 214)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(lorderval, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGroup(layout.createSequentialGroup()
@@ -1017,7 +1017,7 @@ public class Sales extends javax.swing.JFrame {
         pst = conn.prepareStatement("update customers set demat = demat + '"+total+"' where customerid = '"+cusid+"'");
         pst.executeUpdate();
         double dec = total * 0.001;
-        pst = conn.prepareStatement("update stocks set supply = supply - '"+shares+"',price = price - '"+dec+"' where stockid = '"+stockid+"'");
+        pst = conn.prepareStatement("update stocks set supply = supply + '"+shares+"',price = price - '"+dec+"' where stockid = '"+stockid+"'");
         pst.executeUpdate();
         pst = conn.prepareStatement("update pool set amount = amount - '"+ret+"', shares = shares - '"+shares+"' where cusid = '"+cusid+"' and stockid = '"+stockid+"'");
         pst.executeUpdate();

@@ -965,14 +965,15 @@ public class Purchases extends javax.swing.JFrame {
                             .addComponent(btnlorder, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnmorder, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(morderprice)
-                            .addComponent(jLabel21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(mordershares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))))
+                                    .addComponent(jLabel7)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(morderprice)
+                                .addComponent(jLabel21)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(morderval, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1227,7 +1228,7 @@ public class Purchases extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnmorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmorderActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss a");
         LocalDateTime now = LocalDateTime.now();
@@ -1241,7 +1242,7 @@ public class Purchases extends javax.swing.JFrame {
             int shares = Integer.parseInt(mordershares.getText());
             int total = Integer.parseInt(mordertotal.getText());
             int holdings = Integer.parseInt(txtholdings.getText());
-            int invest = Integer.parseInt(txtinvest.getText());
+            int invest = 0;
             int avg = Integer.parseInt(txtavg.getText());
             String sname = txtname.getText();
             String stockid = txtstockid.getText();

@@ -41,8 +41,10 @@ public class Withdraw extends javax.swing.JFrame {
             pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
             rs = pst.executeQuery();
             if(rs.next()){
+                String name = rs.getString("name");
                 String bank = rs.getString("bank");
                 String balance = rs.getString("demat");
+                txtname.setText(name.trim());
                 txtbank.setText(bank.trim());
                 txtbalance.setText(balance.trim());
             }
