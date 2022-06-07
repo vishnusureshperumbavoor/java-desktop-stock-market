@@ -21,16 +21,17 @@ public class Registration extends javax.swing.JFrame {
     public Registration() {
         initComponents();
         conn = Database.connect();
-        txtpassword.setEnabled(false);
-        txtcpassword.setEnabled(false);  
         cancel();
     }
     
     private void cancel(){
+        txtpassword.setEnabled(false);
+        txtcpassword.setEnabled(false);  
+        txtpassword.setText(null);
+        txtcpassword.setText(null);
         txtname.setText(null);
         txtcontact.setText(null);
         txtuname.setText("");
-        txtpassword.setText("");
         nameval.setText(null);
         emailval.setText(null);
         contactval.setText(null);

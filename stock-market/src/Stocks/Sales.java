@@ -46,9 +46,39 @@ public class Sales extends javax.swing.JFrame {
     public Sales() {
         initComponents();
         conn = Database.connect();
-        customerClear();
-        txtcval.setText(null);
-        salesidval.setText(null);
+        clear();
+    }
+    public void clear(){
+        txtcusid.setText(null);
+        txtcusid.requestFocus();
+        txtcusval.setText(null);
+        txtcname.setText(null);
+        txtdemat.setText(null);
+        
+        txtstockid.setText(null);
+        txtsidval.setText(null);
+        txtname.setText(null);
+        txtprice.setText(null);
+        txtalloted.setText(null);
+        txtsupply.setText(null);
+        
+        txtholdings.setText(null);
+        txtinvest.setText(null);
+        txtavg.setText(null);
+        txtamtnow.setText(null);
+        txtreturn.setText(null);
+        
+        mordershares.setText(null);
+        morderval.setText(null);
+        morderprice.setText(null);
+        mordertotal.setText(null);
+        btnmorder.setEnabled(false);
+        
+        lordershares.setText(null);
+        lorderval.setText(null);
+        lorderprice.setText(null);
+        lordertotal.setText(null);
+        btnlorder.setEnabled(false);
     }
 
     Sales(String cusid) {
@@ -56,9 +86,9 @@ public class Sales extends javax.swing.JFrame {
             initComponents();
             conn = Database.connect();
             customerClear();
-            txtcval.setText(null);
-            salesidval.setText(null);
-            txtcid.setText(cusid);
+            txtcusval.setText(null);
+            txtsidval.setText(null);
+            txtcusid.setText(cusid);
             pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
             rs = pst.executeQuery();
             if(rs.next()){
@@ -74,78 +104,94 @@ public class Sales extends javax.swing.JFrame {
         }
     }
     public void customerClear(){
-        lorderval.setText(null);
-        lordertotal.setText(null);
-        btnlorder.setEnabled(false);
-        morderval.setText(null);
-        mordershares.setText(null);
-       mordertotal.setText(null);
-       morderprice.setText(null);
-       btnmorder.setEnabled(false);
+        txtcname.setText(null);
         txtdemat.setText(null);
-        salesidval.setText(null);
-        txtreturn.setText(null);
-        txtamtnow.setText(null);
-        txtcname.setText(null);
-        txtavg.setText(null);
-        txtcname.setText(null);
+        
         txtstockid.setText(null);
+        txtsidval.setText(null);
         txtname.setText(null);
         txtprice.setText(null);
-        txtpurchase.setText(null);
-        txtholdings.setText(null);
-        btnmorder.setEnabled(false);
-        btnsbills.setEnabled(false);
-        txtholdings.setText(null);
-//      cbseller.setSelectedIndex(-1);
-        txtinvest.setText(null);
-        txtavg.setText(null);
-        salesidval.setText(null);
-        txtreturn.setText(null);
-        txtamtnow.setText(null);
         txtalloted.setText(null);
         txtsupply.setText(null);
+        
+        txtholdings.setText(null);
+        txtinvest.setText(null);
+        txtavg.setText(null);
+        txtamtnow.setText(null);
+        txtreturn.setText(null);
+        
+        mordershares.setText(null);
+        morderval.setText(null);
+        morderprice.setText(null);
+        mordertotal.setText(null);
+        btnmorder.setEnabled(false);
+        
+        lordershares.setText(null);
+        lorderval.setText(null);
+        lorderprice.setText(null);
+        lordertotal.setText(null);
+        btnlorder.setEnabled(false);
     }
     public void stockClear(){
-        morderval.setText(null);
-        mordershares.setText(null);
-       mordertotal.setText(null);
-       morderprice.setText(null);
-       btnmorder.setEnabled(false);
-                txtname.setText(null);
-                txtprice.setText(null);
-                txtholdings.setText(null);
-                txtavg.setText(null);
-                txtinvest.setText(null);
-                txtamtnow.setText(null);
-                txtreturn.setText(null);
-                txtalloted.setText(null);
-                txtsupply.setText(null);
-    }
-    public void investmentClear(){
-        morderval.setText(null);
-        mordershares.setText(null);
-       mordertotal.setText(null);
-       morderprice.setText(null);
-       btnmorder.setEnabled(false);
+        txtname.setText(null);
+        txtprice.setText(null);
+        txtalloted.setText(null);
+        txtsupply.setText(null);
+        
         txtholdings.setText(null);
-                    txtinvest.setText(null);
-                    txtavg.setText(null);
-                    txtamtnow.setText(null);
-    }
-    public void salesClear(){
-        morderval.setText(null);
+        txtinvest.setText(null);
+        txtavg.setText(null);
+        txtamtnow.setText(null);
+        txtreturn.setText(null);
+        
         mordershares.setText(null);
-       mordertotal.setText(null);
-       morderprice.setText(null);
-       btnmorder.setEnabled(false);
+        morderval.setText(null);
+        morderprice.setText(null);
+        mordertotal.setText(null);
+        btnmorder.setEnabled(false);
+        
+        lordershares.setText(null);
+        lorderval.setText(null);
+        lorderprice.setText(null);
+        lordertotal.setText(null);
+        btnlorder.setEnabled(false);
     }
     public void mOrderClear(){
-        morderval.setText(null);
+        morderprice.setText(null);
+        mordertotal.setText(null);
+        btnmorder.setEnabled(false);
+    }
+    public void lorderClear(){
+        lordertotal.setText(null);
+        btnlorder.setEnabled(false);
+    }
+    public void lorderclearbymorder(){
+        lordershares.setText(null);
+        lorderval.setText(null);
+        lorderprice.setText(null);
+        lordertotal.setText(null);
+        btnlorder.setEnabled(false);
+    }
+    public void morderclearbylorder(){
         mordershares.setText(null);
-       mordertotal.setText(null);
-       morderprice.setText(null);
-       btnmorder.setEnabled(false);
+        morderval.setText(null);
+        morderprice.setText(null);
+        mordertotal.setText(null);
+        btnmorder.setEnabled(false);
+    }
+    public void morderclearbypurchasebutton(){
+        mordershares.setText(null);
+        morderval.setText(null);
+        morderprice.setText(null);
+        mordertotal.setText(null);
+        btnmorder.setEnabled(false);
+    }
+    public void lorderclearbypurchasebutton(){
+        lordershares.setText(null);
+        lorderval.setText(null);
+        lorderprice.setText(null);
+        lordertotal.setText(null);
+        btnlorder.setEnabled(false);
     }
     public void DatabaseEnteringUsingTable(){
 //                    String tstockid,tdate,ttime,tstockname,tprice,tquantity,ttotal;
@@ -211,7 +257,7 @@ public class Sales extends javax.swing.JFrame {
         mordertotal = new javax.swing.JLabel();
         txtholdings = new javax.swing.JLabel();
         btnsbills = new javax.swing.JButton();
-        salesidval = new javax.swing.JLabel();
+        txtsidval = new javax.swing.JLabel();
         morderval = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtinvest = new javax.swing.JLabel();
@@ -222,8 +268,8 @@ public class Sales extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtamtnow = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txtcid = new javax.swing.JTextField();
-        txtcval = new javax.swing.JLabel();
+        txtcusid = new javax.swing.JTextField();
+        txtcusval = new javax.swing.JLabel();
         txtcname = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
@@ -240,9 +286,9 @@ public class Sales extends javax.swing.JFrame {
         lordertotal = new javax.swing.JLabel();
         lorderval = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        mordershares1 = new javax.swing.JTextField();
+        lorderprice = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        mordershares2 = new javax.swing.JTextField();
+        lordershares = new javax.swing.JTextField();
         btnlorder = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -534,9 +580,9 @@ public class Sales extends javax.swing.JFrame {
             }
         });
 
-        salesidval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        salesidval.setForeground(new java.awt.Color(255, 0, 0));
-        salesidval.setText("jLabel6");
+        txtsidval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtsidval.setForeground(new java.awt.Color(255, 0, 0));
+        txtsidval.setText("jLabel6");
 
         morderval.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         morderval.setForeground(new java.awt.Color(255, 0, 0));
@@ -578,20 +624,20 @@ public class Sales extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Customer : ");
 
-        txtcid.addActionListener(new java.awt.event.ActionListener() {
+        txtcusid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcidActionPerformed(evt);
+                txtcusidActionPerformed(evt);
             }
         });
-        txtcid.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtcusid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtcidKeyReleased(evt);
+                txtcusidKeyReleased(evt);
             }
         });
 
-        txtcval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtcval.setForeground(new java.awt.Color(255, 0, 0));
-        txtcval.setText("jLabel15");
+        txtcusval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtcusval.setForeground(new java.awt.Color(255, 0, 0));
+        txtcusval.setText("jLabel15");
 
         txtcname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtcname.setForeground(new java.awt.Color(0, 0, 0));
@@ -670,17 +716,17 @@ public class Sales extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Stock Price : ");
 
-        mordershares1.addActionListener(new java.awt.event.ActionListener() {
+        lorderprice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mordershares1ActionPerformed(evt);
+                lorderpriceActionPerformed(evt);
             }
         });
-        mordershares1.addKeyListener(new java.awt.event.KeyAdapter() {
+        lorderprice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mordershares1KeyPressed(evt);
+                lorderpriceKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                mordershares1KeyReleased(evt);
+                lorderpriceKeyReleased(evt);
             }
         });
 
@@ -688,17 +734,17 @@ public class Sales extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Selling Shares : ");
 
-        mordershares2.addActionListener(new java.awt.event.ActionListener() {
+        lordershares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mordershares2ActionPerformed(evt);
+                lordersharesActionPerformed(evt);
             }
         });
-        mordershares2.addKeyListener(new java.awt.event.KeyAdapter() {
+        lordershares.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mordershares2KeyPressed(evt);
+                lordersharesKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                mordershares2KeyReleased(evt);
+                lordersharesKeyReleased(evt);
             }
         });
 
@@ -738,7 +784,7 @@ public class Sales extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addGap(94, 94, 94)
-                                                        .addComponent(txtcid, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtcusid, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                         .addComponent(jLabel14)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -756,7 +802,7 @@ public class Sales extends javax.swing.JFrame {
                                                         .addComponent(txtstockid, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                         .addComponent(jLabel3))
-                                                    .addComponent(salesidval, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(txtsidval, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -779,7 +825,7 @@ public class Sales extends javax.swing.JFrame {
                                                     .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
-                                                .addComponent(txtcval, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(txtcusval, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(1101, 1101, 1101))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(45, 45, 45)
@@ -846,11 +892,11 @@ public class Sales extends javax.swing.JFrame {
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLabel18)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(mordershares2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lordershares, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jLabel22)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(mordershares1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                        .addComponent(lorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(173, 173, 173)
                                         .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -882,11 +928,11 @@ public class Sales extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel14)
-                            .addComponent(txtcid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcusid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtcname, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtcval)
+                .addComponent(txtcusval)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToggleButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -904,7 +950,7 @@ public class Sales extends javax.swing.JFrame {
                         .addComponent(txtsupply, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(salesidval, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtsidval, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -951,8 +997,8 @@ public class Sales extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
-                            .addComponent(mordershares1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mordershares2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lordershares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lorderval, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -989,7 +1035,7 @@ public class Sales extends javax.swing.JFrame {
         
         try {
             String stockid = txtstockid.getText();
-            String cusid = txtcid.getText();   
+            String cusid = txtcusid.getText();   
             int balance = Integer.parseInt(txtdemat.getText());
             int price = Integer.parseInt(txtprice.getText());
             int shares = Integer.parseInt(mordershares.getText());
@@ -1057,7 +1103,7 @@ public class Sales extends javax.swing.JFrame {
         }
         mordershares.setText(null);
         btnsbills.setEnabled(true);
-        salesClear();
+        morderclearbypurchasebutton();
 //        JOptionPane.showMessageDialog(this,"sales completed");
         } catch (SQLException ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
@@ -1101,7 +1147,7 @@ public class Sales extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        String cusid = txtcid.getText();
+        String cusid = txtcusid.getText();
         new Purchases(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -1114,7 +1160,7 @@ public class Sales extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        String cusid = txtcid.getText();
+        String cusid = txtcusid.getText();
         new Deposit(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -1123,7 +1169,7 @@ public class Sales extends javax.swing.JFrame {
         // TODO add your handling code here:
             // TODO add your handling code here:
             try{
-            String cusid = txtcid.getText(); 
+            String cusid = txtcusid.getText(); 
             pst = conn.prepareStatement("select name from customers where username = '"+cusid+"'");
             rs = pst.executeQuery();
             String cusname = null;
@@ -1144,22 +1190,25 @@ public class Sales extends javax.swing.JFrame {
     private void txtstockidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockidKeyReleased
         // TODO add your handling code here:
             // TODO add your handling code here:
+            txtsidval.setText(null);
             String id = txtstockid.getText();
-            
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    mordershares.requestFocus();
+                    }
             if("".equals(id)){
                 stockClear();
             }else{
             
             try {
             
-            String cusid = txtcid.getText(); 
+            String cusid = txtcusid.getText(); 
             pst = conn.prepareStatement("select * from stocks where stockid = '"+id+"'");
             rs = pst.executeQuery();
             if(rs.next() == false){
-                salesidval.setText("stockid not found");
+                txtsidval.setText("stockid not found");
                 stockClear();
             }else{
-                salesidval.setText(null);
+                txtsidval.setText(null);
                 String name = rs.getString("name");
                 int price = rs.getInt("price");
                 String alloted = rs.getString("shares");
@@ -1207,16 +1256,14 @@ public class Sales extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
-            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                    mordershares.requestFocus();
-                    }
+            
             
        }
     }//GEN-LAST:event_txtstockidKeyReleased
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
-        String cusid = txtcid.getText();
+        String cusid = txtcusid.getText();
         new Withdraw(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton21ActionPerformed
@@ -1234,10 +1281,13 @@ public class Sales extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void mordersharesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mordersharesKeyReleased
-        
-                    btnmorder.setEnabled(false);
-        if("".equals(txtprice.getText()) ||"".equals(mordershares.getText())){
-                salesClear();
+            btnmorder.setEnabled(false);
+            lorderclearbymorder();
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    lordershares.requestFocus();
+                }
+            if("".equals(mordershares.getText())){
+                mOrderClear();
             }
             else{
                 int holdings = Integer.parseInt(txtholdings.getText());
@@ -1256,20 +1306,24 @@ public class Sales extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_mordersharesKeyReleased
 
-    private void txtcidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcidActionPerformed
+    private void txtcusidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcusidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcidActionPerformed
+    }//GEN-LAST:event_txtcusidActionPerformed
 
-    private void txtcidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcidKeyReleased
+    private void txtcusidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcusidKeyReleased
         // TODO add your handling code here:
+        txtcusval.setText(null);
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    txtstockid.requestFocus();
+                }
         try {
             // TODO add your handling code here:
-            if("".equals(txtcid.getText())){
+            if("".equals(txtcusid.getText())){
                 customerClear();
             }
             else{
-                txtcval.setText(null);
-                String cusid = txtcid.getText();
+                txtcusval.setText(null);
+                String cusid = txtcusid.getText();
                 pst = conn.prepareStatement("select * from customers where customerid = '"+cusid+"'");
                 rs = pst.executeQuery();
                 if(rs.next()){
@@ -1277,22 +1331,20 @@ public class Sales extends javax.swing.JFrame {
                   String demat = rs.getString("demat");
                     txtcname.setText(name.trim());
                     txtdemat.setText(demat);
-                    if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                    txtstockid.requestFocus();
-                }
+                    
                 }else{
-                txtcval.setText("customer not found");
+                txtcusval.setText("customer not found");
                 customerClear();
                 }
             }
         } catch (SQLException ex) {        
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_txtcidKeyReleased
+    }//GEN-LAST:event_txtcusidKeyReleased
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
-        String cusid = txtcid.getText();
+        String cusid = txtcusid.getText();
         new Holdings(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton22ActionPerformed
@@ -1305,32 +1357,78 @@ public class Sales extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
-    private void mordershares1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mordershares1ActionPerformed
+    private void lorderpriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lorderpriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mordershares1ActionPerformed
+    }//GEN-LAST:event_lorderpriceActionPerformed
 
-    private void mordershares1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mordershares1KeyPressed
+    private void lorderpriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lorderpriceKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mordershares1KeyPressed
+    }//GEN-LAST:event_lorderpriceKeyPressed
 
-    private void mordershares1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mordershares1KeyReleased
+    private void lorderpriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lorderpriceKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_mordershares1KeyReleased
+        morderclearbylorder();
+            btnlorder.setEnabled(false);
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    lorderprice.requestFocus();
+                }
+            if("".equals(lordershares.getText()) || "".equals(lorderprice.getText()) ){
+                lorderClear();
+            }
+            else{
+                int holdings = Integer.parseInt(txtholdings.getText());
+                int price = Integer.parseInt(lorderprice.getText());
+                int shares = Integer.parseInt(lordershares.getText());
+                int buying = price * shares;
+                lordertotal.setText(String.valueOf(buying));
+                if(shares>holdings){
+                    lorderval.setText("more than holding stocks");
+                }
+                else{
+                    morderval.setText(null);
+                    btnlorder.setEnabled(true);
+                }
+            }
+    }//GEN-LAST:event_lorderpriceKeyReleased
 
-    private void mordershares2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mordershares2ActionPerformed
+    private void lordersharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lordersharesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mordershares2ActionPerformed
+    }//GEN-LAST:event_lordersharesActionPerformed
 
-    private void mordershares2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mordershares2KeyPressed
+    private void lordersharesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lordersharesKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mordershares2KeyPressed
+    }//GEN-LAST:event_lordersharesKeyPressed
 
-    private void mordershares2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mordershares2KeyReleased
+    private void lordersharesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lordersharesKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_mordershares2KeyReleased
+        
+        morderclearbylorder();
+            btnlorder.setEnabled(false);
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    lorderprice.requestFocus();
+                }
+            if("".equals(lordershares.getText()) || "".equals(lorderprice.getText()) ){
+                lorderClear();
+            }
+            else{
+                int holdings = Integer.parseInt(txtholdings.getText());
+                int price = Integer.parseInt(lorderprice.getText());
+                int shares = Integer.parseInt(lordershares.getText());
+                int buying = price * shares;
+                lordertotal.setText(String.valueOf(buying));
+                if(shares>holdings){
+                    lorderval.setText("more than holding stocks");
+                }
+                else{
+                    morderval.setText(null);
+                    btnlorder.setEnabled(true);
+                }
+            }
+    }//GEN-LAST:event_lordersharesKeyReleased
 
     private void btnlorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlorderActionPerformed
         // TODO add your handling code here:
+        lorderclearbypurchasebutton();
     }//GEN-LAST:event_btnlorderActionPerformed
 
     /**
@@ -1418,22 +1516,21 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JTextField lorderprice;
+    private javax.swing.JTextField lordershares;
     private javax.swing.JLabel lordertotal;
     private javax.swing.JLabel lorderval;
     private javax.swing.JLabel morderprice;
     private javax.swing.JTextField mordershares;
-    private javax.swing.JTextField mordershares1;
-    private javax.swing.JTextField mordershares2;
     private javax.swing.JLabel mordertotal;
     private javax.swing.JLabel morderval;
-    private javax.swing.JLabel salesidval;
     private javax.swing.JTable tblsales;
     private javax.swing.JLabel txtalloted;
     private javax.swing.JLabel txtamtnow;
     private javax.swing.JLabel txtavg;
-    private javax.swing.JTextField txtcid;
     private javax.swing.JLabel txtcname;
-    private javax.swing.JLabel txtcval;
+    private javax.swing.JTextField txtcusid;
+    private javax.swing.JLabel txtcusval;
     private javax.swing.JLabel txtdemat;
     private javax.swing.JLabel txtholdings;
     private javax.swing.JLabel txtinvest;
@@ -1441,6 +1538,7 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JLabel txtprice;
     private javax.swing.JLabel txtpurchase;
     private javax.swing.JLabel txtreturn;
+    private javax.swing.JLabel txtsidval;
     private javax.swing.JTextField txtstockid;
     private javax.swing.JLabel txtsupply;
     // End of variables declaration//GEN-END:variables

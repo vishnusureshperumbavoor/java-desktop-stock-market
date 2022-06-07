@@ -41,7 +41,7 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                                                      <Component id="txtcid" min="-2" pref="116" max="-2" attributes="0"/>
+                                                      <Component id="txtcusid" min="-2" pref="116" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
@@ -64,7 +64,7 @@
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="salesidval" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                                                  <Component id="txtsidval" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="txtname" min="-2" pref="146" max="-2" attributes="0"/>
@@ -91,7 +91,7 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                              <Component id="txtcval" min="-2" pref="158" max="-2" attributes="0"/>
+                                              <Component id="txtcusval" min="-2" pref="158" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="1101" max="-2" attributes="0"/>
@@ -173,11 +173,11 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="mordershares2" min="-2" pref="92" max="-2" attributes="0"/>
+                                                      <Component id="lordershares" min="-2" pref="92" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                                       <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="mordershares1" min="-2" pref="92" max="-2" attributes="0"/>
+                                                      <Component id="lorderprice" min="-2" pref="92" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -225,14 +225,14 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtcid" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtcusid" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtcname" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtcval" min="-2" max="-2" attributes="0"/>
+              <Component id="txtcusval" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -253,7 +253,7 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="salesidval" min="-2" pref="16" max="-2" attributes="0"/>
+              <Component id="txtsidval" min="-2" pref="16" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jToggleButton2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -309,8 +309,8 @@
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="mordershares1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="mordershares2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lorderprice" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lordershares" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel22" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -873,7 +873,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnsbillsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="salesidval">
+    <Component class="javax.swing.JLabel" name="txtsidval">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>
@@ -994,13 +994,13 @@
         <Property name="text" type="java.lang.String" value="Customer : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtcid">
+    <Component class="javax.swing.JTextField" name="txtcusid">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcidActionPerformed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcidKeyReleased"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcusidActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcusidKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtcval">
+    <Component class="javax.swing.JLabel" name="txtcusval">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>
@@ -1202,11 +1202,11 @@
         <Property name="text" type="java.lang.String" value="Stock Price : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="mordershares1">
+    <Component class="javax.swing.JTextField" name="lorderprice">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mordershares1ActionPerformed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mordershares1KeyPressed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mordershares1KeyReleased"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lorderpriceActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lorderpriceKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lorderpriceKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel18">
@@ -1220,11 +1220,11 @@
         <Property name="text" type="java.lang.String" value="Selling Shares : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="mordershares2">
+    <Component class="javax.swing.JTextField" name="lordershares">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mordershares2ActionPerformed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mordershares2KeyPressed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mordershares2KeyReleased"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lordersharesActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lordersharesKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lordersharesKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnlorder">

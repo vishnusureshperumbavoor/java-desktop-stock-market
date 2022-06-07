@@ -296,9 +296,6 @@ public class Sectors extends javax.swing.JFrame {
             
         String category = txtsector.getText();
                 try{
-            Class.forName("com.mysql.jdbc.Driver");
-               conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stock","root","");
-               
                pre = conn.prepareStatement("update sectors set sector=? where sectorid=?");
                pre.setString(1, category);
                pre.setInt(2, id);

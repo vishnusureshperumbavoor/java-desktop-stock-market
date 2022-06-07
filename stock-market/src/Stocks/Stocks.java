@@ -23,6 +23,7 @@ public class Stocks extends javax.swing.JFrame {
     public Stocks() {
         initComponents();
         conn = Database.connect();
+        clear();
         fetch();
     }
     
@@ -31,7 +32,7 @@ public class Stocks extends javax.swing.JFrame {
         txtname.setText(null);
         txtshares.setText(null);
         txtprice.setText(null);
-//        cbsector.setSelectedIndex(-1);
+        cbsector.setSelectedIndex(-1);
     }
     
     private void fetch(){
@@ -52,10 +53,11 @@ public class Stocks extends javax.swing.JFrame {
                  dtm.addRow(v);
              } 
              
-            pst = conn.prepareStatement("select sector from sectors");
+            pst = conn.prepareStatement("select * from sectors");
             rs = pst.executeQuery();
             cbsector.removeAllItems();
             while(rs.next()){
+                cbsector.setSelectedItem(null);
                 cbsector.addItem(rs.getString("sector"));
             }
         }
