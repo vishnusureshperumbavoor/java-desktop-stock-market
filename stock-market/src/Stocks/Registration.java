@@ -89,19 +89,19 @@ public class Registration extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Name\n");
+        jLabel2.setText("Full Name :");
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Contact");
+        jLabel3.setText("Contact : ");
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Username");
+        jLabel4.setText("Short Name : ");
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Password");
+        jLabel5.setText("Password : ");
 
         btnsubmit.setBackground(new java.awt.Color(0, 0, 0));
         btnsubmit.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -151,7 +151,7 @@ public class Registration extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Email");
+        jLabel12.setText("Email : ");
 
         btncancel.setBackground(new java.awt.Color(0, 0, 0));
         btncancel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -233,7 +233,7 @@ public class Registration extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Confirm Password");
+        jLabel13.setText("Confirm Password : ");
 
         txtcpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,9 +286,7 @@ public class Registration extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel2))
+                                .addComponent(jLabel2)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
@@ -299,7 +297,8 @@ public class Registration extends javax.swing.JFrame {
                                         .addComponent(jLabel5)
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel13))
-                                    .addGap(2, 2, 2)))
+                                    .addGap(2, 2, 2))
+                                .addComponent(jLabel12))
                             .addComponent(btncancel))
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,7 +374,7 @@ public class Registration extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addGap(58, 58, 58))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
