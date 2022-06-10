@@ -1419,6 +1419,7 @@ public class Purchases extends javax.swing.JFrame {
             mordershares.getText(),
             String.valueOf(total)
         });
+        
         int sum=0;
         for(int i=0;i<tblpurchases.getRowCount();i++){
             sum += Integer.parseInt(tblpurchases.getValueAt(i,6).toString());

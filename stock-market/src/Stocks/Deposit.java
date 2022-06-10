@@ -323,6 +323,7 @@ String cusname;
                         String balance = rs.getString(1);
                         txtbalance.setText(balance.trim());
                     }
+                    txtdeposit.setText(null);
         } catch (SQLException ex) {
             Logger.getLogger(Deposit.class.getName()).log(Level.SEVERE, null, ex);
         }

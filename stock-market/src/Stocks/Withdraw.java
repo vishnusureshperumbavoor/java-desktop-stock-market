@@ -317,6 +317,7 @@ public class Withdraw extends javax.swing.JFrame {
                         String balance = rs.getString(1);
                         txtbalance.setText(balance.trim());
                     }
+                    txtwithdraw.setText(null);
         } catch (SQLException ex) {
             Logger.getLogger(Withdraw.class.getName()).log(Level.SEVERE, null, ex);
         }
