@@ -739,7 +739,7 @@ public class Customers extends javax.swing.JFrame {
                    }else{
                        contactval.setText(null);
                        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-                txtuname.requestFocus();
+                txtbank.requestFocus();
         }
                    }
                } catch (SQLException ex) {

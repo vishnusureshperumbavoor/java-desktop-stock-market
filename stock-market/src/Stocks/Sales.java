@@ -47,38 +47,20 @@ public class Sales extends javax.swing.JFrame {
         initComponents();
         conn = Database.connect();
         clear();
+        fetch();
+    }
+    public void fetch(){
+        int sum=0;
+        for(int i=0;i<tblsales.getRowCount();i++){
+            sum += Integer.parseInt(tblsales.getValueAt(i,9).toString());
+        }
+        txtpnl.setText(String.valueOf(sum));
     }
     public void clear(){
         txtcusid.setText(null);
         txtcusid.requestFocus();
         txtcusval.setText(null);
-        txtcname.setText(null);
-        txtdemat.setText(null);
-        
-        txtstockid.setText(null);
-        txtsidval.setText(null);
-        txtname.setText(null);
-        txtprice.setText(null);
-        txtalloted.setText(null);
-        txtsupply.setText(null);
-        
-        txtholdings.setText(null);
-        txtinvest.setText(null);
-        txtavg.setText(null);
-        txtamtnow.setText(null);
-        txtreturn.setText(null);
-        
-        mordershares.setText(null);
-        morderval.setText(null);
-        morderprice.setText(null);
-        mordertotal.setText(null);
-        btnmorder.setEnabled(false);
-        
-        lordershares.setText(null);
-        lorderval.setText(null);
-        lorderprice.setText(null);
-        lordertotal.setText(null);
-        btnlorder.setEnabled(false);
+        customerClear();
     }
 
     Sales(String cusid) {
@@ -131,6 +113,10 @@ public class Sales extends javax.swing.JFrame {
         lorderprice.setText(null);
         lordertotal.setText(null);
         btnlorder.setEnabled(false);
+        
+        dtm = (DefaultTableModel)tblsales.getModel();
+        dtm.setRowCount(0);
+        btnsbills.setEnabled(false);
     }
     public void stockClear(){
         txtname.setText(null);
@@ -154,7 +140,6 @@ public class Sales extends javax.swing.JFrame {
         lorderval.setText(null);
         lorderprice.setText(null);
         lordertotal.setText(null);
-        btnlorder.setEnabled(false);
     }
     public void mOrderClear(){
         morderprice.setText(null);
@@ -292,6 +277,9 @@ public class Sales extends javax.swing.JFrame {
         btnlorder = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        txtpnl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -354,13 +342,13 @@ public class Sales extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Stock ID", "Date", "Time", "Stock Name", "Stock Price", "Quantity", "Total"
+                "Stock ID", "Date", "Time", "Stock Name", "Purchase Avg", "Sell Avg", "Quantity", "Purchase Total", "Sell Total", "PNL"
             }
         ));
         jScrollPane1.setViewportView(tblsales);
 
         btnmorder.setBackground(new java.awt.Color(255, 0, 0));
-        btnmorder.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        btnmorder.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnmorder.setText("SELL");
         btnmorder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -540,7 +528,7 @@ public class Sales extends javax.swing.JFrame {
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
 
         txtprice.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -749,7 +737,7 @@ public class Sales extends javax.swing.JFrame {
         });
 
         btnlorder.setBackground(new java.awt.Color(255, 0, 0));
-        btnlorder.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        btnlorder.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnlorder.setText("CREATE LIMIT ORDER");
         btnlorder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -764,6 +752,39 @@ public class Sales extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("MINIMUM PRICE SELLER WILLING TO SELL");
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("PNL");
+
+        txtpnl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtpnl.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel19))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(txtpnl, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtpnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -829,7 +850,11 @@ public class Sales extends javax.swing.JFrame {
                                         .addGap(1101, 1101, 1101))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(45, 45, 45)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1078, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnsbills, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -904,10 +929,7 @@ public class Sales extends javax.swing.JFrame {
                                         .addGap(45, 45, 45)
                                         .addComponent(btnmorder, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(141, 141, 141)
-                                        .addComponent(btnlorder, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(409, 409, 409)
-                                        .addComponent(btnsbills, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btnlorder, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -975,7 +997,7 @@ public class Sales extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1008,13 +1030,16 @@ public class Sales extends javax.swing.JFrame {
                             .addComponent(lordertotal, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnmorder, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnlorder, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(btnsbills, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                    .addComponent(btnmorder)
+                    .addComponent(btnlorder))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnsbills, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1037,16 +1062,16 @@ public class Sales extends javax.swing.JFrame {
             String stockid = txtstockid.getText();
             String cusid = txtcusid.getText();   
             int balance = Integer.parseInt(txtdemat.getText());
-            int price = Integer.parseInt(txtprice.getText());
+            int sellavg = Integer.parseInt(txtprice.getText());
             int shares = Integer.parseInt(mordershares.getText());
-            int total = Integer.parseInt(mordertotal.getText());
+            int selltotal = Integer.parseInt(mordertotal.getText());
             int holdings = Integer.parseInt(txtholdings.getText());
             int invest = Integer.parseInt(txtinvest.getText());
-            int avg = Integer.parseInt(txtavg.getText());
-            String sname = txtname.getText();
-            int ret = shares * avg;
+            int puravg = Integer.parseInt(txtavg.getText());
+            int ret = shares * puravg;
+            int purtotal = puravg*shares;
                     
-            String sql = "insert into sales values ("+null+",'"+cusid+"','"+stockid+"','"+sname+"','"+date+"','"+time+"','"+price+"','"+shares+"')";
+            String sql = "insert into sales values ("+null+",'"+cusid+"','"+stockid+"','"+date+"','"+time+"','"+puravg+"','"+sellavg+"','"+shares+"')";
             pst = conn.prepareStatement(sql);
             pst.executeUpdate();
         DefaultTableModel df = (DefaultTableModel)tblsales.getModel();
@@ -1056,13 +1081,21 @@ public class Sales extends javax.swing.JFrame {
             date,
             time,
             txtname.getText(),
+            txtavg.getText(),
             txtprice.getText(),
             mordershares.getText(),
-            String.valueOf(total)
+            purtotal,
+            selltotal,
+            selltotal-purtotal
         });
-        pst = conn.prepareStatement("update customers set demat = demat + '"+total+"' where customerid = '"+cusid+"'");
+        int sum=0;
+        for(int i=0;i<tblsales.getRowCount();i++){
+            sum += Integer.parseInt(tblsales.getValueAt(i,9).toString());
+        }
+        txtpnl.setText(String.valueOf(sum));
+        pst = conn.prepareStatement("update customers set demat = demat + '"+selltotal+"' where customerid = '"+cusid+"'");
         pst.executeUpdate();
-        double dec = total * 0.001;
+        double dec = selltotal * 0.001;
         pst = conn.prepareStatement("update stocks set supply = supply + '"+shares+"',price = price - '"+dec+"' where stockid = '"+stockid+"'");
         pst.executeUpdate();
         pst = conn.prepareStatement("update pool set amount = amount - '"+ret+"', shares = shares - '"+shares+"' where cusid = '"+cusid+"' and stockid = '"+stockid+"'");
@@ -1076,9 +1109,9 @@ public class Sales extends javax.swing.JFrame {
         pst = conn.prepareStatement("select * from stocks where stockid = '"+stockid+"'");
         rs = pst.executeQuery();
         if(rs.next()){
-            price = rs.getInt("price");
+            sellavg = rs.getInt("price");
             String supply = rs.getString("supply");
-            txtprice.setText(String.valueOf(price));
+            txtprice.setText(String.valueOf(sellavg));
             txtsupply.setText(supply);
         }
         pst = conn.prepareStatement("select *,amount/shares from pool where cusid = '"+cusid+"' and stockid = '"+stockid+"'");
@@ -1086,12 +1119,12 @@ public class Sales extends javax.swing.JFrame {
         if(rs.next()){
             invest = rs.getInt("amount");
             holdings = rs.getInt("shares");
-            avg = rs.getInt("amount/shares");
+            puravg = rs.getInt("amount/shares");
             txtinvest.setText(String.valueOf(invest));
             txtholdings.setText(String.valueOf(holdings));
-            txtavg.setText(String.valueOf(avg));
+            txtavg.setText(String.valueOf(puravg));
         }
-        float amtnow = price * holdings ;
+        float amtnow = sellavg * holdings ;
         txtamtnow.setText(String.valueOf(amtnow)+"₹");
          
         if(amtnow==0){
@@ -1197,6 +1230,7 @@ public class Sales extends javax.swing.JFrame {
                     }
             if("".equals(id)){
                 stockClear();
+                
             }else{
             
             try {
@@ -1320,6 +1354,7 @@ public class Sales extends javax.swing.JFrame {
             // TODO add your handling code here:
             if("".equals(txtcusid.getText())){
                 customerClear();
+                fetch();
             }
             else{
                 txtcusval.setText(null);
@@ -1496,6 +1531,7 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1510,6 +1546,7 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
@@ -1535,6 +1572,7 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JLabel txtholdings;
     private javax.swing.JLabel txtinvest;
     private javax.swing.JLabel txtname;
+    private javax.swing.JLabel txtpnl;
     private javax.swing.JLabel txtprice;
     private javax.swing.JLabel txtpurchase;
     private javax.swing.JLabel txtreturn;

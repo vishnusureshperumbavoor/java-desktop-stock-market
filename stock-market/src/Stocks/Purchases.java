@@ -56,43 +56,12 @@ public class Purchases extends javax.swing.JFrame {
             sum += Integer.parseInt(tblpurchases.getValueAt(i,6).toString());
         }
         txttotalamount.setText(String.valueOf(sum));
-        txttotalpurchases.setText(String.valueOf(tblpurchases.getRowCount()));
     }
     public void clear(){
         txtcusid.setText(null);
         txtcusid.requestFocus();
         txtcusval.setText(null);
-        txtcname.setText(null);
-        txtdemat.setText(null);
-        
-        txtstockid.setText(null);
-        txtsidval.setText(null);
-        txtname.setText(null);
-        txtprice.setText(null);
-        txtalloted.setText(null);
-        txtsupply.setText(null);
-        
-        txtholdings.setText(null);
-        txtinvest.setText(null);
-        txtavg.setText(null);
-        txtamtnow.setText(null);
-        txtreturn.setText(null);
-        
-        mordershares.setText(null);
-        morderval.setText(null);
-        morderprice.setText(null);
-        mordertotal.setText(null);
-        btnmorder.setEnabled(false);
-        
-        lordershares.setText(null);
-        lorderval.setText(null);
-        lorderprice.setText(null);
-        lordertotal.setText(null);
-        btnlorder.setEnabled(false);
-        
-        btnpbills.setEnabled(false);
-        txttotalpurchases.setText(null);
-        txttotalamount.setText(null);
+        customerClear();
     }
     public void customerClear(){
         txtcname.setText(null);
@@ -123,9 +92,9 @@ public class Purchases extends javax.swing.JFrame {
         lordertotal.setText(null);
         btnlorder.setEnabled(false);
         
+        dtm = (DefaultTableModel)tblpurchases.getModel();
+        dtm.setRowCount(0);
         btnpbills.setEnabled(false);
-        txttotalpurchases.setText(null);
-        txttotalamount.setText(null);
     }
     public void stockClear(){
         txtname.setText(null);
@@ -150,10 +119,6 @@ public class Purchases extends javax.swing.JFrame {
         lorderprice.setText(null);
         lordertotal.setText(null);
         btnlorder.setEnabled(false);
-        
-        btnpbills.setEnabled(false);
-        txttotalpurchases.setText(null);
-        txttotalamount.setText(null);
     }
     public void mOrderClear(){
         morderprice.setText(null);
@@ -318,9 +283,6 @@ public class Purchases extends javax.swing.JFrame {
         btnlorder = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
-        txttotalpurchases = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         txttotalamount = new javax.swing.JLabel();
@@ -802,39 +764,6 @@ public class Purchases extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("MAXIMUM PRICE BUYER WILLING TO BUY");
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
-
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("TOTAL PURCHASES");
-
-        txttotalpurchases.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txttotalpurchases.setForeground(new java.awt.Color(255, 255, 255));
-        txttotalpurchases.setText("jLabel26");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(txttotalpurchases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel25))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel25)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttotalpurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -849,12 +778,14 @@ public class Purchases extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txttotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txttotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel27)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -912,16 +843,6 @@ public class Purchases extends javax.swing.JFrame {
                                                 .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(126, 126, 126)
                                                 .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(25, 25, 25)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                                        .addComponent(btnpbills, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(40, 40, 40))))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -993,7 +914,10 @@ public class Purchases extends javax.swing.JFrame {
                                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(txtreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 567, Short.MAX_VALUE))))
+                                        .addGap(0, 573, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(159, 159, 159)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1019,9 +943,16 @@ public class Purchases extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(btnmorder, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(173, 173, 173)
-                        .addComponent(btnlorder, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnpbills, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnmorder, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(173, 173, 173)
+                                    .addComponent(btnlorder, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(875, 875, 875)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -1128,16 +1059,11 @@ public class Purchases extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addComponent(btnpbills, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(38, 38, 38)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1134, 1134, 1134))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1177, 1177, 1177))
             .addGroup(layout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(txtpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1356,6 +1282,7 @@ public class Purchases extends javax.swing.JFrame {
             // TODO add your handling code here:
             if("".equals(txtcusid.getText())){
                 customerClear();
+                fetch();
             }
             else{
                 String cusid = txtcusid.getText();
@@ -1400,11 +1327,10 @@ public class Purchases extends javax.swing.JFrame {
             int holdings = Integer.parseInt(txtholdings.getText());
             int invest = Integer.parseInt(txtinvest.getText());
             int avg = Integer.parseInt(txtavg.getText());
-            String sname = txtname.getText();
             String stockid = txtstockid.getText();
             String cusid = txtcusid.getText(); 
                     
-            String sql = "insert into purchases values ("+null+",'"+cusid+"','"+stockid+"','"+sname+"','"+date+"','"+time+"','"+price+"','"+shares+"')";
+            String sql = "insert into purchases values ("+null+",'"+cusid+"','"+stockid+"','"+date+"','"+time+"','"+price+"','"+shares+"')";
             pst = conn.prepareStatement(sql);
             pst.executeUpdate();
                 
@@ -1425,7 +1351,6 @@ public class Purchases extends javax.swing.JFrame {
             sum += Integer.parseInt(tblpurchases.getValueAt(i,6).toString());
         }
         txttotalamount.setText(String.valueOf(sum));
-        txttotalpurchases.setText(String.valueOf(tblpurchases.getRowCount()));
         
         pst = conn.prepareStatement("select * from pool where cusid = '"+cusid+"' and stockid = '"+stockid+"'");
         rs = pst.executeQuery();
@@ -1672,7 +1597,6 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1683,7 +1607,6 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
@@ -1717,6 +1640,5 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JTextField txtstockid;
     private javax.swing.JLabel txtsupply;
     private javax.swing.JLabel txttotalamount;
-    private javax.swing.JLabel txttotalpurchases;
     // End of variables declaration//GEN-END:variables
 }
