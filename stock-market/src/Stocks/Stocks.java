@@ -553,7 +553,7 @@ public class Stocks extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        new TotalPurchases().setVisible(true);
+        new PurchaseRecords().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -577,7 +577,7 @@ public class Stocks extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        new TotalSales().setVisible(true);
+        new SalesRecords().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 

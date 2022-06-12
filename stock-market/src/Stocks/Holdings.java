@@ -596,7 +596,7 @@ public class Holdings extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        new TotalPurchases().setVisible(true);
+        new PurchaseRecords().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -628,7 +628,7 @@ public class Holdings extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        new TotalSales().setVisible(true);
+        new SalesRecords().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton18ActionPerformed
 

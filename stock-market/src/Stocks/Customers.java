@@ -38,8 +38,8 @@ public class Customers extends javax.swing.JFrame {
     public Customers() {
         initComponents();
         conn = Database.connect();
-        clear();
         fetch();
+        clear();
     }
     public void clear(){
         txtname.setText(null);
@@ -50,6 +50,9 @@ public class Customers extends javax.swing.JFrame {
         contactval.setText(null);
         txtbank.setText(null);
         txtbankval.setText(null);
+        cbcountry.setSelectedItem(null);
+        cbstate.setSelectedItem(null);
+        cbdistrict.setSelectedItem(null);
     }
     
     public void fetch(){
@@ -64,6 +67,9 @@ public class Customers extends javax.swing.JFrame {
                  v.add(rs.getString("name"));
                  v.add(rs.getString("username"));
                  v.add(rs.getString("phoneno"));
+                 v.add(rs.getString("country"));
+                 v.add(rs.getString("state"));
+                 v.add(rs.getString("district"));
                  v.add(rs.getString("bank"));
                  v.add(rs.getString("demat"));
                  dtm.addRow(v);
@@ -107,6 +113,12 @@ public class Customers extends javax.swing.JFrame {
         unameval = new javax.swing.JLabel();
         contactval = new javax.swing.JLabel();
         txtbankval = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cbstate = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        cbcountry = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        cbdistrict = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,13 +147,13 @@ public class Customers extends javax.swing.JFrame {
 
         tblcustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "CustomerID", "name", "Username", "Contact", "Bank Account No", "Demat"
+                "CustomerID", "name", "Username", "Contact", "Country", "State", "District", "Bank Account No", "Demat"
             }
         ));
         tblcustomers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,15 +175,15 @@ public class Customers extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Full Name : ");
+        jLabel2.setText("FULL NAME : ");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("username : ");
+        jLabel3.setText("USERNAME : ");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Contact");
+        jLabel4.setText("CONTACT :");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -402,6 +414,37 @@ public class Customers extends javax.swing.JFrame {
         txtbankval.setForeground(new java.awt.Color(255, 0, 0));
         txtbankval.setText("jLabel5");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("STATE :");
+
+        cbstate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbstateActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("COUNTRY :");
+
+        cbcountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USA", "China", "India", "Canada", "Japan", "South Korea", "Germany", "Italy" }));
+        cbcountry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbcountryActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("DISTRICT :");
+
+        cbdistrict.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbdistrictActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -415,6 +458,10 @@ public class Customers extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -451,16 +498,29 @@ public class Customers extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtbankval, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtbank, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(89, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(jLabel7)
+                        .addGap(27, 27, 27)
+                        .addComponent(cbcountry, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(251, 251, 251)
+                        .addComponent(cbdistrict, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(140, 140, 140))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(172, 172, 172))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbstate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,21 +551,33 @@ public class Customers extends javax.swing.JFrame {
                                     .addComponent(txtcontact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(4, 4, 4)
                                 .addComponent(contactval)
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cbcountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cbstate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cbdistrict, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtbank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtbankval)
-                                .addGap(76, 76, 76)
+                                .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtadd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         pack();
@@ -521,14 +593,20 @@ public class Customers extends javax.swing.JFrame {
         String name = txtname.getText();
         String username = txtuname.getText();
         String contact = txtcontact.getText();
-        String country = txtbank.getText();        
+        String country= cbcountry.getSelectedItem().toString();
+        String state= cbstate.getSelectedItem().toString();
+        String district= cbdistrict.getSelectedItem().toString();
+        String bank = txtbank.getText();        
         try{
-               pst = conn.prepareStatement("update customers set name=?,username=?,phoneno=?,bank=? where customerid=?");
+               pst = conn.prepareStatement("update customers set name=?,username=?,phoneno=?,country=?,state=?,district=?,bank=? where customerid=?");
                pst.setString(1, name);
                pst.setString(2, username);
                pst.setString(3, contact);
                pst.setString(4, country);
-               pst.setInt(5,id);
+               pst.setString(5, state);
+               pst.setString(6, district);
+               pst.setString(7, bank);
+               pst.setInt(8,id);
                
                int rs = pst.executeUpdate();
                
@@ -558,9 +636,12 @@ public class Customers extends javax.swing.JFrame {
         String name = txtname.getText();
         String username = txtuname.getText();
         String contact = txtcontact.getText();
-        String country = txtbank.getText();
+        String bank = txtbank.getText();
+        String country= cbcountry.getSelectedItem().toString();
+        String state= cbstate.getSelectedItem().toString();
+        String district= cbdistrict.getSelectedItem().toString();
            try{
-               pst = conn.prepareStatement("insert into customers values ("+null+",'"+name+"','"+username+"','"+contact+"','"+country+"','"+0+"')");
+               pst = conn.prepareStatement("insert into customers values ("+null+",'"+name+"','"+username+"','"+contact+"','"+country+"','"+state+"','"+district+"','"+bank+"','"+0+"')");
                
                int rs = pst.executeUpdate();
                
@@ -577,29 +658,29 @@ public class Customers extends javax.swing.JFrame {
 
     private void txtdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel dl = (DefaultTableModel)tblcustomers.getModel();
-        int index = tblcustomers.getSelectedRow();
-        int id = Integer.parseInt(dl.getValueAt(index,0).toString());
-        int dialogResult = JOptionPane.showConfirmDialog(null,"do u want to delete","warning",JOptionPane.YES_NO_OPTION);
-        if(dialogResult==JOptionPane.YES_OPTION){
-            try{
-            String sql = "delete from customers where customerid='"+id+"'";
-            Statement stmt = (Statement) conn.createStatement();
-               int rs = stmt.executeUpdate(sql);
+            DefaultTableModel dl = (DefaultTableModel)tblcustomers.getModel();
+            int index = tblcustomers.getSelectedRow();
+            int id = Integer.parseInt(dl.getValueAt(index,0).toString());
+            int dialogResult = JOptionPane.showConfirmDialog(null,"do u want to delete","warning",JOptionPane.YES_NO_OPTION);
+            if(dialogResult==JOptionPane.YES_OPTION){
+                try{
+                String sql = "delete from customers where customerid='"+id+"'";
+                Statement stmt = (Statement) conn.createStatement();
+                   int rs = stmt.executeUpdate(sql);
 
-               if(rs==1){
-                   JOptionPane.showMessageDialog(this,"Successfully deleted");
-                   fetch();
-                   clear();
-                   txtname.requestFocus();
-                   txtadd.setEnabled(true);
-               }
-            
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        }
+                   if(rs==1){
+                       JOptionPane.showMessageDialog(this,"Successfully deleted");
+                       fetch();
+                       clear();
+                       txtname.requestFocus();
+                       txtadd.setEnabled(true);
+                   }
+
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+            }
     }//GEN-LAST:event_txtdeleteActionPerformed
 
     private void txtbankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbankActionPerformed
@@ -613,7 +694,10 @@ public class Customers extends javax.swing.JFrame {
         txtname.setText(dl.getValueAt(index,1).toString());
         txtuname.setText(dl.getValueAt(index,2).toString());
         txtcontact.setText(dl.getValueAt(index,3).toString());
-        txtbank.setText(dl.getValueAt(index,4).toString());
+        cbcountry.setSelectedItem(dl.getValueAt(index,4).toString());
+        cbstate.setSelectedItem(dl.getValueAt(index,5).toString());
+        cbdistrict.setSelectedItem(dl.getValueAt(index,6).toString());
+        txtbank.setText(dl.getValueAt(index,7).toString());
         txtadd.setEnabled(false);
     }//GEN-LAST:event_tblcustomersMouseClicked
 
@@ -625,7 +709,7 @@ public class Customers extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        new TotalPurchases().setVisible(true);
+        new PurchaseRecords().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -649,7 +733,7 @@ public class Customers extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        new TotalSales().setVisible(true);
+        new SalesRecords().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -778,6 +862,187 @@ public class Customers extends javax.swing.JFrame {
            }
     }//GEN-LAST:event_txtbankKeyReleased
 
+    private void cbstateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbstateActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(cbstate.getSelectedItem().equals("Kerala")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("Kasargode");
+                cbdistrict.addItem("Kannur");
+                cbdistrict.addItem("Kozhikode");
+                cbdistrict.addItem("Wayanad");
+                cbdistrict.addItem("Malappuram");
+                cbdistrict.addItem("Palakkad");
+                cbdistrict.addItem("Thrissur");
+                cbdistrict.addItem("Ernakulam");
+                cbdistrict.addItem("Kottayam");
+                cbdistrict.addItem("Alappuzha");
+                cbdistrict.addItem("Idukki");
+                cbdistrict.addItem("Pathanamthitta");
+                cbdistrict.addItem("Kollam");
+                cbdistrict.addItem("Thiruvananthapuram");
+            }
+            else if(cbstate.getSelectedItem().equals("California")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("Alameda");
+                cbdistrict.addItem("Colusa");
+                cbdistrict.addItem("Contra");
+                cbdistrict.addItem("Costa");
+            }
+            else if(cbstate.getSelectedItem().equals("Texas")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("Starbase");
+                cbdistrict.addItem("GigaTexas");
+            }
+            else if(cbstate.getSelectedItem().equals("Tamil Nadu")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("Kanchipuram");
+                cbdistrict.addItem("Tirunelveli");
+                cbdistrict.addItem("Coimbatore");
+                cbdistrict.addItem("Thanjavur");
+                cbdistrict.addItem("Madurai");
+                cbdistrict.addItem("Thoothukudi");
+            }
+            else if(cbstate.getSelectedItem().equals("Andhra Pradesh")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("Srikakulam");
+                cbdistrict.addItem("Vizinagaram");
+                cbdistrict.addItem("Visakhapatanam");
+                cbdistrict.addItem("Anakapalli");
+            }
+            else if(cbstate.getSelectedItem().equals("Arunachal Pradesh")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("Changlang");
+                cbdistrict.addItem("East Siang");
+                cbdistrict.addItem("Tawang");
+                cbdistrict.addItem("Upper Siang");
+            }
+            else if(cbstate.getSelectedItem().equals("Goa")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("North Goa");
+                cbdistrict.addItem("South Goa");
+            }
+            else if(cbstate.getSelectedItem().equals("Karnataka")){
+                cbdistrict.removeAllItems();
+                cbdistrict.setSelectedItem(null);
+                cbdistrict.addItem("Kolar");
+                cbdistrict.addItem("Udupi");
+                cbdistrict.addItem("Kodagu");
+            }
+            else{
+                cbdistrict.removeAllItems();
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_cbstateActionPerformed
+
+    private void cbcountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcountryActionPerformed
+        // TODO add your handling code here:
+        try{
+        if(cbcountry.getSelectedItem().equals("USA")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("California");
+            cbstate.addItem("Texas");
+            cbstate.addItem("Las Vegas");
+            cbstate.addItem("Florida");
+            cbstate.addItem("Washington");
+            cbstate.addItem("Denver");
+        }
+        else if(cbcountry.getSelectedItem().equals("China")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("Hong Kong");
+            cbstate.addItem("Zheijiang");
+            cbstate.addItem("Hainan");
+            cbstate.addItem("Shandong");
+            cbstate.addItem("Yunnan");
+        }
+        else if(cbcountry.getSelectedItem().equals("India")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("Andhra Pradesh");
+            cbstate.addItem("Arunachal Pradesh");
+            cbstate.addItem("Assam");
+            cbstate.addItem("Bihar");
+            cbstate.addItem("Chhattisgarh");
+            cbstate.addItem("Goa");
+            cbstate.addItem("Gujarat");
+            cbstate.addItem("Haryana");
+            cbstate.addItem("Himachal Pradesh");
+            cbstate.addItem("Jharkhand");
+            cbstate.addItem("Karnataka");
+            cbstate.addItem("Kerala");
+            cbstate.addItem("Madhya Pradesh");
+            cbstate.addItem("Maharashtra");
+            cbstate.addItem("Manipur");
+            cbstate.addItem("Meghalaya");
+            cbstate.addItem("Mizoram");
+            cbstate.addItem("Nagaland");
+            cbstate.addItem("Odisha");
+            cbstate.addItem("Punjab");
+            cbstate.addItem("Rajasthan");
+            cbstate.addItem("Sikkim");
+            cbstate.addItem("Tamil Nade");
+            cbstate.addItem("Telengana");
+            cbstate.addItem("Tripura");
+            cbstate.addItem("Uttar Pradesh");
+            cbstate.addItem("Uttarakhand");
+            cbstate.addItem("West Bengal");
+        }
+        else if(cbcountry.getSelectedItem().equals("Canada")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("Alberta");
+            cbstate.addItem("British Columbia");
+            cbstate.addItem("Manitoba");
+            cbstate.addItem("New Brunswick");
+        }
+        else if(cbcountry.getSelectedItem().equals("South Korea")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("North Chungcheong");
+            cbstate.addItem("South Chungcheong");
+            cbstate.addItem("Gangwon");
+            cbstate.addItem("Gyeonggi");
+        }
+        else if(cbcountry.getSelectedItem().equals("Japan")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("Tokyo");
+        }
+        else if(cbcountry.getSelectedItem().equals("Italy")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("Venice");
+            cbstate.addItem("Rome");
+        }
+        else if(cbcountry.getSelectedItem().equals("Germany")){
+            cbstate.removeAllItems();
+            cbstate.setSelectedItem(null);
+            cbstate.addItem("Berlin");
+        }
+        else{
+            cbstate.removeAllItems();
+        }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_cbcountryActionPerformed
+
+    private void cbdistrictActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbdistrictActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cbdistrictActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -815,6 +1080,9 @@ public class Customers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbcountry;
+    private javax.swing.JComboBox<String> cbdistrict;
+    private javax.swing.JComboBox<String> cbstate;
     private javax.swing.JLabel contactval;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -831,7 +1099,10 @@ public class Customers extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
