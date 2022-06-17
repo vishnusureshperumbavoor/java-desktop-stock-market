@@ -52,7 +52,6 @@ public PurchaseBill(){
         txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
         txtinvoice.setText(txtinvoice.getText() + "         TOTAL AMOUNT : ₹" + sum + "\n");
         txtinvoice.setText(txtinvoice.getText() + "*******************************\n");
-//        txtinvoice.print();
     }
     /**
      * This method is called from within the constructor to initialize the form.

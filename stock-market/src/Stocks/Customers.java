@@ -721,13 +721,19 @@ public class Customers extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        new Purchases().setVisible(true);
+        DefaultTableModel dl=(DefaultTableModel)tblcustomers.getModel();
+        int index=tblcustomers.getSelectedRow();
+        String cusid = dl.getValueAt(index,0).toString();
+        new Purchases(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        new Sales().setVisible(true);
+        DefaultTableModel dl=(DefaultTableModel)tblcustomers.getModel();
+        int index=tblcustomers.getSelectedRow();
+        String cusid = dl.getValueAt(index,0).toString();
+        new Sales(cusid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
